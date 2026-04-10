@@ -1,4 +1,13 @@
-import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { useSearchParams } from 'react-router-dom';
 import clsx from 'clsx';
 import type { ChangeEvent } from 'react';
 import {
@@ -32,6 +41,7 @@ import { DIFFICULTY_COLORS, DIFFICULTY_NAMES, type ChartDifficulty } from './cha
 import { lxnsJacketWebpUrl } from './lxns/assets';
 import type { LxnsSong, LxnsSongListResponse } from './lxns/types';
 import { chartFileIdForSong, fetchSimaiText, musicMp3UrlForChartFileId, type ChartKind } from './lxns/chartResolve';
+import { buildPreviewUrlParams, parsePreviewUrlParams } from './previewUrlParams';
 import classes from './preview-chart.module.css';
 
 export type ChartPick = {
@@ -231,6 +241,7 @@ function useKeyboardShortcuts() {
 const MAX_RESULTS = 60;
 
 export default function PreviewPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [queryInput, setQueryInput] = useState('');
   const deferredQuery = useDeferredValue(queryInput);
   const [songs, setSongs] = useState<LxnsSong[]>([]);
@@ -268,6 +279,43 @@ export default function PreviewPage() {
   const fullscreenElementRef = useRef<HTMLDivElement>(null);
 
   useKeyboardShortcuts();
+
+  /** 地址栏 → 状态：在写入 URL 的 effect 之前同步，避免首屏用空状态冲掉分享链接 */
+  useLayoutEffect(() => {
+    if (catalogLoading || catalogError || songs.length === 0) return;
+
+    const { songId, kind, diff } = parsePreviewUrlParams(searchParams);
+    if (songId === null) return;
+
+    const song = songs.find((s) => s.id === songId);
+    if (!song) return;
+
+    setSelectedSong((prev) => (prev?.id === song.id ? prev : song));
+
+    if (kind !== null && diff !== null) {
+      const picks = buildPicksForSong(song);
+      const match = picks.find((p) => p.kind === kind && p.chartDifficulty === diff);
+      if (match) {
+        setPick(match);
+        setWizardStep(2);
+      }
+    }
+  }, [searchParams, catalogLoading, catalogError, songs]);
+
+  /** 状态 → 地址栏：选中曲目记 `song`；进入预览步再记 `kind` + `diff`（乐曲难度） */
+  useEffect(() => {
+    if (catalogLoading || catalogError) return;
+
+    const next = buildPreviewUrlParams({
+      songId: selectedSong?.id ?? null,
+      kind: wizardStep === 2 && pick ? pick.kind : null,
+      diff: wizardStep === 2 && pick ? pick.chartDifficulty : null,
+    });
+
+    if (next.toString() !== searchParams.toString()) {
+      setSearchParams(next, { replace: true });
+    }
+  }, [selectedSong, wizardStep, pick, catalogLoading, catalogError, searchParams, setSearchParams]);
 
   useEffect(() => {
     const prev = prevWizardStepRef.current;
