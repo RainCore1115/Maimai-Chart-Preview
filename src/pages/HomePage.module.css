@@ -1,0 +1,122 @@
+.root {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #070b12;
+}
+
+.prismWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 45%, rgb(7 11 18 / 35%) 0%, rgb(7 11 18 / 88%) 100%),
+    linear-gradient(180deg, rgb(7 11 18 / 20%) 0%, rgb(7 11 18 / 75%) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  min-height: 100dvh;
+  width: 100%;
+  padding: var(--mantine-spacing-xl);
+  text-align: center;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 44rem;
+  min-height: 5.5rem;
+}
+
+/* 内层 inline-flex + baseline：与左侧「舞萌谱面」同一文字基线，避免蓝块视觉上偏高/偏低 */
+.titleRowInner {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+  max-width: 100%;
+}
+
+.titlePrefix {
+  flex-shrink: 0;
+  font-size: clamp(1.75rem, 5.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #f8fafc;
+  text-shadow:
+    0 0 40px rgb(56 189 248 / 35%),
+    0 2px 24px rgb(0 0 0 / 65%);
+}
+
+.rotatingOuter {
+  flex-shrink: 0;
+}
+
+/*
+ * 对齐 React Bits 示例：px/py + overflow-hidden + rounded + justify-center（此处为主题蓝底白字）
+ * https://reactbits.dev/text-animations/rotating-text
+ */
+.rotatingTextMain {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--mantine-radius-md);
+  background: var(--mantine-color-blue-filled);
+  color: var(--mantine-color-white);
+  box-shadow:
+    0 0 0 1px light-dark(rgb(255 255 255 / 12%), rgb(255 255 255 / 8%)),
+    0 4px 20px rgb(37 99 235 / 40%);
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  padding-block: 0.12em;
+  padding-inline: 0.4em;
+  font-size: clamp(1.75rem, 5.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-shadow: none;
+}
+
+@media (min-width: 36em) {
+  .rotatingTextMain {
+    padding-block: 0.16em;
+    padding-inline: 0.45em;
+  }
+}
+
+@media (min-width: 62em) {
+  .rotatingTextMain {
+    padding-block: 0.22em;
+    padding-inline: 0.5em;
+  }
+}
+
+/* 仅裁切 y 向动画，不再加 padding-bottom，避免整块基线被顶高 */
+.rotatingSplitLevel {
+  overflow: hidden;
+  line-height: inherit;
+}
+
+.subtitle {
+  max-width: 28rem;
+  opacity: 0.85;
+}
+
+.actions {
+  margin-top: var(--mantine-spacing-xs);
+}
