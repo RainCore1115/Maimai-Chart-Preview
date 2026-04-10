@@ -3,6 +3,12 @@ import { ANSWER_SOUND_BASE_OFFSET_MS } from '../../utils/constants';
 
 const SCHEDULE_LOOKAHEAD_MS = 1500;
 
+/** close() 返回 Promise，对已关闭的 context 会 reject，需吞掉避免 Uncaught (in promise) */
+function safeCloseAudioContext(ctx: AudioContext | null | undefined): void {
+  if (!ctx || ctx.state === 'closed') return;
+  void ctx.close().catch(() => {});
+}
+
 export interface AudioManagerConfig {
   answerSoundPath?: string;
   initialVolume?: number;
@@ -70,34 +76,53 @@ export class AudioManager {
   async init(): Promise<void> {
     if (this.initialized) return;
 
-    try {
-      const AudioContextClass = window.AudioContext || 
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      
-      this.audioContext = new AudioContextClass();
+    const AudioContextClass =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
 
+    const ctx = new AudioContextClass();
+    this.audioContext = ctx;
+
+    /** 仍为当前实例持有的 context（dispose / 切页后会置 null 并 close，避免 await 之后用到已释放的 context） */
+    const stillOwner = () => this.audioContext === ctx;
+
+    try {
       let decoded: AudioBuffer | null = null;
       try {
         const response = await fetch(this.resolveAnswerSoundUrl());
-        if (response.ok) {
+        if (response.ok && stillOwner()) {
           const arrayBuffer = await response.arrayBuffer();
-          decoded = await this.audioContext.decodeAudioData(arrayBuffer);
+          decoded = await ctx.decodeAudioData(arrayBuffer);
         }
       } catch {
         decoded = null;
+      }
+
+      if (!stillOwner()) {
+        safeCloseAudioContext(ctx);
+        return;
       }
 
       if (!decoded) {
         console.warn(
           'AudioManager: 未加载到 answer.wav（可将文件放在 public/assets/maimai/chart/），已使用内置提示音作为正解音。'
         );
-        decoded = this.createSyntheticAnswerBuffer(this.audioContext);
+        decoded = this.createSyntheticAnswerBuffer(ctx);
+      }
+
+      if (!stillOwner()) {
+        safeCloseAudioContext(ctx);
+        return;
       }
 
       this.answerBuffer = decoded;
       this.initialized = true;
     } catch (error) {
       console.error('AudioManager: Failed to initialize', error);
+      safeCloseAudioContext(ctx);
+      if (stillOwner()) {
+        this.audioContext = null;
+      }
     }
   }
 
@@ -110,7 +135,7 @@ export class AudioManager {
   dispose(): void {
     this.clearScheduledSources(true);
     if (this.audioContext) {
-      this.audioContext.close();
+      safeCloseAudioContext(this.audioContext);
       this.audioContext = null;
     }
     this.answerBuffer = null;

@@ -8,3 +8,8 @@
 
 - 落雪原有内容
 
+## 致谢
+
+- LxnsNetwork
+- [Lxns 的 舞萌查分器](//maimai.lxns.net)
+- [ReactBits](//reactbits.dev/)

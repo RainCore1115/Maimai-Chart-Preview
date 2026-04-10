@@ -90,10 +90,13 @@ export function useMusicPlayer() {
   const playbackSpeedRef = useRef(1);
   const loadingUrlRef = useRef<string | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const lastSyncedMusicSessionRef = useRef<number | null>(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const musicSessionId = useGameStore((s) => s.musicSessionId);
 
   const {
     musicUrl,
@@ -287,11 +290,12 @@ export function useMusicPlayer() {
         abortControllerRef.current = null;
       }
       if (state.audioContext) {
-        state.audioContext.close();
+        void state.audioContext.close().catch(() => {});
         state.audioContext = null;
         state.gainNode = null;
         state.sourceGainNode = null;
       }
+      state.audioBuffer = null;
     };
   }, [stopSource]);
 
@@ -314,14 +318,43 @@ export function useMusicPlayer() {
     }
   }, [musicUrl, stopSource]);
 
+  // 单独 effect：避免与「加载音频」effect 合并后依赖项个数变化（React 19 / HMR 会报错）
+  useEffect(() => {
+    if (!musicUrl) return;
+    if (lastSyncedMusicSessionRef.current === musicSessionId) return;
+
+    lastSyncedMusicSessionRef.current = musicSessionId;
+    const state = audioStateRef.current;
+    stopSource(true);
+    state.audioBuffer = null;
+    lastUrlRef.current = '';
+    loadingUrlRef.current = null;
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    if (state.audioContext) {
+      void state.audioContext.close().catch(() => {});
+      state.audioContext = null;
+      state.gainNode = null;
+      state.sourceGainNode = null;
+    }
+    setIsLoaded(false);
+    setIsLoading(false);
+    setError(null);
+  }, [musicSessionId, musicUrl, stopSource]);
+
   // 加载音频文件（在 pendingPlay 或音频缓存被清除时触发）
   useEffect(() => {
     const state = audioStateRef.current;
 
-    // 需要加载音频的条件：有 musicUrl，并且（pendingPlay 或 audioBuffer 为空且 URL 变了）
+    // 需要加载：等待播放、URL 与当前已解码缓存不一致、或尚未有 buffer（含切歌后需换源）
     if (!musicUrl) return;
-    
-    const shouldLoad = pendingPlay || (!state.audioBuffer && musicUrl !== lastUrlRef.current);
+
+    const shouldLoad =
+      pendingPlay ||
+      lastUrlRef.current !== musicUrl ||
+      !state.audioBuffer;
     if (!shouldLoad) return;
 
     // 如果已经加载完成（相同 URL），不重复加载
@@ -364,7 +397,13 @@ export function useMusicPlayer() {
 
         const cached = getCachedAudioBuffer(currentUrl);
         if (cached) {
-          if (abortController.signal.aborted) return;
+          if (abortController.signal.aborted) {
+            if (loadingUrlRef.current === currentUrl) {
+              loadingUrlRef.current = null;
+              setIsLoading(false);
+            }
+            return;
+          }
           if (loadingUrlRef.current === currentUrl) {
             state.audioBuffer = cached;
             lastUrlRef.current = currentUrl;
@@ -387,12 +426,24 @@ export function useMusicPlayer() {
         const arrayBuffer = await response.arrayBuffer();
 
         // 检查是否已被取消
-        if (abortController.signal.aborted) return;
+        if (abortController.signal.aborted) {
+          if (loadingUrlRef.current === currentUrl) {
+            loadingUrlRef.current = null;
+            setIsLoading(false);
+          }
+          return;
+        }
 
         const audioBuffer = await state.audioContext.decodeAudioData(arrayBuffer);
 
         // 再次检查是否已被取消
-        if (abortController.signal.aborted) return;
+        if (abortController.signal.aborted) {
+          if (loadingUrlRef.current === currentUrl) {
+            loadingUrlRef.current = null;
+            setIsLoading(false);
+          }
+          return;
+        }
 
         // 确保是当前 URL 的加载结果
         if (loadingUrlRef.current === currentUrl) {
@@ -405,7 +456,13 @@ export function useMusicPlayer() {
           setError(null);
         }
       } catch {
-        if (abortController.signal.aborted) return;
+        if (abortController.signal.aborted) {
+          if (loadingUrlRef.current === currentUrl) {
+            loadingUrlRef.current = null;
+            setIsLoading(false);
+          }
+          return;
+        }
         if (loadingUrlRef.current === currentUrl) {
           loadingUrlRef.current = null;
           setIsLoaded(false);

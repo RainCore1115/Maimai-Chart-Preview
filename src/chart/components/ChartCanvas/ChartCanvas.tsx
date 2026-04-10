@@ -103,6 +103,8 @@ export function ChartCanvas() {
   const totalMeasures = useGameStore((s) => s.timeline.totalMeasures);
   const beatsPerMeasure = useGameStore((s) => s.timeline.beatsPerMeasure);
   const playbackSpeed = useGameStore((s) => s.playbackSpeed);
+  /** 必须在所有 useEffect 之前声明，保证 Hooks 顺序稳定（供 renderFrame / 动画循环读取） */
+  const playbackSpeedRef = useRef(playbackSpeed);
   const setPreciseTime = useGameStore((s) => s.setPreciseTime);
   const pause = useGameStore((s) => s.pause);
 
@@ -399,8 +401,6 @@ export function ChartCanvas() {
     resyncAnswerSound(currentMs);
   }, [soundOffset, chartData, isPlaying, soundEnabled, resyncAnswerSound]);
 
-  // 保存当前播放速度的 ref，用于在动画循环中获取最新值
-  const playbackSpeedRef = useRef(playbackSpeed);
   useEffect(() => {
     // 当播放速度变化时，更新起始时间和位置以保持当前播放位置
     if (isPlaying && chartData) {

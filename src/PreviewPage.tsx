@@ -30,7 +30,7 @@ import { getAvailableDifficulties, parseSimaiChart } from './chart/core/parser/C
 import { DIFFICULTY_COLORS, DIFFICULTY_NAMES, type ChartDifficulty } from './chart/types';
 import { lxnsJacketWebpUrl } from './lxns/assets';
 import type { LxnsSong, LxnsSongListResponse } from './lxns/types';
-import { chartFileIdForSong, fetchSimaiText, musicMp3UrlForLxnsSongId, type ChartKind } from './lxns/chartResolve';
+import { chartFileIdForSong, fetchSimaiText, musicMp3UrlForChartFileId, type ChartKind } from './lxns/chartResolve';
 import classes from './preview-chart.module.css';
 
 export type ChartPick = {
@@ -252,8 +252,10 @@ export default function PreviewPage() {
   const isFullscreen = useGameStore((s) => s.isFullscreen);
   const toggleFullscreen = useGameStore((s) => s.toggleFullscreen);
   const setIsFullscreen = useGameStore((s) => s.setIsFullscreen);
+  const bumpMusicSession = useGameStore((s) => s.bumpMusicSession);
 
   const [wizardStep, setWizardStep] = useState(0);
+  const prevWizardStepRef = useRef(wizardStep);
 
   const [showControls, setShowControls] = useState(true);
   const [isLocked, setIsLocked] = useState(false);
@@ -262,6 +264,14 @@ export default function PreviewPage() {
   const fullscreenElementRef = useRef<HTMLDivElement>(null);
 
   useKeyboardShortcuts();
+
+  useEffect(() => {
+    const prev = prevWizardStepRef.current;
+    prevWizardStepRef.current = wizardStep;
+    if (wizardStep === 2 && prev !== 2 && pick) {
+      bumpMusicSession();
+    }
+  }, [wizardStep, pick, bumpMusicSession]);
 
   useEffect(() => {
     let cancelled = false;
@@ -329,7 +339,7 @@ export default function PreviewPage() {
   const loadChartForPick = useCallback(
     async (p: ChartPick, signal: AbortSignal) => {
       setChartError(null);
-      const nextMusicUrl = musicMp3UrlForLxnsSongId(p.song.id);
+      const nextMusicUrl = musicMp3UrlForChartFileId(p.chartFileId);
       const prevUrl = useGameStore.getState().musicUrl;
       if (prevUrl !== nextMusicUrl) {
         setMusicUrl(nextMusicUrl);

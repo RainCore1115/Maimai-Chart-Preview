@@ -12,9 +12,14 @@ export function musicAssetIdFromChartFileId(chartFileId: number): number {
 }
 
 /** 与 chartFileId % 10000 一致：同曲目 ID 下标准/DX/难度切换共用同一音频资源 */
-export function musicMp3UrlForLxnsSongId(songId: number): string {
-  const assetId = musicAssetIdFromChartFileId(songId);
+export function musicMp3UrlForChartFileId(chartFileId: number): string {
+  const assetId = musicAssetIdFromChartFileId(chartFileId);
   return `https://assets2.lxns.net/maimai/music/${assetId}.mp3`;
+}
+
+/** @deprecated 请优先使用 musicMp3UrlForChartFileId(chartFileId)，以便与谱面 id 规则一致 */
+export function musicMp3UrlForLxnsSongId(songId: number): string {
+  return musicMp3UrlForChartFileId(songId);
 }
 
 const SIMAI_CACHE_MAX = 64;

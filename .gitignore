@@ -1,4 +1,2 @@
-_prober/
+dist/
 node_modules/
-web/dist/
-node_modules

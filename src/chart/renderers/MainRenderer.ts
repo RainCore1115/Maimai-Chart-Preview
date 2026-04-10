@@ -270,13 +270,17 @@ export class MainRenderer {
 
     this.ctx.save();
 
-    if (this.config.judgmentLineDesign === 'sensor' && 
-        this.sensorImage && 
-        this.sensorImage.complete) {
+    // complete 在加载失败时也可能为 true，需用 naturalWidth 排除 broken 图，否则 drawImage 抛 InvalidStateError
+    const sensorReady =
+      this.sensorImage &&
+      this.sensorImage.complete &&
+      this.sensorImage.naturalWidth > 0;
+
+    if (this.config.judgmentLineDesign === 'sensor' && sensorReady) {
       const imgSize = this.logicalSize - 10;
       const imgX = this.centerX - imgSize / 2;
       const imgY = this.centerY - imgSize / 2 + 8;
-      this.ctx.drawImage(this.sensorImage, imgX, imgY, imgSize, imgSize);
+      this.ctx.drawImage(this.sensorImage!, imgX, imgY, imgSize, imgSize);
     }
 
     if (this.config.judgmentLineDesign === 'simple' || 

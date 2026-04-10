@@ -47,6 +47,8 @@ interface GameState {
   seekVersion: number;
   /** 是否全屏 */
   isFullscreen: boolean;
+  /** 每次进入预览等场景递增，用于强制 BGM 解码链与 AudioContext 重建（URL 未变时也能重载） */
+  musicSessionId: number;
 }
 
 interface GameActions {
@@ -96,6 +98,8 @@ interface GameActions {
   setIsFullscreen: (isFullscreen: boolean) => void;
   /** 切换全屏模式 */
   toggleFullscreen: () => void;
+  /** 使 useMusicPlayer 丢弃本地 buffer / context 并重新拉取当前 musicUrl */
+  bumpMusicSession: () => void;
 }
 
 export type GameStore = GameState & GameActions;
@@ -126,6 +130,7 @@ const initialState: GameState = {
   restartPosition: { measure: 0, position: 0 },
   seekVersion: 0,
   isFullscreen: false,
+  musicSessionId: 0,
 };
 
 function beatsToMs(beats: number, bpmEvents: BpmEvent[] | null, defaultBpm: number): number {
@@ -445,19 +450,17 @@ export const useGameStore = create<GameStore>()(
 
     setMusicState: (loaded: boolean, loading: boolean, error: string | null) => {
       const state = get();
-      // 如果音乐加载完成且正在等待播放，自动开始播放
       const shouldAutoPlay = loaded && state.pendingPlay;
+      const clearPendingOnFailure = !loaded && error != null && state.pendingPlay;
 
       set({
         musicLoaded: loaded,
         musicLoading: loading,
         musicError: error,
-        // 只有在即将播放时才清除 pendingPlay，避免触发 useEffect 取消请求
-        ...(shouldAutoPlay ? { pendingPlay: false } : {}),
+        ...(shouldAutoPlay || clearPendingOnFailure ? { pendingPlay: false } : {}),
       });
 
       if (shouldAutoPlay) {
-        // 直接调用播放逻辑，此时 musicLoaded 已经是 true
         setTimeout(() => get().play(), 0);
       }
     },
@@ -493,6 +496,8 @@ export const useGameStore = create<GameStore>()(
     setIsFullscreen: (isFullscreen: boolean) => set({ isFullscreen }),
 
     toggleFullscreen: () => set((state) => ({ isFullscreen: !state.isFullscreen })),
+
+    bumpMusicSession: () => set((s) => ({ musicSessionId: s.musicSessionId + 1 })),
   }))
 );
 
