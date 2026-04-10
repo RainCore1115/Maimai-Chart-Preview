@@ -1,4 +1,5 @@
-import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import clsx from 'clsx';
 import type { ChangeEvent } from 'react';
 import {
   ActionIcon,
@@ -21,7 +22,7 @@ import {
   Title,
   UnstyledButton,
 } from '@mantine/core';
-import { IconLock, IconLockOpen, IconSearch, IconX } from '@tabler/icons-react';
+import { IconChevronDown, IconChevronUp, IconLock, IconLockOpen, IconSearch, IconX } from '@tabler/icons-react';
 import { ChartCanvas } from './chart/components/ChartCanvas';
 import { Controls, PlaybackControls } from './chart/components/Controls';
 import { useGameStore } from './chart/stores/useGameStore';
@@ -255,6 +256,9 @@ export default function PreviewPage() {
   const bumpMusicSession = useGameStore((s) => s.bumpMusicSession);
 
   const [wizardStep, setWizardStep] = useState(0);
+  const [stepperHeaderExpanded, setStepperHeaderExpanded] = useState(true);
+  /** 进入预览步时首帧跳过步骤条过渡（保持瞬间收起）；手动收起仍走动画 */
+  const [stepperCollapseWithoutMotion, setStepperCollapseWithoutMotion] = useState(false);
   const prevWizardStepRef = useRef(wizardStep);
 
   const [showControls, setShowControls] = useState(true);
@@ -271,7 +275,19 @@ export default function PreviewPage() {
     if (wizardStep === 2 && prev !== 2 && pick) {
       bumpMusicSession();
     }
+    if (wizardStep === 2 && prev !== 2) {
+      setStepperHeaderExpanded(false);
+      setStepperCollapseWithoutMotion(true);
+    } else if (wizardStep !== 2) {
+      setStepperHeaderExpanded(true);
+      setStepperCollapseWithoutMotion(false);
+    }
   }, [wizardStep, pick, bumpMusicSession]);
+
+  useLayoutEffect(() => {
+    if (!stepperCollapseWithoutMotion) return;
+    setStepperCollapseWithoutMotion(false);
+  }, [stepperCollapseWithoutMotion]);
 
   useEffect(() => {
     let cancelled = false;
@@ -598,15 +614,48 @@ export default function PreviewPage() {
       <Container size="xl" py="lg" style={{ display: isFullscreen ? 'none' : 'block' }}>
         <Stack gap="lg">
           <div>
-            <Group gap="xs" mb={4}>
-              <Title order={2}>舞萌谱面预览</Title>
-              <Badge variant="light" color="blue">
-                独立页
-              </Badge>
+            <Group justify="space-between" align="flex-start" wrap="nowrap" gap="sm">
+              <Stack gap={4} style={{ flex: 1, minWidth: 0 }}>
+                <Group gap="xs" wrap="wrap">
+                  <Title order={2}>舞萌谱面预览</Title>
+                  <Badge variant="light" color="blue">
+                    独立页
+                  </Badge>
+                </Group>
+                <Text size="sm" c="dimmed">
+                  数据来自：maimai.lxns.net
+                </Text>
+              </Stack>
+              {wizardStep === 2 ? (
+                <UnstyledButton
+                  type="button"
+                  onClick={() => setStepperHeaderExpanded((v) => !v)}
+                  aria-expanded={stepperHeaderExpanded}
+                  aria-label={stepperHeaderExpanded ? '收起步骤向导' : '展开步骤向导'}
+                  title={stepperHeaderExpanded ? '收起步骤向导' : '展开步骤向导'}
+                  style={{
+                    flexShrink: 0,
+                    alignSelf: 'flex-start',
+                    marginTop: 2,
+                    padding: '4px 10px',
+                    borderRadius: 'var(--mantine-radius-md)',
+                    border: '1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4))',
+                    background: 'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6))',
+                  }}
+                >
+                  <Group gap={6} wrap="nowrap">
+                    <Text size="xs" c="dimmed" fw={500}>
+                      {stepperHeaderExpanded ? '收起' : '步骤'}
+                    </Text>
+                    {stepperHeaderExpanded ? (
+                      <IconChevronUp size={16} stroke={1.75} />
+                    ) : (
+                      <IconChevronDown size={16} stroke={1.75} />
+                    )}
+                  </Group>
+                </UnstyledButton>
+              ) : null}
             </Group>
-            <Text size="sm" c="dimmed">
-              数据来自：maimai.lxns.net
-            </Text>
           </div>
 
           <Stepper
@@ -615,6 +664,16 @@ export default function PreviewPage() {
             allowNextStepsSelect={false}
             keepMounted
             mb="md"
+            classNames={{
+              steps: clsx(
+                wizardStep === 2 &&
+                  (stepperHeaderExpanded
+                    ? classes.stepperStepsExpanded
+                    : stepperCollapseWithoutMotion
+                      ? classes.stepperStepsCollapsedInstant
+                      : classes.stepperStepsCollapsedAnimated)
+              ),
+            }}
           >
             <Stepper.Step label="曲目" description="搜索并选择">
               <Card withBorder radius="md" padding="md" mt="md">

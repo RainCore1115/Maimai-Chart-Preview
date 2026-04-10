@@ -1,3 +1,43 @@
+/* Stepper 顶部步骤条：预览页展开/收起（两端 transition 一致，收起为展开的反向插值） */
+.stepperStepsMotion {
+  transition:
+    max-height 0.42s cubic-bezier(0.34, 1.02, 0.68, 1),
+    opacity 0.34s ease-out,
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stepperStepsCollapsedInstant {
+  overflow: hidden !important;
+  max-height: 0 !important;
+  opacity: 0;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: none;
+}
+
+.stepperStepsCollapsedAnimated {
+  composes: stepperStepsMotion;
+  overflow: hidden !important;
+  max-height: 0 !important;
+  opacity: 0;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
+.stepperStepsExpanded {
+  composes: stepperStepsMotion;
+  overflow: visible;
+  max-height: 12rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 380px;
