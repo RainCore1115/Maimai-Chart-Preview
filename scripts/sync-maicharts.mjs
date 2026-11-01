@@ -4,11 +4,13 @@
  *
  * 数据来源：AWMC chart-preview API（https://wiki.awmc.team/dev/chart-preview-api）
  *  - 若提供了 CHART_PREVIEW_API_KEY（可通过 CNB「密钥仓库」导入），直接调用 API；
- *  - 否则读取预览站（GitHub Pages，等同源静态数据镜像）的 API 快照：
- *      {previewBase}/chart-index.json              谱面列表 + 指纹
- *      {previewBase}/analysis/*.json               谱面详情（含 configAnalysis）
- *      {previewBase}/catalog.json                  .adx 提取出的最新等级/谱师
+ *  - 否则读取预览站发布的 API 静态快照（按顺序尝试多个镜像，失败自动切换）：
+ *      {base}/chart-index.json                     谱面列表 + 指纹
+ *      {base}/chart-analysis.json.gz               全部谱面详情聚合（含 configAnalysis）
+ *      {base}/analysis/*.json                      单个谱面详情（聚合文件不可用时回退）
+ *      {base}/catalog.json                         .adx 提取出的最新等级/谱师
  *    也可以用 --preview-dir 指向本地已克隆的预览站仓库。
+ *    镜像可通过 --preview-base 或环境变量 PREVIEW_DATA_BASE 覆盖（逗号分隔）。
  *
  * 更新内容：
  *  - data/chart_analysis/{谱面}.json + _index.json   每个谱面的完整分析（configAnalysis）
@@ -29,9 +31,13 @@ import { parseLevelLabel } from './lib/catalog.mjs';
 
 function parseArgs(argv) {
   const args = {
-    // 预览站静态数据镜像（GitHub Pages）。默认使用已部署站点的 data 目录，
-    // 避免在 CNB 流水线里访问 GitHub git 协议（国内网络较慢/不稳定）。
-    previewBase: process.env.PREVIEW_DATA_BASE ?? 'https://raincore1115.github.io/Maimai-Chart-Preview/data',
+    // 预览站静态数据镜像，按顺序尝试；默认 jsDelivr（国内相对稳定）+ GitHub Pages
+    previewBase:
+      process.env.PREVIEW_DATA_BASE ??
+      [
+        'https://cdn.jsdelivr.net/gh/RainCore1115/Maimai-Chart-Preview@main/public/data',
+        'https://raincore1115.github.io/Maimai-Chart-Preview/data',
+      ].join(','),
     previewDir: '',
     repoRoot: '.',
     dryRun: false,
@@ -126,33 +132,50 @@ async function fetchJsonUrl(url, { retries = 3 } = {}) {
   throw lastError instanceof Error ? lastError : new Error(String(lastError));
 }
 
-/** 预览站数据根地址（去掉末尾斜杠） */
-function previewRoot(previewBase) {
-  return previewBase.replace(/\/+$/, '');
+/** 预览站数据根地址列表 */
+function previewRoots(previewBase) {
+  return String(previewBase)
+    .split(',')
+    .map((base) => base.trim().replace(/\/+$/, ''))
+    .filter(Boolean);
 }
 
-/** 加载谱面索引（本地仓库 或 预览站静态镜像） */
-async function loadSnapshot(previewDir, previewBase) {
-  const index = previewDir
-    ? readJson(path.join(previewDir, 'data/preview-sync/chart-index.json'), null)
-    : await fetchJsonUrl(`${previewRoot(previewBase)}/chart-index.json`);
-  if (!index || !index.charts) {
-    throw new Error(
-      `未找到 API 快照（${previewDir || previewRoot(previewBase)}），请先运行预览站数据同步任务，或提供 CHART_PREVIEW_API_KEY`
-    );
+/** 依次尝试多个镜像，返回第一个可用结果 */
+async function tryMirrors(bases, loader, label) {
+  let lastError;
+  for (const base of bases) {
+    try {
+      const result = await loader(base);
+      if (result != null) return { base, result };
+    } catch (error) {
+      lastError = error;
+      log(`  镜像不可用 ${base}（${label}）：${error.message}`);
+    }
   }
-  return index;
+  throw lastError instanceof Error ? lastError : new Error(`${label} 在所有镜像上都不可用`);
+}
+
+/** 加载谱面索引（本地仓库 或 预览站静态镜像），返回 { index, base } */
+async function loadSnapshot(previewDir, previewBases) {
+  if (previewDir) {
+    const index = readJson(path.join(previewDir, 'data/preview-sync/chart-index.json'), null);
+    if (!index?.charts) throw new Error(`本地预览站仓库缺少快照：${previewDir}`);
+    return { index, base: '' };
+  }
+  const { base, result: index } = await tryMirrors(previewBases, (mirror) => fetchJsonUrl(`${mirror}/chart-index.json`), '谱面索引');
+  if (!index?.charts) throw new Error(`镜像返回的谱面索引格式不正确：${base}/chart-index.json`);
+  return { index, base };
 }
 
 /** 读取某个谱面的详情 JSON（本地仓库 或 预览站静态镜像） */
-async function loadDetailFromSnapshot(previewDir, previewBase, item) {
+async function loadDetailFromSnapshot(previewDir, sourceBase, item) {
   const relative = item.file
     ? item.file.replace(/^data\/chart_analysis\//, '').replace(/^analysis\//, '')
     : `${item.songId}_${item.kind}_${item.difficulty}.json`;
   if (previewDir) {
     return readJson(path.join(previewDir, 'public/data/analysis', relative), null);
   }
-  return fetchJsonUrl(`${previewRoot(previewBase)}/analysis/${relative}`);
+  return fetchJsonUrl(`${sourceBase}/analysis/${relative}`);
 }
 
 async function main() {
@@ -186,20 +209,25 @@ async function main() {
     chartItems = items;
     sourceLabel = api.base;
   } else {
-    sourceLabel = previewDir ? `${previewDir}/data/preview-sync/chart-index.json` : `${previewRoot(args.previewBase)}/chart-index.json`;
-    log(`数据来源：预览站 API 快照 ${sourceLabel}`);
-    const index = await loadSnapshot(previewDir, args.previewBase);
+    const previewBases = previewRoots(args.previewBase);
+    log(`数据来源：预览站 API 快照（镜像 ${previewBases.length} 个）`);
+    const { index, base: sourceBase } = await loadSnapshot(previewDir, previewBases);
+    sourceLabel = previewDir ? `${previewDir}/data/preview-sync/chart-index.json` : `${sourceBase}/chart-index.json`;
+    log(`实际镜像：${sourceLabel}`);
     chartItems = Object.entries(index.charts).map(([chartKey, entry]) => ({ chartKey, ...entry }));
     if (!previewDir) {
       // 优先使用聚合快照（一次 HTTP 请求拿到全部谱面分析，避免上千次小请求）
-      const aggregateUrl = `${previewRoot(args.previewBase)}/chart-analysis.json.gz`;
-      const aggregate = await fetchGzipJson(aggregateUrl).catch((error) => {
+      const { base: aggregateBase, result: aggregate } = await tryMirrors(
+        [sourceBase, ...previewBases.filter((mirror) => mirror !== sourceBase)],
+        (mirror) => fetchGzipJson(`${mirror}/chart-analysis.json.gz`),
+        '聚合分析快照'
+      ).catch((error) => {
         log(`聚合快照读取失败（将退回逐文件读取）：${error.message}`);
-        return null;
+        return { base: sourceBase, result: null };
       });
       if (aggregate?.charts) {
         for (const [chartKey, detail] of Object.entries(aggregate.charts)) detailCache.set(chartKey, detail);
-        log(`已加载聚合分析快照：${detailCache.size} 个谱面（${aggregateUrl}）`);
+        log(`已加载聚合分析快照：${detailCache.size} 个谱面（${aggregateBase}/chart-analysis.json.gz）`);
       }
     }
   }
@@ -342,7 +370,9 @@ async function main() {
   let updatedChartMeta = 0;
   const catalog = previewDir
     ? readJson(path.join(previewDir, 'public/data/catalog.json'), null)
-    : await fetchJsonUrl(`${previewRoot(args.previewBase)}/catalog.json`).catch(() => null);
+    : await tryMirrors(previewRoots(args.previewBase), (mirror) => fetchJsonUrl(`${mirror}/catalog.json`), '曲目目录')
+        .then(({ result }) => result)
+        .catch(() => null);
   if (catalog?.songs) {
     let matchedCatalogRows = 0;
     for (const catalogSong of catalog.songs) {

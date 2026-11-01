@@ -205,6 +205,18 @@ async function main() {
     const payload = zlib.gzipSync(Buffer.from(JSON.stringify(aggregated)), { level: 9 });
     fs.writeFileSync(path.join(args.outDir, 'chart-analysis.json.gz'), payload);
     log(`聚合分析数据：${Object.keys(aggregated.charts).length} 个谱面，gzip ${(payload.length / 1024 / 1024).toFixed(1)}MB`);
+
+    // 清理已从 API 列表中移除的谱面分析文件
+    const validFiles = new Set(Object.values(nextIndex.charts).map((entry) => path.basename(entry.file)));
+    const analysisDir = path.join(args.outDir, 'analysis');
+    let removed = 0;
+    for (const name of fs.readdirSync(analysisDir)) {
+      if (!validFiles.has(name)) {
+        fs.rmSync(path.join(analysisDir, name), { force: true });
+        removed += 1;
+      }
+    }
+    if (removed > 0) log(`清理失效分析文件：${removed} 个`);
   }
 
   // ---------- 2. mai-charts：.adx → simai ----------
