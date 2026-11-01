@@ -10,6 +10,7 @@
 | `scripts/sync-maicharts.mjs` | 数据同步脚本（与预览站仓库同源，复制自 `Maimai-Chart-Preview` 仓库） |
 | `scripts/lib/api.mjs` | chart-preview API 客户端 |
 | `scripts/lib/catalog.mjs` | maidata / 曲目目录工具 |
+| `scripts/lib/api.mjs` | chart-preview API 客户端（配置 Key 时使用） |
 
 同步脚本默认**不会**向 `music_data.json` 添加 adx 尚未提供的新曲目（避免破坏站点下载链接），
 新曲目会完整记录在 `data/chart_preview_index.json` 与 `data/chart_analysis/`。
@@ -36,15 +37,19 @@ git push
 ## 数据流
 
 ```
-┌─────────────────────────────┐        ┌──────────────────────────────────────┐
-│ GitHub Actions（每天 04:23） │        │ CNB 流水线（每天 21:20）              │
-│ 调用 chart-preview API      │ 快照    │ 读取预览站仓库的 API 快照              │
-│ 增量拉取列表 + 谱面分析      │ ─────▶ │ data/chart_analysis/*.json（C）       │
-│ 生成 public/data/*          │        │ data/chart_preview_index.json（B）    │
-│ data/preview-sync/*.json    │        │ data/music_data.json 等级/谱师补充（B）│
-└─────────────────────────────┘        │ data/music_chart.json 等级标签（B）    │
+┌──────────────────────────────┐        ┌──────────────────────────────────────┐
+│ GitHub Actions（每天 04:23）  │ Pages  │ CNB 流水线（每天 21:20）              │
+│ 调用 chart-preview API       │ 镜像   │ 读取预览站发布的 API 快照              │
+│ 增量拉取列表 + 谱面分析       │ ─────▶ │ data/chart_analysis/*.json（C）       │
+│ 生成 public/data/* 并部署     │        │ data/chart_preview_index.json（B）    │
+└──────────────────────────────┘        │ data/music_data.json 等级/谱师补充（B）│
+                                       │ data/music_chart.json 等级标签（B）    │
                                        └──────────────────────────────────────┘
 ```
+
+流水线默认从 `https://raincore1115.github.io/Maimai-Chart-Preview/data/` 读取快照
+（`chart-index.json` + 聚合的 `chart-analysis.json.gz` + `catalog.json`，共 3 个请求），
+不依赖 GitHub git 协议，国内网络更稳定。如配置了 `CHART_PREVIEW_API_KEY`，则直接调用 API。
 
 CNB 流水线的 `CNB_TOKEN` 由平台自动注入，作用域限定在当前仓库，无需额外配置密钥。
 

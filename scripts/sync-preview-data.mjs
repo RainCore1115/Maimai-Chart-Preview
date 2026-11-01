@@ -23,6 +23,7 @@
  *   CNB_TOKEN               CNB 访问令牌（公开仓库可省略；访问私有仓库时使用）
  */
 import crypto from 'node:crypto';
+import zlib from 'node:zlib';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -193,6 +194,18 @@ async function main() {
   // 同时发布到站点静态目录，供 mai-charts（CNB）流水线按 HTTP 读取
   writeJson(path.join(args.outDir, 'chart-index.json'), nextIndex);
   log(`谱面详情完成：写入 ${fetched} 个`);
+
+  // 聚合全部分析数据为单个 gzip 文件（CNB 流水线一次请求即可拿到全部详情）
+  {
+    const aggregated = { syncedAt: new Date().toISOString(), charts: {} };
+    for (const [chartKey, entry] of Object.entries(nextIndex.charts)) {
+      const detail = readJson(path.join(args.outDir, entry.file), null);
+      if (detail) aggregated.charts[chartKey] = detail;
+    }
+    const payload = zlib.gzipSync(Buffer.from(JSON.stringify(aggregated)), { level: 9 });
+    fs.writeFileSync(path.join(args.outDir, 'chart-analysis.json.gz'), payload);
+    log(`聚合分析数据：${Object.keys(aggregated.charts).length} 个谱面，gzip ${(payload.length / 1024 / 1024).toFixed(1)}MB`);
+  }
 
   // ---------- 2. mai-charts：.adx → simai ----------
   /** @type {{ listAdx: () => Promise<{path: string, sha: string, size: number}[]>, readBlob?: (sha: string) => Promise<Buffer>, readBlobByPath?: (p: string) => Promise<Buffer>, readTextFile: (p: string) => Promise<string|null>, headSha?: () => Promise<string> } } */

@@ -22,6 +22,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 
 import { ChartPreviewApi } from './lib/api.mjs';
 import { parseLevelLabel } from './lib/catalog.mjs';
@@ -87,6 +88,25 @@ function fingerprintOf(item) {
     )
     .digest('hex')
     .slice(0, 16);
+}
+
+/** 带重试的 HTTP gzip JSON 读取（聚合快照） */
+async function fetchGzipJson(url, { retries = 3 } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(120_000) });
+      if (res.status === 404) return null;
+      if (res.status === 429 || res.status >= 500) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const raw = Buffer.from(await res.arrayBuffer());
+      return JSON.parse(zlib.gunzipSync(raw).toString('utf8'));
+    } catch (error) {
+      lastError = error;
+      await new Promise((resolve) => setTimeout(resolve, 800 * 2 ** attempt));
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error(String(lastError));
 }
 
 /** 带重试的 HTTP JSON 读取 */
@@ -170,6 +190,18 @@ async function main() {
     log(`数据来源：预览站 API 快照 ${sourceLabel}`);
     const index = await loadSnapshot(previewDir, args.previewBase);
     chartItems = Object.entries(index.charts).map(([chartKey, entry]) => ({ chartKey, ...entry }));
+    if (!previewDir) {
+      // 优先使用聚合快照（一次 HTTP 请求拿到全部谱面分析，避免上千次小请求）
+      const aggregateUrl = `${previewRoot(args.previewBase)}/chart-analysis.json.gz`;
+      const aggregate = await fetchGzipJson(aggregateUrl).catch((error) => {
+        log(`聚合快照读取失败（将退回逐文件读取）：${error.message}`);
+        return null;
+      });
+      if (aggregate?.charts) {
+        for (const [chartKey, detail] of Object.entries(aggregate.charts)) detailCache.set(chartKey, detail);
+        log(`已加载聚合分析快照：${detailCache.size} 个谱面（${aggregateUrl}）`);
+      }
+    }
   }
   log(`谱面条目：${chartItems.length}`);
 
@@ -191,7 +223,7 @@ async function main() {
       detail = await api.chartDetail(item.chartKey).catch(() => null);
       if (detail) fetched += 1;
     } else {
-      detail = await loadDetailFromSnapshot(previewDir, args.previewBase, item);
+      detail = detailCache.get(item.chartKey) ?? (await loadDetailFromSnapshot(previewDir, args.previewBase, item));
       if (detail) copied += 1;
     }
     if (!detail) continue;
