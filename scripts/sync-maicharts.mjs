@@ -3,11 +3,12 @@
  * mai-charts 增量数据更新（在 mai-charts 仓库根目录、CNB 流水线中运行）
  *
  * 数据来源：AWMC chart-preview API（https://wiki.awmc.team/dev/chart-preview-api）
- *  - 若流水线提供了 CHART_PREVIEW_API_KEY（可通过 CNB「密钥仓库」导入），直接调用 API；
- *  - 否则读取预览站仓库（默认 GitHub 公开仓库）里由定时任务生成的 API 快照：
- *      data/preview-sync/chart-index.json          谱面列表 + 指纹
- *      public/data/analysis/*.json                 谱面详情（含 configAnalysis）
- *      public/data/catalog.json                    .adx 提取出的最新等级/谱师
+ *  - 若提供了 CHART_PREVIEW_API_KEY（可通过 CNB「密钥仓库」导入），直接调用 API；
+ *  - 否则读取预览站（GitHub Pages，等同源静态数据镜像）的 API 快照：
+ *      {previewBase}/chart-index.json              谱面列表 + 指纹
+ *      {previewBase}/analysis/*.json               谱面详情（含 configAnalysis）
+ *      {previewBase}/catalog.json                  .adx 提取出的最新等级/谱师
+ *    也可以用 --preview-dir 指向本地已克隆的预览站仓库。
  *
  * 更新内容：
  *  - data/chart_analysis/{谱面}.json + _index.json   每个谱面的完整分析（configAnalysis）
@@ -16,7 +17,7 @@
  *  - data/music_chart.json                          已有曲目的难度等级标签同步
  *  - 可选 --add-new-songs：把 API 中新增曲目以最小字段补进 music_data.json
  *
- * 用法：node scripts/sync-maicharts.mjs [--preview-dir .preview-repo] [--repo-root .] [--dry-run] [--add-new-songs]
+ * 用法：node scripts/sync-maicharts.mjs [--preview-dir DIR | --preview-base URL] [--repo-root .] [--dry-run] [--add-new-songs]
  */
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -27,7 +28,10 @@ import { parseLevelLabel } from './lib/catalog.mjs';
 
 function parseArgs(argv) {
   const args = {
-    previewDir: '.preview-repo',
+    // 预览站静态数据镜像（GitHub Pages）。默认使用已部署站点的 data 目录，
+    // 避免在 CNB 流水线里访问 GitHub git 协议（国内网络较慢/不稳定）。
+    previewBase: process.env.PREVIEW_DATA_BASE ?? 'https://raincore1115.github.io/Maimai-Chart-Preview/data',
+    previewDir: '',
     repoRoot: '.',
     dryRun: false,
     addNewSongs: false,
@@ -36,6 +40,7 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--preview-dir') args.previewDir = argv[++i];
+    else if (arg === '--preview-base') args.previewBase = argv[++i];
     else if (arg === '--repo-root') args.repoRoot = argv[++i];
     else if (arg === '--api-key') args.apiKey = argv[++i];
     else if (arg === '--dry-run') args.dryRun = true;
@@ -84,30 +89,56 @@ function fingerprintOf(item) {
     .slice(0, 16);
 }
 
-/** 从 API 快照文件中加载谱面索引 */
-function loadSnapshot(previewDir) {
-  const indexPath = path.join(previewDir, 'data/preview-sync/chart-index.json');
-  const index = readJson(indexPath, null);
+/** 带重试的 HTTP JSON 读取 */
+async function fetchJsonUrl(url, { retries = 3 } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(30_000) });
+      if (res.status === 429 || res.status >= 500) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch (error) {
+      lastError = error;
+      await new Promise((resolve) => setTimeout(resolve, 500 * 2 ** attempt));
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error(String(lastError));
+}
+
+/** 预览站数据根地址（去掉末尾斜杠） */
+function previewRoot(previewBase) {
+  return previewBase.replace(/\/+$/, '');
+}
+
+/** 加载谱面索引（本地仓库 或 预览站静态镜像） */
+async function loadSnapshot(previewDir, previewBase) {
+  const index = previewDir
+    ? readJson(path.join(previewDir, 'data/preview-sync/chart-index.json'), null)
+    : await fetchJsonUrl(`${previewRoot(previewBase)}/chart-index.json`);
   if (!index || !index.charts) {
-    throw new Error(`未找到 API 快照：${indexPath}（请先运行预览站数据同步任务，或提供 CHART_PREVIEW_API_KEY）`);
+    throw new Error(
+      `未找到 API 快照（${previewDir || previewRoot(previewBase)}），请先运行预览站数据同步任务，或提供 CHART_PREVIEW_API_KEY`
+    );
   }
   return index;
 }
 
-/** 从预览站仓库读取谱面详情 JSON */
-function loadDetailFromSnapshot(previewDir, item) {
-  const file = path.join(
-    previewDir,
-    'public/data',
-    item.file ?? `analysis/${item.songId}_${item.kind}_${item.difficulty}.json`
-  );
-  return readJson(file, null);
+/** 读取某个谱面的详情 JSON（本地仓库 或 预览站静态镜像） */
+async function loadDetailFromSnapshot(previewDir, previewBase, item) {
+  const relative = item.file
+    ? item.file.replace(/^data\/chart_analysis\//, '').replace(/^analysis\//, '')
+    : `${item.songId}_${item.kind}_${item.difficulty}.json`;
+  if (previewDir) {
+    return readJson(path.join(previewDir, 'public/data/analysis', relative), null);
+  }
+  return fetchJsonUrl(`${previewRoot(previewBase)}/analysis/${relative}`);
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const repoRoot = path.resolve(args.repoRoot);
-  const previewDir = path.resolve(args.previewDir);
+  const previewDir = args.previewDir ? path.resolve(args.previewDir) : '';
 
   const musicDataPath = path.join(repoRoot, 'data/music_data.json');
   const musicChartPath = path.join(repoRoot, 'data/music_chart.json');
@@ -135,9 +166,9 @@ async function main() {
     chartItems = items;
     sourceLabel = api.base;
   } else {
-    sourceLabel = `${previewDir}/data/preview-sync/chart-index.json`;
+    sourceLabel = previewDir ? `${previewDir}/data/preview-sync/chart-index.json` : `${previewRoot(args.previewBase)}/chart-index.json`;
     log(`数据来源：预览站 API 快照 ${sourceLabel}`);
-    const index = loadSnapshot(previewDir);
+    const index = await loadSnapshot(previewDir, args.previewBase);
     chartItems = Object.entries(index.charts).map(([chartKey, entry]) => ({ chartKey, ...entry }));
   }
   log(`谱面条目：${chartItems.length}`);
@@ -160,7 +191,7 @@ async function main() {
       detail = await api.chartDetail(item.chartKey).catch(() => null);
       if (detail) fetched += 1;
     } else {
-      detail = loadDetailFromSnapshot(previewDir, item);
+      detail = await loadDetailFromSnapshot(previewDir, args.previewBase, item);
       if (detail) copied += 1;
     }
     if (!detail) continue;
@@ -277,7 +308,9 @@ async function main() {
 
   // 用 catalog.json（.adx 内 maidata 元信息）更新谱师 / BPM / 艺术家
   let updatedChartMeta = 0;
-  const catalog = readJson(path.join(previewDir, 'public/data/catalog.json'), null);
+  const catalog = previewDir
+    ? readJson(path.join(previewDir, 'public/data/catalog.json'), null)
+    : await fetchJsonUrl(`${previewRoot(args.previewBase)}/catalog.json`).catch(() => null);
   if (catalog?.songs) {
     let matchedCatalogRows = 0;
     for (const catalogSong of catalog.songs) {

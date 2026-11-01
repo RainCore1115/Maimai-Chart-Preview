@@ -7,7 +7,8 @@
  *     写入 `public/data/analysis/*.json`，并维护指纹缓存 `data/preview-sync/chart-index.json`；
  *  2. 读取 mai-charts 仓库的 `data/music_data.json` / `data/music_alias.json`，
  *     从 `.adx` 包中提取 maidata.txt（simai）写入 `public/data/simai/{chartFileId}.txt`；
- *  3. 合并生成前端目录 `public/data/catalog.json` / `aliases.json` / `meta.json`。
+ *  3. 合并生成前端目录 `public/data/catalog.json` / `aliases.json` / `meta.json`，
+ *     并把谱面索引快照发布为 `public/data/chart-index.json`（供 mai-charts 流水线读取）。
  *
  * 用法：
  *   node scripts/sync-preview-data.mjs                     # 增量（CI 默认）
@@ -189,6 +190,8 @@ async function main() {
     if (fetched % 50 === 0) log(`  详情 ${fetched}/${toFetch.length}`);
   }, 3);
   writeJson(cacheIndexPath, nextIndex);
+  // 同时发布到站点静态目录，供 mai-charts（CNB）流水线按 HTTP 读取
+  writeJson(path.join(args.outDir, 'chart-index.json'), nextIndex);
   log(`谱面详情完成：写入 ${fetched} 个`);
 
   // ---------- 2. mai-charts：.adx → simai ----------
