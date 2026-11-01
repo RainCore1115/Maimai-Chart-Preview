@@ -78,10 +78,15 @@ node scripts/sync-preview-data.mjs --adx-dir ../mc-meta   # 用本地已 checkou
 ### 2. mai-charts 数据更新（CNB 流水线）
 
 CNB fork 仓库 [project-baka86/mai-charts](https://cnb.cool/project-baka86/mai-charts) 中的
-`.cnb.yml` 配置了每天 **21:20** 的定时任务：读取预览站仓库的 API 快照，把
-`data/music_data.json`、`data/music_chart.json`、`data/chart_analysis/*.json` 增量更新并提交。
+`.cnb.yml` 配置了每天 **21:20（北京时间）** 的定时任务（另有推送触发与手动触发）：
+从预览站发布的数据（jsDelivr / GitHub Pages 镜像，失败自动回退）读取
+`chart-index.json`、`chart-analysis.json.gz`、`catalog.json`，把
+`data/chart_analysis/*.json`、`data/chart_preview_index.json`、`data/music_data.json`、
+`data/music_chart.json` 增量更新并提交。
 
-部署方法见 [cnb-template/README.md](cnb-template/README.md)。
+> ⚠️ CNB 的 **Fork 仓库默认不自动触发流水线**，需仓库管理员在
+> **设置 → 云原生构建** 勾选「允许自动触发」一次，详见
+> [cnb-template/README.md](cnb-template/README.md)。
 
 ## 目录结构
 
@@ -105,6 +110,7 @@ data/preview-sync/          # API 指纹缓存与快照（提交到仓库，供 
 - 音频（`assets2.lxns.net`）与曲绘（`assets.lxns.net`）仍来自落雪公开资源，若资源缺失仅影响播放/封面。
 - chart-preview API 只有被用户浏览/提交过的谱面才有分析数据；没有分析数据的谱面仍可正常预览，只是不显示分析面板。
 - CNB 定时任务的执行身份是「最后修改 crontab 配置的用户」，若该用户被移出仓库，定时任务会失败。
+- CNB Fork 仓库默认不自动触发流水线（Git 推送/定时任务），需要在仓库设置里勾选「允许自动触发」。
 
 ## ⭐ Feature
 
