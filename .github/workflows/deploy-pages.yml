@@ -1,0 +1,51 @@
+name: 部署站点
+
+# 手动 push 到 main（如修改前端代码）时自动构建并部署到 GitHub Pages。
+# 注意：定时同步任务提交数据时使用的是 GITHUB_TOKEN，不会再次触发本工作流，
+# 由「同步谱面数据」工作流自行完成部署。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: 构建
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: 构建站点
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
+        run: |
+          pnpm build
+          cp dist/index.html dist/404.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: 部署
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

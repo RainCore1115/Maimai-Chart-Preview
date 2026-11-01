@@ -39,8 +39,10 @@ import { useGameSettingsStore } from './chart/stores/useGameSettingsStore';
 import { getAvailableDifficulties, parseSimaiChart } from './chart/core/parser/ChartParser';
 import { DIFFICULTY_COLORS, DIFFICULTY_NAMES, type ChartDifficulty } from './chart/types';
 import { lxnsJacketWebpUrl } from './lxns/assets';
-import type { LxnsSong, LxnsSongListResponse } from './lxns/types';
-import { chartFileIdForSong, fetchSimaiText, musicMp3UrlForChartFileId, type ChartKind } from './lxns/chartResolve';
+import type { LxnsSong } from './lxns/types';
+import { chartFileIdForSong, musicMp3UrlForChartFileId, type ChartKind } from './lxns/chartResolve';
+import { fetchChartAnalysis, fetchSimaiText, loadCatalog, type ChartAnalysis } from './maicharts/data';
+import { ChartAnalysisPanel } from './maicharts/ChartAnalysisPanel';
 import { buildPreviewUrlParams, parsePreviewUrlParams } from './previewUrlParams';
 import classes from './preview-chart.module.css';
 
@@ -253,6 +255,7 @@ export default function PreviewPage() {
   const [selectedSong, setSelectedSong] = useState<LxnsSong | null>(null);
   const [pick, setPick] = useState<ChartPick | null>(null);
   const [chartError, setChartError] = useState<string | null>(null);
+  const [analysis, setAnalysis] = useState<ChartAnalysis | null>(null);
 
   const reset = useGameStore((s) => s.reset);
   const setRawSimaiText = useGameStore((s) => s.setRawSimaiText);
@@ -341,25 +344,13 @@ export default function PreviewPage() {
     let cancelled = false;
     (async () => {
       try {
-        const [aliasRes, songRes] = await Promise.all([
-          fetch('https://maimai.lxns.net/api/v0/maimai/alias/list'),
-          fetch('https://maimai.lxns.net/api/v0/maimai/song/list'),
-        ]);
-        if (!aliasRes.ok || !songRes.ok) throw new Error('bad status');
-        const aliasJson = (await aliasRes.json()) as { aliases: { song_id: number; aliases: string[] }[] };
-        const songJson = (await songRes.json()) as LxnsSongListResponse;
+        const { songs: catalogSongs, aliases, versionTitlesByCode: vMap } = await loadCatalog();
         if (cancelled) return;
-        const m = new Map<number, string[]>();
-        for (const e of aliasJson.aliases) m.set(e.song_id, e.aliases);
-        setAliasById(m);
-        setSongs(songJson.songs);
-        const vMap = new Map<number, string>();
-        for (const v of songJson.versions ?? []) {
-          vMap.set(v.version, v.title);
-        }
+        setAliasById(aliases);
+        setSongs(catalogSongs);
         setVersionTitlesByCode(vMap);
       } catch {
-        if (!cancelled) setCatalogError('无法加载曲目或别名数据，请检查网络后刷新页面。');
+        if (!cancelled) setCatalogError('无法加载 mai-charts 曲目数据，请检查网络后刷新页面。');
       } finally {
         if (!cancelled) setCatalogLoading(false);
       }
@@ -411,6 +402,12 @@ export default function PreviewPage() {
 
       const simai = await fetchSimaiText(p.chartFileId);
       if (signal.aborted) return;
+
+      // 谱面分析（AWMC chart-preview API 快照）与谱面文本并行加载，失败不影响预览
+      void fetchChartAnalysis(p.song.id, p.kind, p.chartDifficulty).then((result) => {
+        if (!signal.aborted) setAnalysis(result);
+      });
+
       if (!simai) {
         setChartError(`未找到谱面文件（chart ${p.chartFileId}）。该曲目可能没有对应类型的谱面数据。`);
         setRawSimaiText('');
@@ -448,9 +445,11 @@ export default function PreviewPage() {
     if (!pick) {
       reset();
       setChartError(null);
+      setAnalysis(null);
       return;
     }
 
+    setAnalysis(null);
     const ac = new AbortController();
     loadChartForPick(pick, ac.signal);
     return () => ac.abort();
@@ -671,7 +670,7 @@ export default function PreviewPage() {
                   </Badge>
                 </Group>
                 <Text size="sm" c="dimmed">
-                  数据来自：maimai.lxns.net
+                  谱面数据来自：mai-charts（CNB） · 分析数据：AWMC chart-preview API · 音频/曲绘：lxns
                 </Text>
               </Stack>
               {wizardStep === 2 ? (
@@ -940,6 +939,7 @@ export default function PreviewPage() {
 
                 <Stack gap="md" className={classes.sidebar}>
                   <Controls />
+                  <ChartAnalysisPanel analysis={analysis} />
                   <KeyboardShortcuts />
                 </Stack>
               </div>

@@ -1,0 +1,90 @@
+name: 同步谱面数据
+
+# 每天自动增量同步 AWMC chart-preview API + mai-charts 数据，
+# 生成预览站所需的静态数据（曲目目录 / simai / 谱面分析）并部署到 GitHub Pages。
+on:
+  schedule:
+    # UTC 20:23 = 北京时间 04:23
+    - cron: '23 20 * * *'
+  workflow_dispatch:
+    inputs:
+      full:
+        description: '强制全量刷新（忽略指纹缓存）'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: sync-chart-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: 同步并构建
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: 准备 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: 同步数据（API + mai-charts）
+        env:
+          CHART_PREVIEW_API_KEY: ${{ secrets.CHART_PREVIEW_API_KEY }}
+          MAI_CHARTS_REPO: ${{ vars.MAI_CHARTS_REPO || 'https://cnb.cool/project-baka86/mai-charts.git' }}
+          MAI_CHARTS_REF: ${{ vars.MAI_CHARTS_REF || 'main' }}
+          CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
+        run: |
+          node scripts/sync-preview-data.mjs ${{ inputs.full && '--full' || '' }}
+
+      - name: 提交数据变更
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/data data/preview-sync
+          if git diff --cached --quiet; then
+            echo "数据无变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(data): 同步谱面数据 $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
+
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 构建站点
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
+        run: |
+          pnpm build
+          # GitHub Pages 下 SPA 深链接（/preview）需要 404 回退
+          cp dist/index.html dist/404.html
+
+      - name: 上传 Pages 产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: 部署 GitHub Pages
+    needs: sync
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 部署
+        id: deployment
+        uses: actions/deploy-pages@v4

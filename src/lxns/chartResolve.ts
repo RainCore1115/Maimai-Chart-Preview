@@ -21,25 +21,3 @@ export function musicMp3UrlForChartFileId(chartFileId: number): string {
 export function musicMp3UrlForLxnsSongId(songId: number): string {
   return musicMp3UrlForChartFileId(songId);
 }
-
-const SIMAI_CACHE_MAX = 64;
-const simaiTextByChartFileId = new Map<number, string>();
-
-export async function fetchSimaiText(chartFileId: number): Promise<string | null> {
-  const cached = simaiTextByChartFileId.get(chartFileId);
-  if (cached !== undefined) return cached;
-
-  try {
-    const response = await fetch(`https://assets2.lxns.net/maimai/chart/${chartFileId}.txt`);
-    if (!response.ok) return null;
-    const text = await response.text();
-    if (simaiTextByChartFileId.size >= SIMAI_CACHE_MAX) {
-      const oldest = simaiTextByChartFileId.keys().next().value;
-      if (oldest !== undefined) simaiTextByChartFileId.delete(oldest);
-    }
-    simaiTextByChartFileId.set(chartFileId, text);
-    return text;
-  } catch {
-    return null;
-  }
-}

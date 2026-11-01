@@ -1,0 +1,79 @@
+# mai-charts 谱面数据定时同步
+#
+# 数据来源：预览站仓库（GitHub）中由「同步谱面数据」工作流产出的 chart-preview API 快照。
+# 更新目标：data/music_data.json / data/music_chart.json / data/chart_analysis/*.json
+#
+# 可选：在 CNB 密钥仓库中配置 CHART_PREVIEW_API_KEY 并通过 imports 引入后，
+#       本流水线会直接调用 chart-preview API，不依赖 GitHub 快照。
+main:
+  # 手动触发：CNB 页面 → 流水线 → 运行
+  web_trigger:
+    - name: 手动同步谱面数据
+      docker:
+        image: node:22
+      stages:
+        - name: 准备
+          script: |
+            set -e
+            git config user.name "cnb-sync-bot"
+            git config user.email "cnb-sync-bot@users.noreply.github.com"
+            rm -rf .preview-repo
+            git clone --depth 1 https://github.com/RainCore1115/Maimai-Chart-Preview.git .preview-repo
+        - name: 同步
+          script: |
+            node scripts/sync-maicharts.mjs --preview-dir .preview-repo --repo-root .
+        - name: 提交
+          script: |
+            set -e
+            git add -A data/
+            if git diff --cached --quiet; then echo "没有数据变更"; exit 0; fi
+            git commit -m "chore(data): 从 chart-preview API 手动同步 $(date -u +%Y-%m-%dT%H:%MZ) [ci skip]"
+            git push "https://${CNB_TOKEN_USER_NAME}:${CNB_TOKEN}@cnb.cool/${CNB_REPO_SLUG}.git" "HEAD:${CNB_BRANCH}"
+
+  # 推送到 main 时触发（数据提交带 [ci skip]，不会循环触发）
+  push:
+    - name: 推送后同步谱面数据
+      docker:
+        image: node:22
+      stages:
+        - name: 准备
+          script: |
+            set -e
+            git config user.name "cnb-sync-bot"
+            git config user.email "cnb-sync-bot@users.noreply.github.com"
+            rm -rf .preview-repo
+            git clone --depth 1 https://github.com/RainCore1115/Maimai-Chart-Preview.git .preview-repo
+        - name: 同步
+          script: |
+            node scripts/sync-maicharts.mjs --preview-dir .preview-repo --repo-root .
+        - name: 提交
+          script: |
+            set -e
+            git add -A data/
+            if git diff --cached --quiet; then echo "没有数据变更"; exit 0; fi
+            git commit -m "chore(data): 从 chart-preview API 增量同步 $(date -u +%Y-%m-%dT%H:%MZ) [ci skip]"
+            git push "https://${CNB_TOKEN_USER_NAME}:${CNB_TOKEN}@cnb.cool/${CNB_REPO_SLUG}.git" "HEAD:${CNB_BRANCH}"
+
+  # 定时更新：每天 21:20（北京时间，系统时区 Asia/Shanghai）
+  "crontab: 20 21 * * *":
+    - name: 定时同步谱面数据
+      docker:
+        image: node:22
+      stages:
+        - name: 准备
+          script: |
+            set -e
+            git config user.name "cnb-sync-bot"
+            git config user.email "cnb-sync-bot@users.noreply.github.com"
+            rm -rf .preview-repo
+            git clone --depth 1 https://github.com/RainCore1115/Maimai-Chart-Preview.git .preview-repo
+        - name: 同步
+          script: |
+            node scripts/sync-maicharts.mjs --preview-dir .preview-repo --repo-root .
+        - name: 提交
+          script: |
+            set -e
+            git add -A data/
+            if git diff --cached --quiet; then echo "没有数据变更"; exit 0; fi
+            git commit -m "chore(data): 从 chart-preview API 增量同步 $(date -u +%Y-%m-%dT%H:%MZ) [ci skip]"
+            git push "https://${CNB_TOKEN_USER_NAME}:${CNB_TOKEN}@cnb.cool/${CNB_REPO_SLUG}.git" "HEAD:${CNB_BRANCH}"

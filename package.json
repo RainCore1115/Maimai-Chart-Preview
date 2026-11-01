@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync:data": "node scripts/sync-preview-data.mjs",
+    "sync:maicharts": "node scripts/sync-maicharts.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -39,5 +41,6 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5"
-  }
+  },
+  "packageManager": "pnpm@11.0.9"
 }
