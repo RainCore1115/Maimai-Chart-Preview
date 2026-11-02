@@ -1,17 +1,17 @@
 {
- "generatedAt": "2026-11-02T13:14:20.964Z",
- "durationMs": 281980,
+ "generatedAt": "2026-11-02T18:08:30.066Z",
+ "durationMs": 53154,
  "shareUrl": "https://pan.quark.cn/s/485e4886edd4",
  "mode": "direct",
  "stats": {
   "packs": 29,
-  "entries": 1950,
-  "covered": 1481,
+  "entries": 2006,
+  "covered": 1524,
   "updated": 0,
   "utageSkipped": 62,
   "added": 0,
-  "unmatched": 406,
-  "errors": 1,
+  "unmatched": 419,
+  "errors": 0,
   "chartsWritten": 0,
   "extraSongs": 80,
   "newExtraSongs": 0,
@@ -19,6 +19,84 @@
  },
  "newVersions": [],
  "unmatched": [
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "CAN_T GET BACK",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "Chu Chu",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "Everyday、カチューシャ",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "Garden",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "LOVE & JOY",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "New World",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "PON PON PON",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "じょいふる",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "アイデンティティ",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "コネクト",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "ヘビーローテーション",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "恋愛サーキュレーション",
+   "reason": "落雪曲库未找到同名曲目"
+  },
+  {
+   "pack": 1,
+   "packName": "maimai",
+   "folder": "愛を止めないで",
+   "reason": "落雪曲库未找到同名曲目"
+  },
   {
    "pack": 2,
    "packName": "maimai PLUS",
@@ -2339,84 +2417,6 @@
    "pack": 28,
    "packName": "MAGiCAL",
    "folder": "Energy",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "Ex-Otogibanashi (Anime ver.)",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "Halzion",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "IMPACT",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "MissionDistortion",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "OV3RCLOCK",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "PPPP (feat. Hatsune Miku, Kasane Teto)",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "The Happycore Idol",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "XODUS",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "ごはん食べヨ",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "さっきゅんライト（2025）",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "ミルクミルクミルク",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "ワールドイズマイン CPK! Remix (Anime ver.)",
-   "reason": "落雪曲库未找到同名曲目"
-  },
-  {
-   "pack": 28,
-   "packName": "MAGiCAL",
-   "folder": "天靈靈地靈靈",
    "reason": "落雪曲库未找到同名曲目"
   }
  ],

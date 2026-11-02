@@ -24,6 +24,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { parseMaidataMeta, normalizeTitle } from './lib/catalog.mjs';
+import { buildBotSupplement } from './lib/bot-supplement.mjs';
 import { DEFAULT_SHARE_PWD, DEFAULT_SHARE_URL, QuarkShareSource } from './lib/quark-share.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -367,6 +368,8 @@ async function main() {
   const simaiDir = path.join(PUBLIC_DIR, 'simai');
   /** @type {Map<number, any>} */
   const extraSongs = new Map();
+  /** 普通谱面（供 Bot 曲库补充数据使用，含宴谱过滤） */
+  const supplementEntries = [];
   /** @type {{ pack: number, packName: string, folder: string, reason: string }[]} */
   const unmatched = [];
   const stats = {
@@ -423,6 +426,7 @@ async function main() {
       const text = textOrError;
       const meta = parseMaidataMeta(text);
       const utage = isUtageMaidata(text);
+      if (!utage) supplementEntries.push({ pack, folder, meta, text });
       const keys = titleKeys(folder, meta.title);
       const catalogHit = [...keys].some((key) => catalogByTitle.has(key));
       if (utage) {
@@ -535,6 +539,20 @@ async function main() {
     extraSongIds: extraSongsFinal.map((song) => song.id),
   };
   if (!args.dryRun) writeJson(path.join(DATA_DIR, 'report.json'), report);
+
+  // Bot 曲库补充数据（adx 谱面 → 官方 ID 映射；失败不影响主流程）
+  if (!args.dryRun) {
+    try {
+      const supplement = await buildBotSupplement(supplementEntries, { cacheDir: DATA_DIR });
+      // Bot 拉取用，紧凑输出（约 1.4MB），不保留缩进
+      fs.writeFileSync(path.join(PUBLIC_DIR, 'adx-song-supplement.json'), JSON.stringify(supplement));
+      log(
+        `Bot 曲库补充数据：${supplement.stats.songs} 首（映射 ${supplement.stats.mapped}，未映射 ${supplement.stats.unmapped}）`,
+      );
+    } catch (error) {
+      log(`Bot 曲库补充数据生成失败：${error.message}`);
+    }
+  }
 
   log(
     `完成：maidata ${stats.entries}，目录已覆盖 ${stats.covered}，宴谱跳过 ${stats.utageSkipped}，新增曲目 ${extraSongsList.length}（补丁累计 ${extraSongsFinal.length}，写入谱面 ${writtenCharts}），未匹配 ${stats.unmatched}，错误 ${stats.errors}，耗时 ${(

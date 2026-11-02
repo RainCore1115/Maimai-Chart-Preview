@@ -4,3 +4,5 @@ node_modules/
 
 # adx 分享盘同步的落雪曲库缓存（每次运行重新拉取）
 data/adx-share/lxns-songs.json
+data/adx-share/dxdata.json
+data/adx-share/otoge_music_id_map.json
