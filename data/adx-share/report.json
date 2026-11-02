@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-02T12:24:51.863Z",
- "durationMs": 189277,
+ "generatedAt": "2026-11-02T12:44:46.233Z",
+ "durationMs": 65249,
  "shareUrl": "https://pan.quark.cn/s/485e4886edd4",
  "mode": "resolver",
  "stats": {
@@ -9,26 +9,15 @@
   "covered": 1443,
   "updated": 0,
   "utageSkipped": 63,
-  "added": 80,
+  "added": 0,
   "unmatched": 419,
   "errors": 0,
   "chartsWritten": 0,
   "extraSongs": 80,
-  "newExtraSongs": 80,
-  "newVersions": 2
+  "newExtraSongs": 0,
+  "newVersions": 0
  },
- "newVersions": [
-  {
-   "id": 23,
-   "title": "maimai でらっくす PRiSM PLUS",
-   "version": 23
-  },
-  {
-   "id": 24,
-   "title": "maimai でらっくす CiRCLE",
-   "version": 24
-  }
- ],
+ "newVersions": [],
  "unmatched": [
   {
    "pack": 1,

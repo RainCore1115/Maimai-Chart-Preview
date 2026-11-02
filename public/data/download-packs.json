@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-02T12:24:51.863Z",
+ "generatedAt": "2026-11-02T12:44:46.233Z",
  "shareUrl": "https://pan.quark.cn/s/485e4886edd4",
  "sharePwd": "chXQ",
  "totalSize": 17773449946,
@@ -8,11 +8,11 @@
   {
    "num": 0,
    "name": "UTAGE",
-   "version": "maimai でらっくす UTAGE",
+   "version": "maimai でらっくす 宴会场",
    "size": 953371353,
    "sizeLabel": "909.2 MB",
    "fid": "ba6c8ac81ec745beb47aad909be7059c",
-   "file": "UTAGE"
+   "file": "00. UTAGE.zip"
   },
   {
    "num": 1,
@@ -21,7 +21,7 @@
    "size": 320058133,
    "sizeLabel": "305.2 MB",
    "fid": "7210ef67e36c473ab457f71cc412ee16",
-   "file": "maimai"
+   "file": "01. maimai.zip"
   },
   {
    "num": 2,
@@ -30,7 +30,7 @@
    "size": 328880610,
    "sizeLabel": "313.6 MB",
    "fid": "c1e0044ce26b41409ab44ca956013b5a",
-   "file": "maimai PLUS"
+   "file": "02. maimai PLUS.zip"
   },
   {
    "num": 3,
@@ -39,7 +39,7 @@
    "size": 658760334,
    "sizeLabel": "628.2 MB",
    "fid": "d471ea8b5da84c0eb1dd437681ba903f",
-   "file": "GreeN"
+   "file": "03. GreeN.zip"
   },
   {
    "num": 4,
@@ -48,7 +48,7 @@
    "size": 554319933,
    "sizeLabel": "528.6 MB",
    "fid": "a52a28dc59414eb09a15a25f4e993419",
-   "file": "GreeN PLUS"
+   "file": "04. GreeN PLUS.zip"
   },
   {
    "num": 5,
@@ -57,7 +57,7 @@
    "size": 260151174,
    "sizeLabel": "248.1 MB",
    "fid": "c390ff3421674f848491218c2a96448d",
-   "file": "ORANGE"
+   "file": "05. ORANGE.zip"
   },
   {
    "num": 6,
@@ -66,7 +66,7 @@
    "size": 450149931,
    "sizeLabel": "429.3 MB",
    "fid": "eef2f5003141447b86479d3c0dfe4915",
-   "file": "ORANGE PLUS"
+   "file": "06. ORANGE PLUS.zip"
   },
   {
    "num": 7,
@@ -75,7 +75,7 @@
    "size": 435994470,
    "sizeLabel": "415.8 MB",
    "fid": "5bf08ecf139b4a718b1548c02032d66e",
-   "file": "PiNK"
+   "file": "07. PiNK.zip"
   },
   {
    "num": 8,
@@ -84,7 +84,7 @@
    "size": 479951533,
    "sizeLabel": "457.7 MB",
    "fid": "75c6dad803f7409f8c563715f05b65b0",
-   "file": "PiNK PLUS"
+   "file": "08. PiNK PLUS.zip"
   },
   {
    "num": 9,
@@ -93,7 +93,7 @@
    "size": 643669972,
    "sizeLabel": "613.9 MB",
    "fid": "6de1daa711ad4f65bd4a436092164baf",
-   "file": "MURASAKi"
+   "file": "09. MURASAKi.zip"
   },
   {
    "num": 10,
@@ -102,7 +102,7 @@
    "size": 535617702,
    "sizeLabel": "510.8 MB",
    "fid": "c9b051d839d9446db35980d4bae44a71",
-   "file": "MURASAKi PLUS"
+   "file": "10. MURASAKi PLUS.zip"
   },
   {
    "num": 11,
@@ -111,7 +111,7 @@
    "size": 549355564,
    "sizeLabel": "523.9 MB",
    "fid": "82cf4dda35fb46f7a09ec949b234ba83",
-   "file": "MiLK"
+   "file": "11. MiLK.zip"
   },
   {
    "num": 12,
@@ -120,7 +120,7 @@
    "size": 329384418,
    "sizeLabel": "314.1 MB",
    "fid": "be43f7d8a0e1495187ff1d4538f86fda",
-   "file": "MiLK PLUS"
+   "file": "12. MiLK PLUS.zip"
   },
   {
    "num": 13,
@@ -129,7 +129,7 @@
    "size": 558256942,
    "sizeLabel": "532.4 MB",
    "fid": "1ece4ea27e654f58bd4d9c47daefad96",
-   "file": "FiNALE"
+   "file": "13. FiNALE.zip"
   },
   {
    "num": 14,
@@ -138,7 +138,7 @@
    "size": 361280585,
    "sizeLabel": "344.5 MB",
    "fid": "7e1960e8fc0a4340abcae6f7d5bb46ee",
-   "file": "DX"
+   "file": "14. DX.zip"
   },
   {
    "num": 15,
@@ -147,7 +147,7 @@
    "size": 235173798,
    "sizeLabel": "224.3 MB",
    "fid": "8224c662b9cb4a61a86ad740a630bf41",
-   "file": "DX PLUS"
+   "file": "15. DX PLUS.zip"
   },
   {
    "num": 16,
@@ -156,7 +156,7 @@
    "size": 240248204,
    "sizeLabel": "229.1 MB",
    "fid": "5edbfbda5d3b4e47abb7f6f839cf33e5",
-   "file": "Splash"
+   "file": "16. Splash.zip"
   },
   {
    "num": 17,
@@ -165,7 +165,7 @@
    "size": 262511599,
    "sizeLabel": "250.4 MB",
    "fid": "c5caa65d440f4d689ecc6d6bfa0bf5e7",
-   "file": "Splash PLUS"
+   "file": "17. Splash PLUS.zip"
   },
   {
    "num": 18,
@@ -174,7 +174,7 @@
    "size": 275260818,
    "sizeLabel": "262.5 MB",
    "fid": "377125f27e644c89acffa9bf82f6560c",
-   "file": "UNiVERSE"
+   "file": "18. UNiVERSE.zip"
   },
   {
    "num": 19,
@@ -183,7 +183,7 @@
    "size": 308975863,
    "sizeLabel": "294.7 MB",
    "fid": "55ddc6432db347d8b4edfbb4780ed2f2",
-   "file": "UNiVERSE PLUS"
+   "file": "19. UNiVERSE PLUS.zip"
   },
   {
    "num": 20,
@@ -192,7 +192,7 @@
    "size": 870144707,
    "sizeLabel": "829.8 MB",
    "fid": "7b496ff26b6c49139c7dd43a917b62ef",
-   "file": "FESTiVAL"
+   "file": "20. FESTiVAL.zip"
   },
   {
    "num": 21,
@@ -201,7 +201,7 @@
    "size": 794881383,
    "sizeLabel": "758.1 MB",
    "fid": "b7cd02c90c824afaa742549abaf0fcc4",
-   "file": "FESTiVAL PLUS"
+   "file": "21. FESTiVAL PLUS.zip"
   },
   {
    "num": 22,
@@ -210,7 +210,7 @@
    "size": 1231407685,
    "sizeLabel": "1.15 GB",
    "fid": "6891ffbff071455c84c3a907d189b39d",
-   "file": "BUDDiES"
+   "file": "22. BUDDiES.zip"
   },
   {
    "num": 23,
@@ -219,7 +219,7 @@
    "size": 1133303911,
    "sizeLabel": "1.06 GB",
    "fid": "cb0bab2543b34281b2be751cad8d2ec2",
-   "file": "BUDDiES PLUS"
+   "file": "23. BUDDiES PLUS.zip"
   },
   {
    "num": 24,
@@ -228,7 +228,7 @@
    "size": 1421730718,
    "sizeLabel": "1.32 GB",
    "fid": "79d0e7e5d76c427aa8f318787c60bf55",
-   "file": "PRiSM"
+   "file": "24. PRiSM.zip"
   },
   {
    "num": 25,
@@ -237,7 +237,7 @@
    "size": 1222553891,
    "sizeLabel": "1.14 GB",
    "fid": "612b6ee7a5414f2480132184fac2ef77",
-   "file": "PRiSM PLUS"
+   "file": "25. PRiSM PLUS.zip"
   },
   {
    "num": 26,
@@ -246,7 +246,7 @@
    "size": 1194880472,
    "sizeLabel": "1.11 GB",
    "fid": "17a57f743b4e4863a5c9efa369ede5e3",
-   "file": "CiRCLE"
+   "file": "26. CiRCLE.zip"
   },
   {
    "num": 27,
@@ -255,7 +255,7 @@
    "size": 1001717535,
    "sizeLabel": "955.3 MB",
    "fid": "5e07a144cbba4e07a226b5559740b9d4",
-   "file": "CiRCLE PLUS"
+   "file": "27. CiRCLE PLUS.zip"
   },
   {
    "num": 28,
@@ -264,7 +264,7 @@
    "size": 161456708,
    "sizeLabel": "154.0 MB",
    "fid": "39896d27045c47b48c46d1510abaee21",
-   "file": "MAGiCAL"
+   "file": "28. MAGiCAL.zip"
   }
  ]
 }

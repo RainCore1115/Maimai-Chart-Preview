@@ -85,6 +85,7 @@ function writeFileIfChanged(filePath, content) {
 
 /** 版本包序号 → 官方版本标题 */
 const PACK_VERSION_TITLES = {
+  0: 'maimai でらっくす 宴会场',
   1: 'maimai',
   2: 'maimai PLUS',
   3: 'maimai GreeN',
@@ -302,7 +303,7 @@ async function main() {
       log(`  跳过非版本包：${file.name}`);
       continue;
     }
-    packs.push({ ...parsed, size: file.size, fid: file.fid });
+    packs.push({ ...parsed, size: file.size, fid: file.fid, fileName: file.name });
   }
   packs.sort((a, b) => a.num - b.num);
 
@@ -505,7 +506,7 @@ async function main() {
       size: pack.size,
       sizeLabel: formatSize(pack.size),
       fid: pack.fid,
-      file: pack.name,
+      file: pack.fileName ?? pack.name,
     }));
     writeJson(path.join(PUBLIC_DIR, 'download-packs.json'), {
       generatedAt: new Date().toISOString(),

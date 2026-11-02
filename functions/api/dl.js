@@ -257,7 +257,8 @@ async function handle(request, env, { head = false } = {}) {
     if (value) headers.set(name, value);
   }
   if (!headers.has('content-type')) headers.set('content-type', 'application/zip');
-  headers.set('content-disposition', `attachment; filename*=UTF-8''${encodeURIComponent(pack.file ?? pack.name ?? 'pack.zip')}`);
+  const fileName = String(pack.file ?? pack.name ?? 'pack.zip');
+  headers.set('content-disposition', `attachment; filename="maimai-chart-pack.zip"; filename*=UTF-8''${encodeURIComponent(fileName)}`);
   headers.set('cache-control', 'private, max-age=0, no-store');
 
   if (head) return new Response(null, { status: upstream.status, headers });
