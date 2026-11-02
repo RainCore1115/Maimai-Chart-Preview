@@ -1,3 +1,6 @@
 dist/
 node_modules/
 .cache/
+
+# adx 分享盘同步的落雪曲库缓存（每次运行重新拉取）
+data/adx-share/lxns-songs.json

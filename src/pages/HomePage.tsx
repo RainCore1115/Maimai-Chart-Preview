@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { Button, Stack, Text } from '@mantine/core';
+import { Button, Group, Stack, Text } from '@mantine/core';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import Prism from '../components/react-bits/Prism/Prism';
@@ -107,9 +107,14 @@ export default function HomePage() {
         </Text>
 
         <div className={classes.actions}>
-          <Button component={Link} to="/preview" size="md" radius="md" variant="gradient" gradient={{ from: 'cyan', to: 'indigo', deg: 120 }}>
-            进入谱面预览
-          </Button>
+          <Group gap="sm" justify="center" wrap="wrap">
+            <Button component={Link} to="/preview" size="md" radius="md" variant="gradient" gradient={{ from: 'cyan', to: 'indigo', deg: 120 }}>
+              进入谱面预览
+            </Button>
+            <Button component={Link} to="/download" size="md" radius="md" variant="light">
+              谱面下载
+            </Button>
+          </Group>
         </div>
       </Stack>
     </div>

@@ -1,0 +1,45 @@
+.root {
+  position: relative;
+  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 0%, rgb(34 211 238 / 10%) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 10%, rgb(99 102 241 / 12%) 0%, transparent 60%),
+    #070b12;
+}
+
+.inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: calc(var(--mantine-spacing-xl) * 1.5) var(--mantine-spacing-xl);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border-radius: var(--mantine-radius-lg);
+  border: 1px solid rgb(255 255 255 / 8%);
+  background: rgb(13 18 28 / 72%);
+}
+
+.sizeCell {
+  white-space: nowrap;
+  width: 8rem;
+}
+
+.actionCell {
+  white-space: nowrap;
+  width: 13rem;
+}
+
+@media (max-width: 48em) {
+  .inner {
+    padding: var(--mantine-spacing-lg) var(--mantine-spacing-md);
+  }
+
+  .sizeCell {
+    width: 6rem;
+  }
+
+  .actionCell {
+    width: 10rem;
+  }
+}

@@ -74,6 +74,57 @@ function readJson(filePath, fallback) {
   }
 }
 
+/** 读取「夸克分享盘 adx 谱面」流水线产出的目录补丁（scripts/sync-adx-quark.mjs 生成） */
+function loadAdxShareExtra() {
+  const extra = readJson(path.join(ROOT, 'data/adx-share/catalog-extra.json'), null);
+  if (!extra?.songs?.length) return null;
+  const chartFileIds = new Set();
+  for (const song of extra.songs) {
+    if ((song.difficulties?.standard ?? []).length) chartFileIds.add(Number(song.id));
+    if ((song.difficulties?.dx ?? []).length) chartFileIds.add(Number(song.id) + 10000);
+    if ((song.difficulties?.utage ?? []).length) chartFileIds.add(Number(song.id));
+  }
+  return { extra, chartFileIds };
+}
+
+/** 把 adx 分享盘补丁并入 catalog（版本按标题对齐，曲目按 id 去重） */
+function mergeAdxShareCatalog(catalog, adxShare) {
+  if (!adxShare?.extra) return { addedSongs: 0, addedVersions: 0 };
+  const { extra } = adxShare;
+  /** @type {Map<number, any>} */
+  const extraVersionById = new Map();
+  let addedVersions = 0;
+  for (const version of extra.versions ?? []) {
+    let entry = catalog.versions.find((item) => item.title === version.title);
+    if (!entry) {
+      entry = { ...version };
+      catalog.versions.push(entry);
+      addedVersions += 1;
+    }
+    extraVersionById.set(Number(version.id), entry);
+  }
+  const existingIds = new Set(catalog.songs.map((song) => Number(song.id)));
+  let addedSongs = 0;
+  for (const song of extra.songs ?? []) {
+    if (existingIds.has(Number(song.id))) continue;
+    const versionEntry = extraVersionById.get(Number(song.version));
+    const merged = versionEntry ? { ...song, version: versionEntry.id, versionTitle: versionEntry.title } : { ...song };
+    // 曲目内部难度行的 version 同步到最终版本 id
+    if (versionEntry) {
+      for (const kind of ['standard', 'dx', 'utage']) {
+        for (const row of merged.difficulties?.[kind] ?? []) row.version = versionEntry.id;
+      }
+    }
+    catalog.songs.push(merged);
+    existingIds.add(Number(song.id));
+    addedSongs += 1;
+  }
+  if (addedSongs > 0) {
+    catalog.songs.sort((a, b) => Number(a.id) - Number(b.id));
+  }
+  return { addedSongs, addedVersions };
+}
+
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value)}\n`);
@@ -447,9 +498,14 @@ async function main() {
   // ---------- 2.5 宴会场（宴谱）：落雪曲库 + assets2 谱面文件 ----------
   const utage = await syncUtageSongs({ outDir: args.outDir, cacheDir: args.cacheDir, log });
 
+  // 夸克分享盘 adx 增量补丁（scripts/sync-adx-quark.mjs 生成；保留其谱面文件与曲目）
+  const adxShare = loadAdxShareExtra();
+  if (adxShare) log(`adx 分享盘补丁：${adxShare.extra.songs.length} 首待并入目录`);
+
   // 清理已不在目录中的 simai（曲目下架）
   const validChartFileIds = new Set(tasks.map((t) => Number(t.chartFileId)));
   for (const id of utage.chartFileIds) validChartFileIds.add(id);
+  for (const id of adxShare?.chartFileIds ?? []) validChartFileIds.add(id);
   let removedSimai = 0;
   for (const name of fs.readdirSync(simaiDir)) {
     if (!name.endsWith('.txt')) continue;
@@ -480,6 +536,11 @@ async function main() {
     lxnsVersionTitles: utage.versionTitles,
   });
 
+  const adxShareMerge = mergeAdxShareCatalog(catalog, adxShare);
+  if (adxShareMerge.addedSongs > 0) {
+    log(`adx 分享盘补丁：新增曲目 ${adxShareMerge.addedSongs}，新增版本 ${adxShareMerge.addedVersions}`);
+  }
+
   writeJson(path.join(args.outDir, 'catalog.json'), catalog);
   writeJson(path.join(args.outDir, 'aliases.json'), aliases);
 
@@ -493,6 +554,7 @@ async function main() {
       chartPreviewApi: api?.base ?? 'skipped（--skip-api）',
       audioAndJacket: 'lxns assets',
       utage: 'maimai.lxns.net song list + assets2.lxns.net chart files',
+      adxShare: adxShare ? 'Quark share zip (maidata.txt) via scripts/sync-adx-quark.mjs' : null,
     },
     counts: {
       songs: catalog.songs.length,
@@ -505,6 +567,8 @@ async function main() {
       unmatchedAdx: matching.unmatchedAdx.length,
       utageSongs: catalog.songs.filter((song) => Number(song.id) >= 100000).length,
       utageSimai: utage.chartFileIds.size,
+      adxShareSongs: adxShareMerge.addedSongs,
+      adxShareVersions: adxShareMerge.addedVersions,
     },
     unmatchedSongs: matching.unmatchedSongs.slice(0, 200),
     unmatchedAdx: matching.unmatchedAdx.slice(0, 200),

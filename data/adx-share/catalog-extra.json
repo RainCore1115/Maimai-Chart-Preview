@@ -1,0 +1,4057 @@
+{
+ "generatedAt": "2026-11-02T12:24:51.859Z",
+ "versions": [
+  {
+   "id": 23,
+   "title": "maimai でらっくす PRiSM PLUS",
+   "version": 23
+  },
+  {
+   "id": 24,
+   "title": "maimai でらっくす CiRCLE",
+   "version": 24
+  }
+ ],
+ "songs": [
+  {
+   "id": 447,
+   "title": "+♂",
+   "artist": "ギガ/れをる　ダンス　アルスマグナ",
+   "genre": "niconicoボーカロイド",
+   "bpm": 180,
+   "version": 14,
+   "difficulties": {
+    "standard": [
+     {
+      "type": "standard",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "-",
+      "version": 14
+     },
+     {
+      "type": "standard",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8.3,
+      "note_designer": "-",
+      "version": 14
+     },
+     {
+      "type": "standard",
+      "difficulty": 2,
+      "level": "10+",
+      "level_value": 10.6,
+      "note_designer": "Jack",
+      "version": 14
+     },
+     {
+      "type": "standard",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.4,
+      "note_designer": "はっぴー",
+      "version": 14
+     }
+    ],
+    "dx": [],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1496,
+   "title": "Destiny Runner",
+   "artist": "さわわ",
+   "genre": "東方Project",
+   "bpm": 190,
+   "version": 4,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 4
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.7,
+      "note_designer": "",
+      "version": 4
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.2,
+      "note_designer": "翠楼屋",
+      "version": 4
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.9,
+      "note_designer": "小鳥遊さん",
+      "version": 4
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1619,
+   "title": "KHYMΞXΛ",
+   "artist": "のらねこさい feat.ricono",
+   "genre": "maimai",
+   "bpm": 220,
+   "version": 7,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 7
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8+",
+      "level_value": 8.7,
+      "note_designer": "",
+      "version": 7
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.9,
+      "note_designer": "はっぴー",
+      "version": 7
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14+",
+      "level_value": 14.7,
+      "note_designer": "鳩サファzhel",
+      "version": 7
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1806,
+   "title": "Fraq",
+   "artist": "owl＊tree feat. べんざ",
+   "genre": "maimai",
+   "bpm": 221,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8.5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12.2,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1807,
+   "title": "ウタヒメナイトストーム",
+   "artist": "yowanecity feat.Eye",
+   "genre": "maimai",
+   "bpm": 164,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.5,
+      "note_designer": "Jack",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "はっぴ一",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1808,
+   "title": "Feel The Luv",
+   "artist": "EmoCosine",
+   "genre": "maimai",
+   "bpm": 155,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.2,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "アマリリス",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1809,
+   "title": "Åntinomiε",
+   "artist": "ああ…翡翠茶漬け…",
+   "genre": "maimai",
+   "bpm": 242,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "9",
+      "level_value": 9.5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.8,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14+",
+      "level_value": 14.6,
+      "note_designer": "SAFARI☆CAT",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1810,
+   "title": "ATLAS RUSH",
+   "artist": "kanone",
+   "genre": "maimai",
+   "bpm": 156,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.6,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14+",
+      "level_value": 14.7,
+      "note_designer": "BELiZHEL",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1811,
+   "title": "概して過誤",
+   "artist": "isonosuke feat.知声",
+   "genre": "maimai",
+   "bpm": 170,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10+",
+      "level_value": 10.8,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1812,
+   "title": "Unfinished Epic",
+   "artist": "SLAVE.V-V-R feat.Sor△",
+   "genre": "maimai",
+   "bpm": 185,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8+",
+      "level_value": 8.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.5,
+      "note_designer": "Jack",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1813,
+   "title": "忙シー日",
+   "artist": "原口沙輔, 式部めぐり",
+   "genre": "maimai",
+   "bpm": 150,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.9,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11+",
+      "level_value": 11.8,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.2,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1814,
+   "title": "FLΛME/FRΦST",
+   "artist": "FANTAGIRAFF",
+   "genre": "maimai",
+   "bpm": 174,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.9,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14+",
+      "level_value": 14.8,
+      "note_designer": "SΛFARI/RΦCHER",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1815,
+   "title": "IMBRUED:FLUX",
+   "artist": "qfeileadh feat.のあ",
+   "genre": "maimai",
+   "bpm": 176,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.1,
+      "note_designer": "きょむりん vs Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1816,
+   "title": "砂の函",
+   "artist": "Nego_tiator",
+   "genre": "maimai",
+   "bpm": 180,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.2,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1817,
+   "title": "Amereistr",
+   "artist": "rN",
+   "genre": "maimai",
+   "bpm": 147,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12.5,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.9,
+      "note_designer": "Jack",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1818,
+   "title": "World's end BLACKBOX",
+   "artist": "打打だいず",
+   "genre": "maimai",
+   "bpm": 205,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "10",
+      "level_value": 10.5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "13",
+      "level_value": 13.1,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14+",
+      "level_value": 14.9,
+      "note_designer": "7sRef -DOVE-",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1819,
+   "title": "AFTER PANDORA",
+   "artist": "削除",
+   "genre": "maimai",
+   "bpm": 85,
+   "version": 23,
+   "difficulties": {
+    "standard": [
+     {
+      "type": "standard",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "standard",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.7,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "standard",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12.5,
+      "note_designer": "Jack",
+      "version": 23
+     },
+     {
+      "type": "standard",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.2,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "dx": [],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1820,
+   "title": "Xaleid◆scopiX",
+   "artist": "xi",
+   "genre": "maimai",
+   "bpm": 180,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "7+",
+      "level_value": 7.9,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "11",
+      "level_value": 11,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14+",
+      "level_value": 14.9,
+      "note_designer": "KALEIDXSCOPE",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 4,
+      "level": "15",
+      "level_value": 15,
+      "note_designer": "Xaleid◆scopiX",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1821,
+   "title": "Ref:rain (for 7th Heaven)",
+   "artist": "カモメサノエレクトリックオーケストラ include Limonène",
+   "genre": "maimai",
+   "bpm": 188,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12.5,
+      "note_designer": "きょむりん & Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14,
+      "note_designer": "Jack + Soma",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1822,
+   "title": "Supersonic Generation",
+   "artist": "Massive New Krew",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 155,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11+",
+      "level_value": 11.7,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.9,
+      "note_designer": "Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1823,
+   "title": "Zitronectar",
+   "artist": "Reku Mochizuki",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 222,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8+",
+      "level_value": 8.7,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12,
+      "note_designer": "ロシェ@ペンギン",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.3,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1824,
+   "title": "なんかノイズにきこえる",
+   "artist": "HaNaMiNa feat.Hana",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 160,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7.5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.7,
+      "note_designer": "じゃこレモン",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1825,
+   "title": "JIGOKU STATION CENTRAL GATE",
+   "artist": "鬱P feat.000",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 160,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.4,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1826,
+   "title": "Lover's Trick",
+   "artist": "litmus*",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 130,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10+",
+      "level_value": 10.8,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "Jack",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1827,
+   "title": "サウンドプレイヤー",
+   "artist": "tilt-six feat.バル",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 143,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1828,
+   "title": "crazy (about you)",
+   "artist": "kamome sano",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 145,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10+",
+      "level_value": 10.8,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "Jack",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1829,
+   "title": "Drivessover",
+   "artist": "Taishi",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 182,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12.2,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.6,
+      "note_designer": "アマリリス",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1830,
+   "title": "Tidal Wave",
+   "artist": "D-Cee",
+   "genre": "オンゲキCHUNITHM",
+   "bpm": 175,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12.3,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "あまくちジンジャー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1831,
+   "title": "きゅびずむ",
+   "artist": "超てんちゃん",
+   "genre": "POPSアニメ",
+   "bpm": 185,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "12+",
+      "level_value": 12.9,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1832,
+   "title": "きゅびびびびずむ",
+   "artist": "超てんちゃん",
+   "genre": "POPSアニメ",
+   "bpm": 185,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "サぴぴぴぴちネファ太太太太コ",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1833,
+   "title": "ゆりかご",
+   "artist": "歌：可不／作詞・作曲：MIMI",
+   "genre": "niconicoボーカロイド",
+   "bpm": 120,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9",
+      "level_value": 9,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1834,
+   "title": "月光",
+   "artist": "歌：V.I.P／作詞・作曲：廉",
+   "genre": "niconicoボーカロイド",
+   "bpm": 195,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.2,
+      "note_designer": "アマリリス",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "ロシェ@ペンギン",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1835,
+   "title": "はいよろこんで",
+   "artist": "こっちのけんと",
+   "genre": "POPSアニメ",
+   "bpm": 147,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.8,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "11+",
+      "level_value": 11.6,
+      "note_designer": "緑風 犬三郎",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 4,
+      "level": "13",
+      "level_value": 13.2,
+      "note_designer": "Jack",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1836,
+   "title": "ビビデバ",
+   "artist": "星街すいせい（ホロライブ）",
+   "genre": "POPSアニメ",
+   "bpm": 120,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.7,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "11+",
+      "level_value": 11.8,
+      "note_designer": "緑風 犬三郎",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 4,
+      "level": "13",
+      "level_value": 13.2,
+      "note_designer": "シチミヘルツ",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1837,
+   "title": "シカ色デイズ",
+   "artist": "シカ部 [鹿乃子のこ (CV.潘めぐみ)、虎視虎子 (CV.藤田 咲)、虎視餡子 (CV.田辺留依)、馬車芽めめ (CV.和泉風花)]",
+   "genre": "POPSアニメ",
+   "bpm": 183,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.8,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "12+",
+      "level_value": 12.8,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1838,
+   "title": "メズマライザー",
+   "artist": "サツキ feat.初音ミク・重音テト",
+   "genre": "niconicoボーカロイド",
+   "bpm": 185,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7.2,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10.5,
+      "note_designer": "ロシェ@ペンギン",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "11+",
+      "level_value": 11.9,
+      "note_designer": "緑風 犬三郎",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 4,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1839,
+   "title": "ももいろの鍵",
+   "artist": "いよわ",
+   "genre": "niconicoボーカロイド",
+   "bpm": 165,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9",
+      "level_value": 9,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "12+",
+      "level_value": 12.7,
+      "note_designer": "アマリリス",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1840,
+   "title": "のだ",
+   "artist": "大漠波新",
+   "genre": "niconicoボーカロイド",
+   "bpm": 142,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.2,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.8,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.3,
+      "note_designer": "Luxizhel & はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1841,
+   "title": "Idoratrize World",
+   "artist": "A-One",
+   "genre": "東方Project",
+   "bpm": 170,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10.5,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.3,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1842,
+   "title": "Synthesis.",
+   "artist": "tn-shi",
+   "genre": "ゲームバラエティ",
+   "bpm": 180,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8+",
+      "level_value": 8.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.6,
+      "note_designer": "Jack",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.1,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1843,
+   "title": "もういいよ",
+   "artist": "こっちのけんと",
+   "genre": "POPSアニメ",
+   "bpm": 147,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.8,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.1,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1844,
+   "title": "モエチャッカファイア",
+   "artist": "弌誠「ゲーム『ゼンレスゾーンゼロ』エレン・ジョー 同人イメージソング」",
+   "genre": "POPSアニメ",
+   "bpm": 163,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10.5,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1845,
+   "title": "マヌルネコのうた",
+   "artist": "小田朋美",
+   "genre": "POPSアニメ",
+   "bpm": 137,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.8,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13,
+      "note_designer": "アマリリス",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1846,
+   "title": "スナネコのうた",
+   "artist": "ぷにぷに電機",
+   "genre": "POPSアニメ",
+   "bpm": 92,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.7,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.4,
+      "note_designer": "ぴちネコ",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1847,
+   "title": "M@GICAL☆CURE! LOVE ♥ SHOT!",
+   "artist": "SAWTOWNE",
+   "genre": "niconicoボーカロイド",
+   "bpm": 192,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.2,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1848,
+   "title": "Overjoy ★ OVERDOSE!!",
+   "artist": "Luna Fozer (BilliumMoto, 黒皇帝, Sobrem feat. vally.exe)",
+   "genre": "ゲームバラエティ",
+   "bpm": 143,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.1,
+      "note_designer": "Jack",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1849,
+   "title": "DATAERR0R",
+   "artist": "Cosmograph",
+   "genre": "ゲームバラエティ",
+   "bpm": 180,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11+",
+      "level_value": 11.7,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14,
+      "note_designer": "Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1850,
+   "title": "あいたい星人",
+   "artist": "DECO*27",
+   "genre": "niconicoボーカロイド",
+   "bpm": 150,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.7,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.2,
+      "note_designer": "じゃこレモン",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1851,
+   "title": "ハオ",
+   "artist": "DECO*27",
+   "genre": "niconicoボーカロイド",
+   "bpm": 176,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.2,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1852,
+   "title": "好きな惣菜発表ドラゴン",
+   "artist": "ンバヂ",
+   "genre": "niconicoボーカロイド",
+   "bpm": 160,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9",
+      "level_value": 9.5,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "12",
+      "level_value": 12.5,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1854,
+   "title": "超最終鬼畜妹フランドール・S",
+   "artist": "ビートまりお×まろん",
+   "genre": "東方Project",
+   "bpm": 210,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8.2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.6,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.9,
+      "note_designer": "Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1855,
+   "title": "Destined Marionette",
+   "artist": "ビートまりお",
+   "genre": "ゲームバラエティ",
+   "bpm": 186,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8.2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12.5,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.2,
+      "note_designer": "ぴちネコ",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1856,
+   "title": "MIRA",
+   "artist": "Kanaria",
+   "genre": "niconicoボーカロイド",
+   "bpm": 148,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9",
+      "level_value": 9.5,
+      "note_designer": "カマボコ君",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "12+",
+      "level_value": 12.9,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1857,
+   "title": "空回りライブラリ",
+   "artist": "雪乃イト",
+   "genre": "niconicoボーカロイド",
+   "bpm": 130,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.7,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "12+",
+      "level_value": 12.8,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1858,
+   "title": "お呪い",
+   "artist": "なきそ",
+   "genre": "niconicoボーカロイド",
+   "bpm": 115,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10.2,
+      "note_designer": "きょむりん",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13,
+      "note_designer": "アマリリス",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1859,
+   "title": "ありきたりな恋の歌",
+   "artist": "GYARI",
+   "genre": "niconicoボーカロイド",
+   "bpm": 180,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7.5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10.5,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1860,
+   "title": "MYTH Re：LEASE",
+   "artist": "打打だいず Vs. Tanchiky Vs. uma Vs. モリモリあつし",
+   "genre": "ゲームバラエティ",
+   "bpm": 202,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.9,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.5,
+      "note_designer": "サファ太 vs Safari vs Saf vs モリモリさふぁた",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1861,
+   "title": "∀",
+   "artist": "ああああ",
+   "genre": "ゲームバラエティ",
+   "bpm": 245,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8.2,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11+",
+      "level_value": 11.9,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.2,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1862,
+   "title": "㋰責任集合体",
+   "artist": "マサラダ",
+   "genre": "niconicoボーカロイド",
+   "bpm": 135,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7.5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.8,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.5,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1863,
+   "title": "三日月ステップ 2023",
+   "artist": "r-906",
+   "genre": "niconicoボーカロイド",
+   "bpm": 167,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1864,
+   "title": "少女レイ",
+   "artist": "みきとP",
+   "genre": "niconicoボーカロイド",
+   "bpm": 150,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.5,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.9,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "12+",
+      "level_value": 12.9,
+      "note_designer": "Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1865,
+   "title": "少女A",
+   "artist": "椎名もた",
+   "genre": "niconicoボーカロイド",
+   "bpm": 130,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.9,
+      "note_designer": "アマリリス",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.3,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1866,
+   "title": "帝国少女",
+   "artist": "R Sound Design",
+   "genre": "niconicoボーカロイド",
+   "bpm": 118,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9",
+      "level_value": 9.2,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.3,
+      "note_designer": "カマボコホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1867,
+   "title": "うぇいびー",
+   "artist": "三枝明那",
+   "genre": "POPSアニメ",
+   "bpm": 200,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10.5,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 4,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "三枝明那とはっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1868,
+   "title": "RED",
+   "artist": "三枝明那",
+   "genre": "POPSアニメ",
+   "bpm": 168,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.5,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.7,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.3,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1869,
+   "title": "ホラフキパペット",
+   "artist": "七次元生徒会！",
+   "genre": "POPSアニメ",
+   "bpm": 205,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10+",
+      "level_value": 10.8,
+      "note_designer": "Luxizhel",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.6,
+      "note_designer": "メロンポップ",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1870,
+   "title": "BlackFlagBreaker!!",
+   "artist": "社築 × sasakure.UK",
+   "genre": "POPSアニメ",
+   "bpm": 163,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1871,
+   "title": "クーネル・エンゲイザー",
+   "artist": "電ǂ鯨",
+   "genre": "niconicoボーカロイド",
+   "bpm": 170,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7,
+      "note_designer": "-",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.7,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "12+",
+      "level_value": 12.8,
+      "note_designer": "はっぴー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1872,
+   "title": "ゼロトーキング",
+   "artist": "はるまきごはん",
+   "genre": "niconicoボーカロイド",
+   "bpm": 133,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "2",
+      "level_value": 2,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.8,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.2,
+      "note_designer": "Jack",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1873,
+   "title": "抜錨",
+   "artist": "ナナホシ管弦楽団",
+   "genre": "niconicoボーカロイド",
+   "bpm": 140,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10+",
+      "level_value": 10.7,
+      "note_designer": "アマリリス",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1874,
+   "title": "NO ONE YES MAN",
+   "artist": "MYUKKE.",
+   "genre": "ゲームバラエティ",
+   "bpm": 170,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.7,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12",
+      "level_value": 12,
+      "note_designer": "Jack",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.9,
+      "note_designer": "鳩ホルダー & Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1875,
+   "title": "Leave All Behind",
+   "artist": "rider",
+   "genre": "ゲームバラエティ",
+   "bpm": 150,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "6",
+      "level_value": 6.8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.2,
+      "note_designer": "鳩ホルダー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "Luxizhel",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1876,
+   "title": "Retribution ～ Cycle of Redemption ～",
+   "artist": "Ardolf vs. Daily天利 (原曲： nm-y & Kry.exe)",
+   "genre": "ゲームバラエティ",
+   "bpm": 112,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "13",
+      "level_value": 13,
+      "note_designer": "はっぴー",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.4,
+      "note_designer": "サファ太",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1877,
+   "title": "Luminescence",
+   "artist": "米虾Fomiki & 初云CLoudie",
+   "genre": "ゲームバラエティ",
+   "bpm": 184,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.6,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.2,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "Jack",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1878,
+   "title": "Pixel Galaxy",
+   "artist": "Snail's House",
+   "genre": "ゲームバラエティ",
+   "bpm": 150,
+   "version": 23,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7",
+      "level_value": 7.4,
+      "note_designer": "",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "9+",
+      "level_value": 9.9,
+      "note_designer": "サファ太",
+      "version": 23
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13",
+      "level_value": 13.1,
+      "note_designer": "じあこレモン",
+      "version": 23
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1919,
+   "title": "エンジェル ドリーム",
+   "artist": "「太鼓の達人」より",
+   "genre": "ゲームバラエティ",
+   "bpm": 180,
+   "version": 24,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "3",
+      "level_value": 3,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "10",
+      "level_value": 10,
+      "note_designer": "Luxizhel",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.7,
+      "note_designer": "サファ太",
+      "version": 24
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1920,
+   "title": "Hurtling Boys",
+   "artist": "さだきち「太鼓の達人」より",
+   "genre": "ゲームバラエティ",
+   "bpm": 195,
+   "version": 24,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "5",
+      "level_value": 5,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8.5,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.8,
+      "note_designer": "サファ太",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14",
+      "level_value": 14.5,
+      "note_designer": "鳩ホルダー",
+      "version": 24
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1944,
+   "title": "Restricted Access",
+   "artist": "Knighthood",
+   "genre": "ゲームバラエティ",
+   "bpm": 185,
+   "version": 24,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11",
+      "level_value": 11.5,
+      "note_designer": "アマリリス",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.8,
+      "note_designer": "Luxizhel",
+      "version": 24
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1945,
+   "title": "胡蝶乃舞",
+   "artist": "Srav3R",
+   "genre": "ゲームバラエティ",
+   "bpm": 180,
+   "version": 24,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "4",
+      "level_value": 4,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "7+",
+      "level_value": 7.8,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "11+",
+      "level_value": 11.7,
+      "note_designer": "はっぴー",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "13+",
+      "level_value": 13.9,
+      "note_designer": "じゃこレモン",
+      "version": 24
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  },
+  {
+   "id": 1946,
+   "title": "零號車輛",
+   "artist": "seatrus",
+   "genre": "ゲームバラエティ",
+   "bpm": 240,
+   "version": 24,
+   "difficulties": {
+    "standard": [],
+    "dx": [
+     {
+      "type": "dx",
+      "difficulty": 0,
+      "level": "6",
+      "level_value": 6,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 1,
+      "level": "8",
+      "level_value": 8.5,
+      "note_designer": "",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 2,
+      "level": "12+",
+      "level_value": 12.8,
+      "note_designer": "サファ太",
+      "version": 24
+     },
+     {
+      "type": "dx",
+      "difficulty": 3,
+      "level": "14+",
+      "level_value": 14.6,
+      "note_designer": "はっぴー",
+      "version": 24
+     }
+    ],
+    "utage": []
+   },
+   "map": null,
+   "rights": null,
+   "locked": false,
+   "disabled": false
+  }
+ ]
+}

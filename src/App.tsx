@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
+import DownloadPage from './pages/DownloadPage';
 import HomePage from './pages/HomePage';
 import PreviewPage from './PreviewPage';
 
@@ -16,6 +17,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomeOrPreviewRedirect />} />
       <Route path="/preview" element={<PreviewPage />} />
+      <Route path="/download" element={<DownloadPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

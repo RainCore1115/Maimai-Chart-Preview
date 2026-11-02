@@ -40,6 +40,18 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: 同步 adx 谱面包（夸克分享盘，可选）
+        # 需要仓库 Secret: QUARK_COOKIE（夸克网盘登录 Cookie）；未配置时自动跳过
+        continue-on-error: true
+        env:
+          QUARK_COOKIE: ${{ secrets.QUARK_COOKIE }}
+        run: |
+          if [ -z "$QUARK_COOKIE" ]; then
+            echo "未配置 QUARK_COOKIE，跳过 adx 分享盘同步"
+            exit 0
+          fi
+          node scripts/sync-adx-quark.mjs
+
       - name: 同步数据（API + mai-charts）
         env:
           CHART_PREVIEW_API_KEY: ${{ secrets.CHART_PREVIEW_API_KEY }}
@@ -53,7 +65,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A public/data data/preview-sync
+          git add -A public/data data/preview-sync data/adx-share
           if git diff --cached --quiet; then
             echo "数据无变化，跳过提交"
             exit 0
