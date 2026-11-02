@@ -2,7 +2,9 @@
 
 舞萌 DX 谱面预览独立页。谱面数据来自 [mai-charts](https://cnb.cool/project-baka86/mai-charts)（CNB），
 谱面分析数据来自 [AWMC chart-preview API](https://wiki.awmc.team/dev/chart-preview-api)，
-音频与曲绘仍复用 [落雪查分器](https://maimai.lxns.net) 的公开资源。
+宴会场（宴谱）曲目与谱面文件来自 [落雪查分器](https://maimai.lxns.net) 的公开接口
+（`/api/v0/maimai/song/list` + `assets2.lxns.net/maimai/chart/{id}.txt`，宴谱在 `.adx` 中用
+`&inote_7` 标注，口径与常规谱不同，故单独走落雪），音频与曲绘同样复用落雪公开资源。
 
 上游项目：[Pimeng/Maimai-Chart-Preview](https://github.com/Pimeng/Maimai-Chart-Preview)；
 本仓库为 fork，改动内容：
@@ -15,15 +17,23 @@
 
 ```
 ┌──────────────────────────────┐      ┌─────────────────────────────────┐
+┌──────────────────────────────┐      ┌─────────────────────────────────┐
 │ AWMC chart-preview API       │      │ CNB: project-baka86/mai-charts  │
 │ 谱面列表 + configAnalysis    │      │ .adx 谱面包 + music_data.json   │
 └──────────────┬───────────────┘      └────────────────┬────────────────┘
                │ 定时增量拉取（GitHub Actions，每天 04:23）             │
+               │                                       │
+               │            ┌──────────────────────────┴─────────────┐
+               │            │ 落雪：song/list + assets2 chart/{id}.txt│
+               │            │ 宴会场曲目与谱面文件（id >= 100000）    │
+               │            └──────────────────────────┬─────────────┘
                ▼                                       ▼
       ┌──────────────────────────────────────────────────────────┐
       │ 本仓库：scripts/sync-preview-data.mjs                    │
-      │  public/data/catalog.json    曲目目录（mai-charts 生成）  │
-      │  public/data/simai/*.txt     从 .adx 提取的 maidata.txt   │
+      │  public/data/catalog.json    曲目目录（普谱 mai-charts、 │
+      │                              宴谱落雪，共 1275 首）      │
+      │  public/data/simai/*.txt     从 .adx / assets2 提取的     │
+      │                              maidata.txt（含宴谱）       │
       │  public/data/analysis/*.json 谱面分析快照                │
       │  data/preview-sync/*.json    API 指纹缓存（供 CNB 流水线）│
       └──────────────────────────────┬───────────────────────────┘
@@ -64,14 +74,15 @@ export CNB_TOKEN=xxx                      # 可选
 node scripts/sync-preview-data.mjs         # 增量
 node scripts/sync-preview-data.mjs --full  # 强制全量刷新谱面分析
 node scripts/sync-preview-data.mjs --adx-dir ../mc-meta   # 用本地已 checkout 的 mai-charts 目录
+node scripts/sync-preview-data.mjs --skip-api              # 跳过 chart-preview API，仅重建曲目/谱面数据
 ```
 
 同步逻辑：
 
 | 数据 | 来源 | 增量方式 |
 | --- | --- | --- |
-| `public/data/catalog.json` | mai-charts `data/music_data.json` + `.adx` 内 `&title/&artist/&lv_N/&des_N` | 曲目列表变化才重建 |
-| `public/data/simai/{chartFileId}.txt` | `.adx` 包内 `maidata.txt` | 按 `.adx` blob 比对，命中缓存跳过 |
+| `public/data/catalog.json` | mai-charts `data/music_data.json` + `.adx` 内 `&title/&artist/&lv_N/&des_N`；宴谱取落雪 song list 的 `difficulties.utage` | 曲目列表变化才重建 |
+| `public/data/simai/{chartFileId}.txt` | `.adx` 包内 `maidata.txt`；宴谱取 `assets2.lxns.net/maimai/chart/{id}.txt` | 按 `.adx` blob / 上次快照比对，命中缓存跳过 |
 | `public/data/analysis/*.json` | chart-preview API `/charts/:chartKey` | 按 `views/ratingCount/commentCount/correctionCount/levelLabel` 指纹比对 |
 | `data/preview-sync/chart-index.json` | 同上（列表快照） | 每次全量列表 + 指纹 |
 
@@ -105,8 +116,8 @@ data/preview-sync/          # API 指纹缓存与快照（提交到仓库，供 
 
 ## 已知限制
 
-- 曲目列表只包含「mai-charts 中存在 `.adx` 谱面包」的曲目（约 1260 首），保证点进去一定能预览；
-  宴会場（`[宴]` 等）谱面暂未纳入目录。
+- 普谱目录只包含「mai-charts 中存在 `.adx` 谱面包」的曲目（约 1210 首）；宴会场曲目（65 首，
+  id >= 100000）来自落雪曲库，谱面文件拉取失败的曲目会暂不纳入目录，保证点进去一定能预览。
 - 音频（`assets2.lxns.net`）与曲绘（`assets.lxns.net`）仍来自落雪公开资源，若资源缺失仅影响播放/封面。
 - chart-preview API 只有被用户浏览/提交过的谱面才有分析数据；没有分析数据的谱面仍可正常预览，只是不显示分析面板。
 - CNB 定时任务的执行身份是「最后修改 crontab 配置的用户」，若该用户被移出仓库，定时任务会失败。

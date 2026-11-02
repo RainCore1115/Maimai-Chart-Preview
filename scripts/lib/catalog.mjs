@@ -217,10 +217,22 @@ export function matchAdxToSongs(musicData, adxEntries) {
  *   matching: ReturnType<typeof matchAdxToSongs>,
  *   maidataMetaByChartFileId: Map<number, { title?: string, artist?: string, bpm?: number, levels?: Record<number,string>, designers?: Record<number,string> }>,
  *   apiLevelByChartKey?: Map<string, string>,
+ *   utageSongs?: any[],
+ *   utageChartFileIds?: Set<number>,
+ *   lxnsVersionTitles?: Map<number, string>,
  * }} input
  */
 export function buildCatalog(input) {
-  const { musicData, aliasList, matching, maidataMetaByChartFileId, apiLevelByChartKey } = input;
+  const {
+    musicData,
+    aliasList,
+    matching,
+    maidataMetaByChartFileId,
+    apiLevelByChartKey,
+    utageSongs = [],
+    utageChartFileIds = new Set(),
+    lxnsVersionTitles = new Map(),
+  } = input;
 
   /** @type {Map<string, number>} */
   const versionCodeByTitle = new Map();
@@ -336,6 +348,73 @@ export function buildCatalog(input) {
     const songAlias = aliasList.find((item) => Number(item.SongID) === baseId);
     if (songAlias?.Alias?.length) {
       aliases.push({ song_id: baseId, aliases: [...new Set(songAlias.Alias)] });
+    }
+  }
+
+  // 宴谱（宴会場）：mai-charts 的 music_data 只收录了部分宴谱，且 .adx 内用
+  // `&inote_7`/`&lv_7` 标注，与常规谱面解析口径不同。这里改用落雪曲库
+  // （maimai.lxns.net song list 的 difficulties.utage）+ assets2 谱面文件，
+  // 前端按 `kind=utage`、chartFileId = 曲目原 id、diff = difficulty + 2 解析。
+  for (const song of utageSongs) {
+    const rawId = Number(song?.id);
+    if (!Number.isFinite(rawId) || rawId < 100000) continue;
+    // 只收录已经成功获取谱面文件的宴谱，避免详情页打开后提示缺谱
+    if (!utageChartFileIds.has(rawId)) continue;
+
+    const rows = Array.isArray(song.difficulties?.utage) ? song.difficulties.utage : [];
+    if (rows.length === 0) continue;
+
+    // 落雪曲库的曲目版本号比版本表更细（如 24506 / 24010），回退到不大于它的最近整版本
+    const rawVersion = Number(song.version);
+    let versionTitle = lxnsVersionTitles.get(rawVersion);
+    if (!versionTitle) {
+      const floor = [...lxnsVersionTitles.keys()]
+        .filter((code) => Number.isFinite(code) && code <= rawVersion)
+        .sort((a, b) => b - a)[0];
+      versionTitle = floor !== undefined ? lxnsVersionTitles.get(floor) : `version ${rawVersion}`;
+    }
+    const versionCode = versionCodeFor(versionTitle);
+
+    const genreName = song.genre || '宴会場';
+    if (!genreCodeByName.has(genreName)) {
+      const code = genreCodeByName.size + 1;
+      genreCodeByName.set(genreName, code);
+      genreEntries.push({ id: code, title: genreName, genre: genreName });
+    }
+
+    const title = String(song.title || '');
+    const bracketKanji = /^\[([^\]]+)\]/.exec(title)?.[1] ?? '';
+
+    songs.push({
+      id: rawId,
+      title,
+      artist: song.artist || '',
+      genre: genreName,
+      bpm: Number(song.bpm) || 0,
+      version: versionCode,
+      difficulties: {
+        standard: [],
+        dx: [],
+        utage: rows.map((row) => ({
+          type: 'utage',
+          difficulty: Number(row.difficulty) || 0,
+          level: String(row.level ?? '').trim(),
+          level_value: Number(row.level_value) || 0,
+          note_designer: row.note_designer || '',
+          version: versionCode,
+          kanji: row.kanji || bracketKanji,
+          description: row.description || '',
+        })),
+      },
+      map: null,
+      rights: null,
+      locked: false,
+      disabled: false,
+    });
+
+    const songAlias = aliasList.find((item) => Number(item.SongID) === rawId);
+    if (songAlias?.Alias?.length) {
+      aliases.push({ song_id: rawId, aliases: [...new Set(songAlias.Alias)] });
     }
   }
 
