@@ -21,9 +21,9 @@
  * 环境变量：
  *   CHART_PREVIEW_API_KEY   chart-preview API Key（必填）
  *   CHART_PREVIEW_API_BASE  默认 https://v.wmc.pub/api/v1
- *   MAI_CHARTS_REPO         默认 https://cnb.cool/sulieripple/mai-charts.git
+ *   MAI_CHARTS_REPO         默认 fork 仓库；缺 data/music_data.json 时自动回退上游公共仓库
  *   MAI_CHARTS_REF          默认 main
- *   CNB_TOKEN               CNB 访问令牌（公开仓库可省略；访问私有仓库时使用）
+ *   CNB_TOKEN               CNB 访问令牌（可选：无效/缺失时自动改用匿名 raw 读取）
  */
 import crypto from 'node:crypto';
 import zlib from 'node:zlib';
@@ -33,7 +33,7 @@ import { fileURLToPath } from 'node:url';
 
 import { ChartPreviewApi } from './lib/api.mjs';
 import { buildAdxEntries, buildCatalog, matchAdxToSongs, parseLevelLabel, parseMaidataMeta } from './lib/catalog.mjs';
-import { LocalDirSource, RemoteRawSource } from './lib/maicharts-source.mjs';
+import { FALLBACK_REPO, LocalDirSource, RemoteRawSource } from './lib/maicharts-source.mjs';
 import { extractMaidata } from './lib/zip.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -421,7 +421,19 @@ async function main() {
     await source.ensureClone();
   }
 
-  const musicDataText = await source.readTextFile('data/music_data.json');
+  let musicDataText = await source.readTextFile('data/music_data.json');
+  if (!musicDataText && !args.adxDir) {
+    // fork 元数据损坏时（raw 全 404、缺 data/music_data.json）自动回退到上游公共仓库
+    log(`mai-charts 数据源缺少 data/music_data.json，回退到 ${FALLBACK_REPO}`);
+    const fallbackWorkDir = `${args.workDir}-fallback`;
+    source = new RemoteRawSource({
+      workDir: fallbackWorkDir,
+      ref: process.env.MAI_CHARTS_REF ?? 'main',
+      repo: FALLBACK_REPO,
+    });
+    await source.ensureClone();
+    musicDataText = await source.readTextFile('data/music_data.json');
+  }
   if (!musicDataText) throw new Error('mai-charts 仓库缺少 data/music_data.json');
   // 宴会場（id>=100000）暂不纳入预览目录：其 chartFileId / 音频资源规则不同
   const musicData = JSON.parse(musicDataText).filter((song) => Number(song.id) < 100000);

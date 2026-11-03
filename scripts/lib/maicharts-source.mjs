@@ -14,6 +14,13 @@ import { promisify } from 'node:util';
 const execFileAsync = promisify(execFile);
 
 export const DEFAULT_REPO = 'https://cnb.cool/project-baka86/mai-charts.git';
+/** 上游公共仓库：fork 元数据损坏（raw 全 404、缺 data/music_data.json）时的兜底数据源 */
+export const FALLBACK_REPO = 'https://cnb.cool/sulieripple/mai-charts.git';
+
+/** 去掉 URL 里的凭据，得到匿名可访问的 https 地址 */
+export function stripCredentials(url) {
+  return url.replace(/^https?:\/\/[^@/]+@/, 'https://');
+}
 
 /** 把仓库 slug（`org/repo`）或完整 URL 规范化成 git URL，并带上 CNB token（如有）。 */
 export function resolveRepoUrl(repo = process.env.CNB_REPO_URL ?? DEFAULT_REPO, token = process.env.CNB_TOKEN) {
@@ -49,15 +56,35 @@ export class GitRepoSource {
   async ensureClone() {
     if (!fs.existsSync(path.join(this.workDir, '.git'))) {
       fs.mkdirSync(path.dirname(this.workDir), { recursive: true });
-      await execFileAsync(
-        'git',
-        ['clone', '--filter=blob:none', '--no-checkout', '--depth', '1', '--branch', this.ref, this.url, this.workDir],
-        { maxBuffer: this.maxBuffer, env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } }
-      );
+      try {
+        await execFileAsync(
+          'git',
+          ['clone', '--filter=blob:none', '--no-checkout', '--depth', '1', '--branch', this.ref, this.url, this.workDir],
+          { maxBuffer: this.maxBuffer, env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } }
+        );
+      } catch (error) {
+        // 带凭据的地址失败（token 过期等）时改用匿名地址重试
+        const anonUrl = stripCredentials(this.url);
+        if (anonUrl === this.url) throw error;
+        await execFileAsync(
+          'git',
+          ['clone', '--filter=blob:none', '--no-checkout', '--depth', '1', '--branch', this.ref, anonUrl, this.workDir],
+          { maxBuffer: this.maxBuffer, env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } }
+        );
+        this.url = anonUrl;
+      }
       return;
     }
     // 已存在：拉取最新提交（partial clone 只更新 tree）
-    await this.git(['fetch', '--depth', '1', 'origin', this.ref]);
+    try {
+      await this.git(['fetch', '--depth', '1', 'origin', this.ref]);
+    } catch (error) {
+      const anonUrl = stripCredentials(this.url);
+      if (anonUrl === this.url) throw error;
+      await this.git(['remote', 'set-url', 'origin', anonUrl]);
+      this.url = anonUrl;
+      await this.git(['fetch', '--depth', '1', 'origin', this.ref]);
+    }
     await this.git(['update-ref', `refs/remotes/origin/${this.ref}`, 'FETCH_HEAD']);
   }
 
@@ -173,6 +200,7 @@ export class RemoteRawSource {
       token: this.token,
     });
     this.rawBase = `https://api.cnb.cool/${this.repoSlug}/-/git/raw/${this.ref}`;
+    this.anonRawBase = `https://cnb.cool/${this.repoSlug}/-/git/raw/${this.ref}`;
     this.requestCount = 0;
   }
 
@@ -198,15 +226,27 @@ export class RemoteRawSource {
 
   /** @param {string} filePath */
   async fetchRaw(filePath) {
-    const url = `${this.rawBase}/${filePath.split('/').map(encodeURIComponent).join('/')}`;
+    const encodedPath = filePath.split('/').map(encodeURIComponent).join('/');
+    // CNB_TOKEN 失效时 api.cnb.cool 会 401；公共仓库改用 cnb.cool 匿名 raw 兜底
+    const candidates = [`${this.rawBase}/${encodedPath}`];
+    if (this.anonRawBase) candidates.push(`${this.anonRawBase}/${encodedPath}`);
     let lastError;
-    for (let attempt = 0; attempt < 4; attempt += 1) {
+    let url = candidates[0];
+    for (let attempt = 0; attempt < 6; attempt += 1) {
+      if (attempt === 3 && candidates.length > 1) url = candidates[1];
       this.requestCount += 1;
       try {
         const res = await fetch(url, {
-          headers: this.token ? { Authorization: `Bearer ${this.token}` } : {},
+          headers: url === candidates[0] && this.token ? { Authorization: `Bearer ${this.token}` } : {},
           signal: AbortSignal.timeout(120_000),
         });
+        if (res.status === 401 || res.status === 400) {
+          lastError = new Error(`HTTP ${res.status} ${filePath}`);
+          if (candidates.length > 1 && url === candidates[0]) {
+            url = candidates[1];
+            continue;
+          }
+        }
         if (res.status === 429 || res.status >= 500) {
           lastError = new Error(`HTTP ${res.status} ${filePath}`);
           await new Promise((resolve) => setTimeout(resolve, 800 * 2 ** attempt));

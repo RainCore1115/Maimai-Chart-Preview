@@ -55,6 +55,7 @@ jobs:
       - name: 同步数据（API + mai-charts）
         env:
           CHART_PREVIEW_API_KEY: ${{ secrets.CHART_PREVIEW_API_KEY }}
+          # fork 元数据损坏时脚本会自动回退到上游 sulieripple/mai-charts
           MAI_CHARTS_REPO: ${{ vars.MAI_CHARTS_REPO || 'https://cnb.cool/project-baka86/mai-charts.git' }}
           MAI_CHARTS_REF: ${{ vars.MAI_CHARTS_REF || 'main' }}
           CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
