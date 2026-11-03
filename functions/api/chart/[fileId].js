@@ -9,6 +9,9 @@
  * 谱面文本来自站点静态资源 /data/simai/<chartFileId>.txt。
  */
 const DIFF_NAMES = { 2: 'BASIC', 3: 'ADVANCED', 4: 'EXPERT', 5: 'MASTER', 6: 'RE:MASTER' };
+//: 站点未收录的谱面回落到 adx 谱面仓库（公共只读 raw，含日服/下架曲）
+const ADX_CHARTS_RAW = 'https://cnb.cool/sulieripple/mai-charts/-/git/raw/main/charts';
+let titleCache = null;
 const KEEP_ALWAYS = ['title', 'artist', 'wholebpm', 'cabinet', 'genre'];
 
 function json(data, status = 200) {
@@ -31,6 +34,44 @@ function fileNameFor(chartFileId, text, diff) {
   return `${title || chartFileId} [${suffix}].maidata.txt`;
 }
 
+/** 站点未收录时的标题来源：adx 补充数据（id → 曲名），单 isolate 缓存 */
+async function loadTitles(url, env) {
+  if (titleCache) return titleCache;
+  const map = new Map();
+  try {
+    const res = await env.ASSETS.fetch(new URL('/data/adx-song-supplement.json', url.origin).toString());
+    if (res.ok) {
+      const data = await res.json();
+      for (const song of data?.songs ?? []) map.set(Number(song.id), String(song.title ?? ''));
+    }
+  } catch {
+    /* 忽略：仅影响回落标题 */
+  }
+  if (map.size) titleCache = map;
+  return map;
+}
+
+/** 从 adx 谱面仓库取文本；标准谱/ DX 谱用文件名后缀区分 */
+async function fetchRemoteChart(chartFileId, url, env) {
+  const titles = await loadTitles(url, env);
+  const title = titles.get(chartFileId % 10000);
+  if (!title) return null;
+  const kind = chartFileId >= 10000 ? 'DX' : 'ST';
+  const candidates = kind === 'DX' ? [`${title} [DX].adx`, `${title}.adx`] : [`${title}.adx`, `${title} [ST].adx`];
+  for (const name of candidates) {
+    try {
+      const res = await fetch(`${ADX_CHARTS_RAW}/${encodeURIComponent(name).replace(/%2F/g, '/')}`);
+      if (res.ok) {
+        const text = await res.text();
+        if (text.trim()) return text;
+      }
+    } catch {
+      /* 试下一个候选 */
+    }
+  }
+  return null;
+}
+
 export async function onRequestGet({ request, params, env }) {
   const rawId = String(params.fileId || '').replace(/[^\d]/g, '');
   if (!rawId) return json({ ok: false, error: '谱面 ID 无效' }, 400);
@@ -43,8 +84,14 @@ export async function onRequestGet({ request, params, env }) {
   if (!assets) return json({ ok: false, error: '缺少 ASSETS 绑定' }, 500);
   const assetUrl = new URL(`/data/simai/${chartFileId}.txt`, url.origin);
   const res = await assets.fetch(assetUrl.toString());
-  if (!res.ok) return json({ ok: false, error: '没有该谱面数据（可能未收录）' }, 404);
-  const text = await res.text();
+  let text = res.ok ? await res.text() : '';
+  let source = 'site';
+  if (!text.trim()) {
+    const remote = await fetchRemoteChart(chartFileId, url, env);
+    if (!remote) return json({ ok: false, error: '没有该谱面数据（可能未收录）' }, 404);
+    text = remote;
+    source = 'adx';
+  }
 
   let body = text;
   if (diff) {
@@ -72,6 +119,7 @@ export async function onRequestGet({ request, params, env }) {
     headers: {
       'content-type': 'text/plain; charset=utf-8',
       'content-disposition': `attachment; filename*=UTF-8''${encodeURIComponent(fileName)}`,
+      'x-chart-source': source,
       'cache-control': 'public, max-age=3600',
       'access-control-allow-origin': '*',
     },
