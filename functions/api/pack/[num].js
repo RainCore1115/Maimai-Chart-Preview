@@ -13,8 +13,8 @@ const REPO = 'RainCore1115/Maimai-Chart-Preview';
 const TAG = 'packs-mirror';
 const GH_FILE = `https://github.com/${REPO}/releases/download/${TAG}`;
 const MIRRORS = [
-  (name) => `https://gh-proxy.com/${GH_FILE}/${name}`,
   (name) => `https://ghfast.top/${GH_FILE}/${name}`,
+  (name) => `https://gh-proxy.com/${GH_FILE}/${name}`,
 ];
 const GH_API = `https://api.github.com/repos/${REPO}/releases/tags/${TAG}`;
 const PASS_HEADERS = ['content-type', 'content-length', 'content-range', 'accept-ranges', 'last-modified', 'etag'];
@@ -64,6 +64,8 @@ async function relay(target, request) {
     cf: { cacheEverything: false },
   });
   if (res.status !== 200 && res.status !== 206) return null;
+  // 请求了 Range 但上游忽略（200），交给下一个镜像重试，保证断点续传语义
+  if (range && res.status === 200) return null;
   return res;
 }
 
