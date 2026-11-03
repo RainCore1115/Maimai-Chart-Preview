@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Alert, Badge, Button, Group, Loader, Stack, Table, Text, Title } from '@mantine/core';
+import { Alert, Badge, Button, Group, Loader, Select, Stack, Table, Text, TextInput, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { maiChartsDataUrl } from '../maicharts/data';
 import classes from './DownloadPage.module.css';
@@ -12,6 +12,44 @@ interface PackInfo {
   sizeLabel: string;
   fid: string;
   file: string;
+}
+
+interface ChartEntry {
+  chartFileId: number;
+  songId: number;
+  kind?: string;
+  difficulty: number;
+  title: string;
+  levelLabel?: string;
+}
+
+interface ChartIndexFile {
+  charts: Record<string, ChartEntry>;
+}
+
+interface ZipPack {
+  kind: 'difficulty' | 'all';
+  difficulty?: number;
+  name?: string;
+  file: string;
+  count: number;
+  bytes: number;
+}
+
+interface ZipManifest {
+  generatedAt: string;
+  total: number;
+  entries: number;
+  bytes: number;
+  packs: ZipPack[];
+  all?: ZipPack;
+}
+
+const DIFF_LABELS: Record<number, string> = { 2: 'BASIC', 3: 'ADVANCED', 4: 'EXPERT', 5: 'MASTER', 6: 'RE:MASTER' };
+
+function sizeLabel(bytes: number): string {
+  if (bytes >= 1024 * 1024) return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+  return `${Math.max(1, Math.round(bytes / 1024))} KB`;
 }
 
 interface PacksFile {
@@ -34,6 +72,10 @@ export default function DownloadPage() {
   const [data, setData] = useState<PacksFile | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [proxyOk, setProxyOk] = useState<boolean | null>(null);
+  const [manifest, setManifest] = useState<ZipManifest | null>(null);
+  const [charts, setCharts] = useState<ChartEntry[]>([]);
+  const [query, setQuery] = useState('');
+  const [diffFilter, setDiffFilter] = useState<string>('all');
 
   useEffect(() => {
     let cancelled = false;
@@ -57,10 +99,31 @@ export default function DownloadPage() {
       .catch(() => {
         if (!cancelled) setProxyOk(false);
       });
+    fetch(maiChartsDataUrl('downloads/manifest.json'), { cache: 'no-cache' })
+      .then((res) => (res.ok ? (res.json() as Promise<ZipManifest>) : null))
+      .then((json) => {
+        if (!cancelled) setManifest(json);
+      })
+      .catch(() => {});
+    fetch(maiChartsDataUrl('chart-index.json'), { cache: 'no-cache' })
+      .then((res) => (res.ok ? (res.json() as Promise<ChartIndexFile>) : null))
+      .then((json) => {
+        if (!cancelled && json?.charts) setCharts(Object.values(json.charts));
+      })
+      .catch(() => {});
     return () => {
       cancelled = true;
     };
   }, []);
+
+  const matchedCharts = useMemo(() => {
+    const keyword = query.trim().toLowerCase();
+    return charts
+      .filter((chart) => (diffFilter === 'all' ? true : String(chart.difficulty) === diffFilter))
+      .filter((chart) => (keyword ? chart.title.toLowerCase().includes(keyword) : true))
+      .sort((a, b) => a.title.localeCompare(b.title, 'ja'))
+      .slice(0, 100);
+  }, [charts, diffFilter, query]);
 
   const packs = useMemo(() => [...(data?.packs ?? [])].sort((a, b) => a.num - b.num), [data]);
   const latest = packs[packs.length - 1];
@@ -118,6 +181,99 @@ export default function DownloadPage() {
                 {proxyOk === null ? '代理检测中…' : proxyOk ? '本站代理可用' : '本站代理未配置'}
               </Badge>
             </Group>
+          )}
+
+          {manifest && (
+            <Stack gap="xs">
+              <Title order={3}>谱面打包下载</Title>
+              <Text size="sm" c="dimmed">
+                按难度分类的聚合包，或全部谱面合并包；共 {manifest.total} 首（{manifest.entries} 个难度条目），压缩后 {sizeLabel(manifest.bytes)}。
+              </Text>
+              <Group gap="xs" wrap="wrap">
+                {(manifest.packs ?? []).map((pack) => (
+                  <Button
+                    key={pack.file}
+                    component="a"
+                    href={maiChartsDataUrl(`downloads/${pack.file}`)}
+                    download
+                    size="xs"
+                    variant="light"
+                    color="cyan"
+                  >
+                    {pack.name} · {pack.count} 谱 · {sizeLabel(pack.bytes)}
+                  </Button>
+                ))}
+                {manifest.all && (
+                  <Button
+                    component="a"
+                    href={maiChartsDataUrl(`downloads/${manifest.all.file}`)}
+                    download
+                    size="xs"
+                    variant="gradient"
+                    gradient={{ from: 'cyan', to: 'indigo', deg: 120 }}
+                  >
+                    全部谱面合并包 · {manifest.all.count} 首 · {sizeLabel(manifest.all.bytes)}
+                  </Button>
+                )}
+              </Group>
+              <Text size="xs" c="dimmed">
+                包内为 maidata 文本，文件名形如「曲名 [DX|ST] [难度].maidata.txt」，可直接喂给谱面工具；全部包按曲目合并、保留全部难度。
+              </Text>
+            </Stack>
+          )}
+
+          {charts.length > 0 && (
+            <Stack gap="xs">
+              <Title order={3}>单谱下载</Title>
+              <Group gap="xs" grow preventGrowOverflow={false} wrap="wrap">
+                <TextInput
+                  placeholder="搜索曲名…"
+                  value={query}
+                  onChange={(event) => setQuery(event.currentTarget.value)}
+                  style={{ flex: '1 1 220px' }}
+                />
+                <Select
+                  value={diffFilter}
+                  onChange={(value) => setDiffFilter(value ?? 'all')}
+                  data={[
+                    { value: 'all', label: '全部难度' },
+                    ...[2, 3, 4, 5, 6].map((diff) => ({ value: String(diff), label: DIFF_LABELS[diff] })),
+                  ]}
+                  style={{ flex: '0 0 160px' }}
+                />
+              </Group>
+              <Text size="xs" c="dimmed">
+                匹配 {matchedCharts.length === 100 ? '前 100 条（请细化搜索）' : `${matchedCharts.length} 条`}
+              </Text>
+              <Table highlightOnHover withTableBorder verticalSpacing="xs">
+                <Table.Tbody>
+                  {matchedCharts.map((chart) => (
+                    <Table.Tr key={`${chart.chartFileId}-${chart.difficulty}`}>
+                      <Table.Td>
+                        <Text size="sm">{chart.title}</Text>
+                      </Table.Td>
+                      <Table.Td>
+                        <Text size="xs" c="dimmed">
+                          {chart.kind === 'dx' || chart.chartFileId >= 10000 ? 'DX' : 'ST'} · {DIFF_LABELS[chart.difficulty]}
+                          {chart.levelLabel ? ` · ${chart.levelLabel.replace(/^.*?·\s*/, '')}` : ''}
+                        </Text>
+                      </Table.Td>
+                      <Table.Td className={classes.actionCell}>
+                        <Button
+                          size="compact-xs"
+                          variant="light"
+                          color="cyan"
+                          component="a"
+                          href={`${import.meta.env.BASE_URL}api/chart/${chart.chartFileId}?diff=${chart.difficulty}`}
+                        >
+                          下载
+                        </Button>
+                      </Table.Td>
+                    </Table.Tr>
+                  ))}
+                </Table.Tbody>
+              </Table>
+            </Stack>
           )}
 
           {data && (

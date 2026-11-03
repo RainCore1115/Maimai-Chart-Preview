@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-11-03T12:46:01.354Z",
+  "entries": 1222,
+  "total": 757,
+  "packs": [
+    {
+      "kind": "difficulty",
+      "difficulty": 2,
+      "name": "BASIC",
+      "file": "charts-diff-2.zip",
+      "count": 75,
+      "bytes": 46962,
+      "sha256": "5a3876d126ce45e5ac7b9b9c7b8f4aa35d10c87b9ddc435dedbd5a69fe81713e"
+    },
+    {
+      "kind": "difficulty",
+      "difficulty": 3,
+      "name": "ADVANCED",
+      "file": "charts-diff-3.zip",
+      "count": 80,
+      "bytes": 64701,
+      "sha256": "78b2ee5cbb5f05c936c7557774b8fe8480153422151055188b12331617b9f8fc"
+    },
+    {
+      "kind": "difficulty",
+      "difficulty": 4,
+      "name": "EXPERT",
+      "file": "charts-diff-4.zip",
+      "count": 321,
+      "bytes": 371383,
+      "sha256": "464edf7de8b52fcd5e81f0be478800f87f89a8011030d017faa060fcd542e917"
+    },
+    {
+      "kind": "difficulty",
+      "difficulty": 5,
+      "name": "MASTER",
+      "file": "charts-diff-5.zip",
+      "count": 662,
+      "bytes": 993427,
+      "sha256": "f796618c8d6d01b5e29f2629c140dea2330ad475e561f36b80ddb8fb2949193c"
+    },
+    {
+      "kind": "difficulty",
+      "difficulty": 6,
+      "name": "RE:MASTER",
+      "file": "charts-diff-6.zip",
+      "count": 84,
+      "bytes": 128130,
+      "sha256": "139af2dfa5c4f40491a5465654118de53bf4bdd11d31c8cad3d051d6da445a9d"
+    }
+  ],
+  "all": {
+    "kind": "all",
+    "file": "charts-all.zip",
+    "count": 757,
+    "bytes": 2302663,
+    "sha256": "714399d293613b84d0402977cae00f06845671663bd9f8e799e1412117cd43e8"
+  },
+  "bytes": 3907266
+}
