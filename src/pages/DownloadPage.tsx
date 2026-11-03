@@ -73,7 +73,7 @@ export default function DownloadPage() {
             <div>
               <Title order={1}>谱面下载站</Title>
               <Text c="dimmed" size="sm" mt={4}>
-                按版本打包的 maimai DX 谱面（.zip，内含 maidata.txt / 音频 / 曲绘），数据源为夸克网盘分享。
+                按版本打包的 maimai DX 谱面（.zip，内含 maidata.txt / 音频 / 曲绘），数据源为夸克网盘分享，本站提供镜像直链与中转。
               </Text>
             </div>
             <Group gap="xs">

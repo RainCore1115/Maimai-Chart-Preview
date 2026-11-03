@@ -13,6 +13,21 @@
 - 新增谱面分析面板（物量、NPS、难度分类、雷达轴、特征谱型），数据来自 chart-preview API；
 - 新增数据同步脚本 + 定时工作流（GitHub Actions + CNB 流水线），增量更新谱面数据。
 
+## 谱面下载站
+
+`/download` 提供按版本打包的 `.zip`（内含 maidata.txt / 音频 / 曲绘），来源为夸克分享盘，
+另有 `adx` 分享盘补丁并入目录（见下）。
+
+大包无法塞进 CNB git（单文件 256MiB 上限）或 CNB raw（100MiB 上限），故包本体托管在
+本仓库的 GitHub Release（tag `packs-mirror`），由 Pages Functions 转发：
+
+- `GET /api/pack/<num>`：流式中转，透传 Range（断点续传），下载名保持原文件名；
+- `GET /api/pack/<num>?direct=1`：302 到加速直链；
+- `GET /api/pack/<num>?json=1`：返回直链 JSON。
+
+中转优先 `ghfast.top`、`gh-proxy.com` 两个 GitHub 加速节点，均失效时回退官方有时效直链
+（需 Pages 环境变量 `GH_TOKEN`，已配置为 secret）。CNB 侧仅保留 `adx-packs` 里 ≤256MiB 的归档包。
+
 ## 数据流
 
 ```
