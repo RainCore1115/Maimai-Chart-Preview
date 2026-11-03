@@ -19,14 +19,18 @@
 另有 `adx` 分享盘补丁并入目录（见下）。
 
 大包无法塞进 CNB git（单文件 256MiB 上限）或 CNB raw（100MiB 上限），故包本体托管在
-本仓库的 GitHub Release（tag `packs-mirror`），由 Pages Functions 转发：
+CNB Release 制品（`project-baka86/otoge-db`，tag `packs-mirror`，主源）与本仓库的
+GitHub Release（tag `packs-mirror`，备用），由 Pages Functions 转发：
 
 - `GET /api/pack/<num>`：流式中转，透传 Range（断点续传），下载名保持原文件名；
 - `GET /api/pack/<num>?direct=1`：302 到加速直链；
 - `GET /api/pack/<num>?json=1`：返回直链 JSON。
 
-中转优先 `ghfast.top`、`gh-proxy.com` 两个 GitHub 加速节点，均失效时回退官方有时效直链
-（需 Pages 环境变量 `GH_TOKEN`，已配置为 secret）。CNB 侧仅保留 `adx-packs` 里 ≤256MiB 的归档包。
+中转首选 CNB Release，其次 `ghfast.top`、`gh-proxy.com` 两个 GitHub 加速节点，均失效时回退官方
+有时效直链（需 Pages 环境变量 `GH_TOKEN`，已配置为 secret）。CNB 侧 `adx-packs` 里另有 ≤256MiB 的归档包。
+
+另有 `scripts/build-chart-zips.mjs` 生成按难度分类与全量合并的谱面文本包（`/data/downloads/`），
+以及 `/api/chart/<chartFileId>?diff=<2..6>` 单谱下载。
 
 ## 数据流
 

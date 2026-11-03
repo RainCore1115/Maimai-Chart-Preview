@@ -2,17 +2,20 @@
  * Cloudflare Pages Function：版本包下载
  *
  * GET /api/pack/<num>            流式中转下载（断点续传 Range 透传，下载名保持原文件名）
- * GET /api/pack/<num>?direct=1   302 → 加速直链（浏览器原生下载/续传）
+ * GET /api/pack/<num>?direct=1   302 → 直链（浏览器原生下载/续传）
  * GET /api/pack/<num>?json=1     返回直链与备用地址 JSON，便于脚本取用
  *
- * 体积说明：CNB raw 单文件上限 100MiB，版本包 150MB~1.2GB，故包本体托管在
- * GitHub Release 附件，经 GitHub 加速节点流式转发（多源自动重试）。
- * 归档镜像仍在 https://cnb.cool/project-baka86/otoge-db/-/tree/main/adx-packs 。
+ * 体积说明：CNB raw 单文件上限 100MiB、git blob 上限 256MiB，版本包 150MB~1.4GB，
+ * 故包本体托管在 CNB Release 制品（主）与 GitHub Release 附件（备），多源自动回退。
+ * 归档镜像：https://cnb.cool/project-baka86/otoge-db/-/releases/tag/packs-mirror
  */
 const REPO = 'RainCore1115/Maimai-Chart-Preview';
 const TAG = 'packs-mirror';
 const GH_FILE = `https://github.com/${REPO}/releases/download/${TAG}`;
+//: CNB Release 制品（国内直连优先），失败再回退 GitHub 加速节点
+const CNB_FILE = `https://cnb.cool/project-baka86/otoge-db/-/releases/download/packs-mirror`;
 const MIRRORS = [
+  (name) => `${CNB_FILE}/${name}`,
   (name) => `https://ghfast.top/${GH_FILE}/${name}`,
   (name) => `https://gh-proxy.com/${GH_FILE}/${name}`,
 ];
