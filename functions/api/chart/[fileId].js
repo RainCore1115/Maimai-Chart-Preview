@@ -176,7 +176,9 @@ export async function onRequestGet({ request, params, env }) {
   const res = await assets.fetch(assetUrl.toString());
   let text = res.ok ? await res.text() : '';
   let source = 'site';
-  if (!text.trim()) {
+  // Pages 对缺失的静态文件会回落 index.html，按内容判断是否真是谱面
+  if (!/&(?:title|inote_)/.test(text)) text = '';
+  if (!text) {
     const remote = await fetchRemoteChart(chartFileId, diff, url, env);
     if (!remote) return json({ ok: false, error: '没有该谱面数据（可能未收录）' }, 404);
     text = remote;
