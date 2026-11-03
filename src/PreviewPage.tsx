@@ -947,6 +947,16 @@ export default function PreviewPage() {
                 <Button variant="default" onClick={() => setWizardStep(1)}>
                   上一步
                 </Button>
+                {pick && (
+                  <Button
+                    variant="light"
+                    component="a"
+                    href={`${import.meta.env.BASE_URL}api/chart/${pick.chartFileId}?diff=${pick.chartDifficulty}`}
+                    download
+                  >
+                    下载谱面
+                  </Button>
+                )}
               </Group>
             </Stepper.Step>
           </Stepper>

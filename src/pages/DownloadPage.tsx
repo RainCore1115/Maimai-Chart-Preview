@@ -171,14 +171,23 @@ export default function DownloadPage() {
                             variant="gradient"
                             gradient={{ from: 'cyan', to: 'indigo', deg: 120 }}
                             component="a"
-                            href={`${import.meta.env.BASE_URL}api/dl?f=${encodeURIComponent(pack.fid)}`}
+                            href={`${import.meta.env.BASE_URL}api/pack/${pack.num}`}
                           >
-                            本站下载
+                            CNB 直链
                           </Button>
                           <Button
                             size="xs"
                             radius="md"
                             variant="default"
+                            component="a"
+                            href={`${import.meta.env.BASE_URL}api/dl?f=${encodeURIComponent(pack.fid)}`}
+                          >
+                            中转下载
+                          </Button>
+                          <Button
+                            size="xs"
+                            radius="md"
+                            variant="subtle"
                             component="a"
                             href={data.shareUrl}
                             target="_blank"
