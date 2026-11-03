@@ -173,7 +173,7 @@ export default function DownloadPage() {
                             component="a"
                             href={`${import.meta.env.BASE_URL}api/pack/${pack.num}`}
                           >
-                            CNB 直链
+                            直链下载
                           </Button>
                           <Button
                             size="xs"

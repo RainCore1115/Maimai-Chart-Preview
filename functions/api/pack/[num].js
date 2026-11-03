@@ -1,13 +1,14 @@
 /**
- * Cloudflare Pages Function：版本包 CNB 直链跳转
+ * Cloudflare Pages Function：版本包直链跳转
  *
- * GET /api/pack/<num>   302 → CNB 仓库里的同名 zip（public 仓库，无限速、支持断点续传）
+ * GET /api/pack/<num>   302 → Release 附件直链（public 仓库，无限速、支持断点续传/Range）
  * GET /api/pack/<num>?json=1  返回直链 JSON，便于脚本取用
  *
- * zip 镜像仓库：https://cnb.cool/project-baka86/otoge-db/-/tree/main/adx-packs
+ * 说明：CNB raw 单文件上限 100MiB，版本包普遍 150MB~1.2GB，故直链托管在 GitHub Release 附件；
+ * git 镜像仍在 https://cnb.cool/project-baka86/otoge-db/-/tree/main/adx-packs 作为归档。
  * 大文件走重定向（本 Function 自身有 ~20MB 响应上限，夸克代理线路作为备用）。
  */
-const CNB_RAW = 'https://cnb.cool/project-baka86/otoge-db/-/git/raw/main/adx-packs';
+const RELEASE_BASE = 'https://github.com/RainCore1115/Maimai-Chart-Preview/releases/download/packs-mirror';
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -37,7 +38,7 @@ export async function onRequestGet({ request, params, env }) {
   if (!pack) return json({ ok: false, error: '未知的版本包' }, 404);
 
   const fileName = String(pack.file || `${String(pack.num).padStart(2, '0')}.zip`);
-  const target = `${CNB_RAW}/${encodeURIComponent(fileName).replace(/%2F/g, '/')}`;
+  const target = `${RELEASE_BASE}/${encodeURIComponent(fileName).replace(/%2F/g, '/')}`;
 
   if (url.searchParams.has('json')) {
     return json({ ok: true, pack: pack.num, file: fileName, size: pack.size, url: target });
