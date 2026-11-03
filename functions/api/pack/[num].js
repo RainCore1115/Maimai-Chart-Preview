@@ -38,8 +38,8 @@ export async function onRequestGet({ request, params, env }) {
   if (!pack) return json({ ok: false, error: '未知的版本包' }, 404);
 
   const fileName = String(pack.file || `${String(pack.num).padStart(2, '0')}.zip`);
-  // GitHub 会把附件名里的空格规范成 `.`，这里保持一致
-  const assetName = fileName.replace(/ /g, '.');
+  // GitHub 会把「. 」折叠成「.」、其余空格换成「.」，这里保持一致
+  const assetName = fileName.replace(/\.\s+/g, '.').replace(/\s+/g, '.');
   const target = `${RELEASE_BASE}/${encodeURIComponent(assetName).replace(/%2F/g, '/')}`;
 
   if (url.searchParams.has('json')) {
