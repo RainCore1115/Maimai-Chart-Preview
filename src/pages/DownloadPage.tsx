@@ -125,7 +125,9 @@ export default function DownloadPage() {
               <Text size="sm">
                 1. 版本包较大（几百 MB ~ 1 GB+），建议使用下载工具并支持断点续传；
                 <br />
-                2. 若「本站下载」不可用，可打开
+                2. 「下载」走本站中转（支持断点续传）；「直链」直接跳转加速节点。
+                <br />
+                3. 若「本站下载」不可用，可打开
                 <a href={data.shareUrl} target="_blank" rel="noreferrer">
                   夸克网盘分享
                 </a>
@@ -173,7 +175,16 @@ export default function DownloadPage() {
                             component="a"
                             href={`${import.meta.env.BASE_URL}api/pack/${pack.num}`}
                           >
-                            直链下载
+                            下载
+                          </Button>
+                          <Button
+                            size="xs"
+                            variant="light"
+                            color="cyan"
+                            component="a"
+                            href={`${import.meta.env.BASE_URL}api/pack/${pack.num}?direct=1`}
+                          >
+                            直链
                           </Button>
                           <Button
                             size="xs"
