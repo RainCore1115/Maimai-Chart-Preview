@@ -200,7 +200,11 @@ export async function onRequestGet({ request, params, env }) {
       if (lastKey === `inote_${diff}`) picked.push(line);
     }
     if (!picked.some((line) => /^&inote_\d+=/i.test(line))) {
-      return json({ ok: false, error: `该谱面没有 ${DIFF_NAMES[diff]} 难度` }, 404);
+      return json({
+        ok: false,
+        error: `该谱面没有 ${DIFF_NAMES[diff]} 难度`,
+        debug: { source, textLen: text.length, picked: picked.length, head: picked.join('\n').slice(0, 300) },
+      }, 404);
     }
     body = `${picked.join('\n')}\n`;
   }
