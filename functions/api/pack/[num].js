@@ -64,8 +64,6 @@ async function relay(target, request) {
     cf: { cacheEverything: false },
   });
   if (res.status !== 200 && res.status !== 206) return null;
-  // 请求了 Range 但上游忽略（200），交给下一个镜像重试，保证断点续传语义
-  if (range && res.status === 200) return null;
   return res;
 }
 
@@ -106,29 +104,36 @@ export async function onRequestGet({ request, params, env }) {
   }
 
   const disposition = `attachment; filename*=UTF-8''${encodeURIComponent(fileName)}`;
-  for (const mirror of mirrors) {
-    const res = await relay(mirror, request);
-    if (!res) continue;
-    const headers = new Headers({ 'content-disposition': disposition, 'cache-control': 'public, max-age=1800', 'access-control-allow-origin': '*' });
+  const ranged = Boolean(request.headers.get('range'));
+  const send = (res, ttl) => {
+    const headers = new Headers({
+      'content-disposition': disposition,
+      'cache-control': `public, max-age=${ttl}`,
+      'access-control-allow-origin': '*',
+    });
     for (const name of PASS_HEADERS) {
       const value = res.headers.get(name);
       if (value) headers.set(name, value);
     }
     return new Response(res.body, { status: res.status, headers });
+  };
+
+  // 第一轮只接受 206（Range 生效）；全部忽略 Range 时退化为整包 200
+  let soft = null;
+  for (const mirror of mirrors) {
+    const res = await relay(mirror, request);
+    if (!res) continue;
+    if (!ranged || res.status === 206) return send(res, 1800);
+    soft = soft || res;
   }
+  if (soft) return send(soft, 1800);
 
   // 兜底：官方有时效直链
   const fallback = await signedUrl(assetNameOf(fileName), env ?? {});
   if (fallback) {
     const res = await relay(fallback, request);
-    if (res) {
-      const headers = new Headers({ 'content-disposition': disposition, 'cache-control': 'public, max-age=600' });
-      for (const name of PASS_HEADERS) {
-        const value = res.headers.get(name);
-        if (value) headers.set(name, value);
-      }
-      return new Response(res.body, { status: res.status, headers });
-    }
+    if (res && (!ranged || res.status === 206)) return send(res, 600);
+    if (res) return send(res, 600);
   }
 
   return json({ ok: false, error: '所有下载线路均不可用，请稍后重试或使用网盘中转' }, 502);
