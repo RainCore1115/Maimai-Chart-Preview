@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-03T12:46:01.354Z",
-  "entries": 1222,
-  "total": 757,
+  "generatedAt": "2026-11-04T00:48:25.867Z",
+  "entries": 1239,
+  "total": 765,
   "packs": [
     {
       "kind": "difficulty",
@@ -9,35 +9,35 @@
       "name": "BASIC",
       "file": "charts-diff-2.zip",
       "count": 75,
-      "bytes": 46962,
-      "sha256": "5a3876d126ce45e5ac7b9b9c7b8f4aa35d10c87b9ddc435dedbd5a69fe81713e"
+      "bytes": 46963,
+      "sha256": "18431c1634ced6321aa15c8c1670874d77537f3f97b64e462bab94a239bba1f7"
     },
     {
       "kind": "difficulty",
       "difficulty": 3,
       "name": "ADVANCED",
       "file": "charts-diff-3.zip",
-      "count": 80,
-      "bytes": 64701,
-      "sha256": "78b2ee5cbb5f05c936c7557774b8fe8480153422151055188b12331617b9f8fc"
+      "count": 82,
+      "bytes": 66237,
+      "sha256": "33c5ffe62db7803cebf437480c53023cf3f2503a7b9d0b38bb8e491cd9092448"
     },
     {
       "kind": "difficulty",
       "difficulty": 4,
       "name": "EXPERT",
       "file": "charts-diff-4.zip",
-      "count": 321,
-      "bytes": 371383,
-      "sha256": "464edf7de8b52fcd5e81f0be478800f87f89a8011030d017faa060fcd542e917"
+      "count": 332,
+      "bytes": 382547,
+      "sha256": "8cbeff1b40e353ca4e8cfb82c9b2c9d06c238f9bba14a3482e14ad6befe9f330"
     },
     {
       "kind": "difficulty",
       "difficulty": 5,
       "name": "MASTER",
       "file": "charts-diff-5.zip",
-      "count": 662,
-      "bytes": 993427,
-      "sha256": "f796618c8d6d01b5e29f2629c140dea2330ad475e561f36b80ddb8fb2949193c"
+      "count": 666,
+      "bytes": 999219,
+      "sha256": "61bed9daed8ad5996b5781c1d9264c735d50924f91261717f278babae2cca594"
     },
     {
       "kind": "difficulty",
@@ -45,16 +45,16 @@
       "name": "RE:MASTER",
       "file": "charts-diff-6.zip",
       "count": 84,
-      "bytes": 128130,
-      "sha256": "139af2dfa5c4f40491a5465654118de53bf4bdd11d31c8cad3d051d6da445a9d"
+      "bytes": 128131,
+      "sha256": "6d72ad7d757ae29d625e98dc8dce576dc383a4cc91f5b45e3bc4dfc9375d8e0b"
     }
   ],
   "all": {
     "kind": "all",
     "file": "charts-all.zip",
-    "count": 757,
-    "bytes": 2302663,
-    "sha256": "714399d293613b84d0402977cae00f06845671663bd9f8e799e1412117cd43e8"
+    "count": 765,
+    "bytes": 2324736,
+    "sha256": "44cf5424442427b6bd738a76feb53b075e114ac766ac7a1414dbd766e22bab4a"
   },
-  "bytes": 3907266
+  "bytes": 3947833
 }
