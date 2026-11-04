@@ -118,6 +118,7 @@ function buildPicksForSong(song: LxnsSong): ChartPick[] {
 
 function SongJacket({ songId, size = 52 }: { songId: number; size?: number }) {
   const [broken, setBroken] = useState(false);
+  const [remote, setRemote] = useState(false);
   const dim = size;
   if (broken) {
     return (
@@ -138,9 +139,9 @@ function SongJacket({ songId, size = 52 }: { songId: number; size?: number }) {
       h={dim}
       radius="sm"
       fit="cover"
-      src={lxnsJacketWebpUrl(songId)}
+      src={remote ? lxnsJacketWebpUrl(songId) : `${import.meta.env.BASE_URL}data/covers/${songId}.webp`}
       alt=""
-      onError={() => setBroken(true)}
+      onError={() => (remote ? setBroken(true) : setRemote(true))}
       style={{ flexShrink: 0 }}
     />
   );
@@ -963,22 +964,14 @@ export default function PreviewPage() {
                 </Button>
                 {pick && (() => {
                   const packPath = songDirs[pick.song.title]?.[pick.kind];
-                  return (
-                    <>
-                      {packPath && (
-                        <Button variant="light" color="teal" component="a" href={songPackUrl(packPath)}>
-                          下载歌曲包（音频/曲绘）
-                        </Button>
-                      )}
-                      <Button
-                        variant="default"
-                        component="a"
-                        href={`${import.meta.env.BASE_URL}api/chart/${pick.chartFileId}?diff=${pick.chartDifficulty}`}
-                        download
-                      >
-                        下载谱面文本
-                      </Button>
-                    </>
+                  return packPath ? (
+                    <Button variant="light" color="teal" component="a" href={songPackUrl(packPath)}>
+                      下载歌曲包（音频/曲绘）
+                    </Button>
+                  ) : (
+                    <Button variant="default" disabled>
+                      暂无歌曲包
+                    </Button>
                   );
                 })()}
               </Group>

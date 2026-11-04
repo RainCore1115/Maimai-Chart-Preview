@@ -20,6 +20,7 @@ interface ChartEntry {
   kind?: string;
   difficulty: number;
   title: string;
+  artist?: string;
   levelLabel?: string;
 }
 
@@ -167,7 +168,10 @@ export default function DownloadPage() {
 
           {charts.length > 0 && (
             <Stack gap="xs">
-              <Title order={3}>单谱下载</Title>
+              <Title order={3}>单曲歌曲包下载</Title>
+              <Text size="sm" c="dimmed">
+                按曲目下载完整包（maidata + 音频 + 曲绘 + pv），直接取自 mai-charts 的曲目目录；曲库较新的曲目暂时没有打包。
+              </Text>
               <Group gap="xs" grow preventGrowOverflow={false} wrap="wrap">
                 <TextInput
                   placeholder="搜索曲名…"
@@ -193,7 +197,29 @@ export default function DownloadPage() {
                   {matchedCharts.map((chart) => (
                     <Table.Tr key={`${chart.chartFileId}-${chart.difficulty}`}>
                       <Table.Td>
-                        <Text size="sm">{chart.title}</Text>
+                        <Group gap="sm" wrap="nowrap">
+                          <img
+                            src={`${import.meta.env.BASE_URL}data/covers/${chart.songId}.webp`}
+                            alt=""
+                            width={40}
+                            height={40}
+                            loading="lazy"
+                            style={{ borderRadius: 6, objectFit: 'cover', flexShrink: 0 }}
+                            onError={(event) => {
+                              event.currentTarget.style.visibility = 'hidden';
+                            }}
+                          />
+                          <div>
+                            <Text size="sm" fw={500}>
+                              {chart.title}
+                            </Text>
+                            {chart.artist && (
+                              <Text size="xs" c="dimmed">
+                                {chart.artist}
+                              </Text>
+                            )}
+                          </div>
+                        </Group>
                       </Table.Td>
                       <Table.Td>
                         <Text size="xs" c="dimmed">
@@ -214,15 +240,11 @@ export default function DownloadPage() {
                               歌曲包
                             </Button>
                           )}
-                          <Button
-                            size="compact-xs"
-                            variant="subtle"
-                            color="gray"
-                            component="a"
-                            href={`${import.meta.env.BASE_URL}api/chart/${chart.chartFileId}?diff=${chart.difficulty}`}
-                          >
-                            谱面文本
-                          </Button>
+                          {!songDirs[chart.title]?.[chart.kind === 'dx' ? 'dx' : 'standard'] && (
+                            <Text size="xs" c="dimmed">
+                              暂无歌曲包
+                            </Text>
+                          )}
                         </Group>
                       </Table.Td>
                     </Table.Tr>
