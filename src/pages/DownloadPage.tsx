@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Alert, Badge, Button, Group, Loader, Select, Stack, Table, Text, TextInput, Title } from '@mantine/core';
+import { Alert, Badge, Button, Group, Loader, Stack, Table, Text, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { maiChartsDataUrl, songCoverUrl, songPackUrl } from '../maicharts/data';
+import { maiChartsDataUrl } from '../maicharts/data';
+import SongLibrarySection from './SongLibrarySection';
 import classes from './DownloadPage.module.css';
 
 interface PackInfo {
@@ -14,26 +15,10 @@ interface PackInfo {
   file: string;
 }
 
-interface ChartEntry {
-  chartFileId: number;
-  songId: number;
-  kind?: string;
-  difficulty: number;
-  title: string;
-  artist?: string;
-  levelLabel?: string;
-}
-
-interface ChartIndexFile {
-  charts: Record<string, ChartEntry>;
-}
-
 const FULL_MIRROR = 'https://cnb.cool/project-baka86/mai-charts';
 const fullDirName = (file: string) => file.replace(/\.zip$/i, '');
 const fullDirTree = (file: string) => `${FULL_MIRROR}/-/tree/main/packs/${encodeURIComponent(fullDirName(file))}`;
 const fullDirZip = (file: string) => `${FULL_MIRROR}/-/git/archive/main/packs/${encodeURIComponent(fullDirName(file))}.zip`;
-
-const DIFF_LABELS: Record<number, string> = { 2: 'BASIC', 3: 'ADVANCED', 4: 'EXPERT', 5: 'MASTER', 6: 'RE:MASTER' };
 
 interface PacksFile {
   generatedAt: string;
@@ -55,11 +40,6 @@ export default function DownloadPage() {
   const [data, setData] = useState<PacksFile | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [proxyOk, setProxyOk] = useState<boolean | null>(null);
-  const [charts, setCharts] = useState<ChartEntry[]>([]);
-  const [songDirs, setSongDirs] = useState<Record<string, Record<string, string>>>({});
-  const [query, setQuery] = useState('');
-  const [diffFilter, setDiffFilter] = useState<string>('all');
-
   useEffect(() => {
     let cancelled = false;
     fetch(maiChartsDataUrl('download-packs.json'), { cache: 'no-cache' })
@@ -82,31 +62,10 @@ export default function DownloadPage() {
       .catch(() => {
         if (!cancelled) setProxyOk(false);
       });
-    fetch(maiChartsDataUrl('song-dirs.json'), { cache: 'force-cache' })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((json) => {
-        if (!cancelled && json?.songs) setSongDirs(json.songs as Record<string, Record<string, string>>);
-      })
-      .catch(() => {});
-    fetch(maiChartsDataUrl('chart-index.json'), { cache: 'no-cache' })
-      .then((res) => (res.ok ? (res.json() as Promise<ChartIndexFile>) : null))
-      .then((json) => {
-        if (!cancelled && json?.charts) setCharts(Object.values(json.charts));
-      })
-      .catch(() => {});
     return () => {
       cancelled = true;
     };
   }, []);
-
-  const matchedCharts = useMemo(() => {
-    const keyword = query.trim().toLowerCase();
-    return charts
-      .filter((chart) => (diffFilter === 'all' ? true : String(chart.difficulty) === diffFilter))
-      .filter((chart) => (keyword ? chart.title.toLowerCase().includes(keyword) : true))
-      .sort((a, b) => a.title.localeCompare(b.title, 'ja'))
-      .slice(0, 100);
-  }, [charts, diffFilter, query]);
 
   const packs = useMemo(() => [...(data?.packs ?? [])].sort((a, b) => a.num - b.num), [data]);
   const latest = packs[packs.length - 1];
@@ -166,93 +125,7 @@ export default function DownloadPage() {
             </Group>
           )}
 
-          {charts.length > 0 && (
-            <Stack gap="xs">
-              <Title order={3}>单曲歌曲包下载</Title>
-              <Text size="sm" c="dimmed">
-                按曲目下载完整包（maidata + 音频 + 曲绘 + pv），直接取自 mai-charts 的曲目目录；曲库较新的曲目暂时没有打包。
-              </Text>
-              <Group gap="xs" grow preventGrowOverflow={false} wrap="wrap">
-                <TextInput
-                  placeholder="搜索曲名…"
-                  value={query}
-                  onChange={(event) => setQuery(event.currentTarget.value)}
-                  style={{ flex: '1 1 220px' }}
-                />
-                <Select
-                  value={diffFilter}
-                  onChange={(value) => setDiffFilter(value ?? 'all')}
-                  data={[
-                    { value: 'all', label: '全部难度' },
-                    ...[2, 3, 4, 5, 6].map((diff) => ({ value: String(diff), label: DIFF_LABELS[diff] })),
-                  ]}
-                  style={{ flex: '0 0 160px' }}
-                />
-              </Group>
-              <Text size="xs" c="dimmed">
-                匹配 {matchedCharts.length === 100 ? '前 100 条（请细化搜索）' : `${matchedCharts.length} 条`}
-              </Text>
-              <Table highlightOnHover withTableBorder verticalSpacing="xs">
-                <Table.Tbody>
-                  {matchedCharts.map((chart) => (
-                    <Table.Tr key={`${chart.chartFileId}-${chart.difficulty}`}>
-                      <Table.Td>
-                        <Group gap="sm" wrap="nowrap">
-                          <img
-                            src={songCoverUrl(chart.songId)}
-                            alt=""
-                            width={40}
-                            height={40}
-                            loading="lazy"
-                            style={{ borderRadius: 6, objectFit: 'cover', flexShrink: 0 }}
-                            onError={(event) => {
-                              event.currentTarget.style.visibility = 'hidden';
-                            }}
-                          />
-                          <div>
-                            <Text size="sm" fw={500}>
-                              {chart.title}
-                            </Text>
-                            {chart.artist && (
-                              <Text size="xs" c="dimmed">
-                                {chart.artist}
-                              </Text>
-                            )}
-                          </div>
-                        </Group>
-                      </Table.Td>
-                      <Table.Td>
-                        <Text size="xs" c="dimmed">
-                          {chart.kind === 'dx' || chart.chartFileId >= 10000 ? 'DX' : 'ST'} · {DIFF_LABELS[chart.difficulty]}
-                          {chart.levelLabel ? ` · ${chart.levelLabel.replace(/^.*?·\s*/, '')}` : ''}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td className={classes.actionCell}>
-                        <Group gap="xs" justify="flex-end" wrap="nowrap">
-                          {songDirs[chart.title]?.[chart.kind === 'dx' ? 'dx' : 'standard'] && (
-                            <Button
-                              size="compact-xs"
-                              variant="light"
-                              color="teal"
-                              component="a"
-                              href={songPackUrl(songDirs[chart.title][chart.kind === 'dx' ? 'dx' : 'standard'])}
-                            >
-                              歌曲包
-                            </Button>
-                          )}
-                          {!songDirs[chart.title]?.[chart.kind === 'dx' ? 'dx' : 'standard'] && (
-                            <Text size="xs" c="dimmed">
-                              暂无歌曲包
-                            </Text>
-                          )}
-                        </Group>
-                      </Table.Td>
-                    </Table.Tr>
-                  ))}
-                </Table.Tbody>
-              </Table>
-            </Stack>
-          )}
+          <SongLibrarySection packs={packs} />
 
           {data && (
             <Alert variant="light" color="blue" title="下载说明">
