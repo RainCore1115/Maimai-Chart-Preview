@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "sync:data": "node scripts/sync-preview-data.mjs",
-    "sync:maicharts": "node scripts/sync-maicharts.mjs",
-    "build:zips": "node scripts/build-chart-zips.mjs"
+    "sync:maicharts": "node scripts/sync-maicharts.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

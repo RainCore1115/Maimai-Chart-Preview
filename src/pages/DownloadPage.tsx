@@ -27,35 +27,12 @@ interface ChartIndexFile {
   charts: Record<string, ChartEntry>;
 }
 
-interface ZipPack {
-  kind: 'difficulty' | 'all';
-  difficulty?: number;
-  name?: string;
-  file: string;
-  count: number;
-  bytes: number;
-}
-
-interface ZipManifest {
-  generatedAt: string;
-  total: number;
-  entries: number;
-  bytes: number;
-  packs: ZipPack[];
-  all?: ZipPack;
-}
-
 const FULL_MIRROR = 'https://cnb.cool/project-baka86/mai-charts';
 const fullDirName = (file: string) => file.replace(/\.zip$/i, '');
 const fullDirTree = (file: string) => `${FULL_MIRROR}/-/tree/main/packs/${encodeURIComponent(fullDirName(file))}`;
 const fullDirZip = (file: string) => `${FULL_MIRROR}/-/git/archive/main/packs/${encodeURIComponent(fullDirName(file))}.zip`;
 
 const DIFF_LABELS: Record<number, string> = { 2: 'BASIC', 3: 'ADVANCED', 4: 'EXPERT', 5: 'MASTER', 6: 'RE:MASTER' };
-
-function sizeLabel(bytes: number): string {
-  if (bytes >= 1024 * 1024) return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
-  return `${Math.max(1, Math.round(bytes / 1024))} KB`;
-}
 
 interface PacksFile {
   generatedAt: string;
@@ -77,7 +54,6 @@ export default function DownloadPage() {
   const [data, setData] = useState<PacksFile | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [proxyOk, setProxyOk] = useState<boolean | null>(null);
-  const [manifest, setManifest] = useState<ZipManifest | null>(null);
   const [charts, setCharts] = useState<ChartEntry[]>([]);
   const [query, setQuery] = useState('');
   const [diffFilter, setDiffFilter] = useState<string>('all');
@@ -104,12 +80,6 @@ export default function DownloadPage() {
       .catch(() => {
         if (!cancelled) setProxyOk(false);
       });
-    fetch(maiChartsDataUrl('downloads/manifest.json'), { cache: 'no-cache' })
-      .then((res) => (res.ok ? (res.json() as Promise<ZipManifest>) : null))
-      .then((json) => {
-        if (!cancelled) setManifest(json);
-      })
-      .catch(() => {});
     fetch(maiChartsDataUrl('chart-index.json'), { cache: 'no-cache' })
       .then((res) => (res.ok ? (res.json() as Promise<ChartIndexFile>) : null))
       .then((json) => {
@@ -186,46 +156,6 @@ export default function DownloadPage() {
                 {proxyOk === null ? '代理检测中…' : proxyOk ? '本站代理可用' : '本站代理未配置'}
               </Badge>
             </Group>
-          )}
-
-          {manifest && (
-            <Stack gap="xs">
-              <Title order={3}>附：只有 maidata.txt 的文本包（体积小）</Title>
-              <Text size="sm" c="dimmed">
-                下面的包只抽取 maidata 文本按难度打包：共 {manifest.total} 首（{manifest.entries} 个难度条目），所有包合计才 {sizeLabel(manifest.bytes)}，
-                所以体积很小。要连音频、曲绘一起下载，用上方的 29 个版本包（合计约 16.6 GB）。
-              </Text>
-              <Group gap="xs" wrap="wrap">
-                {(manifest.packs ?? []).map((pack) => (
-                  <Button
-                    key={pack.file}
-                    component="a"
-                    href={maiChartsDataUrl(`downloads/${pack.file}`)}
-                    download
-                    size="xs"
-                    variant="light"
-                    color="cyan"
-                  >
-                    {pack.name} · {pack.count} 谱 · {sizeLabel(pack.bytes)}
-                  </Button>
-                ))}
-                {manifest.all && (
-                  <Button
-                    component="a"
-                    href={maiChartsDataUrl(`downloads/${manifest.all.file}`)}
-                    download
-                    size="xs"
-                    variant="gradient"
-                    gradient={{ from: 'cyan', to: 'indigo', deg: 120 }}
-                  >
-                    全部谱面文本包 · {manifest.all.count} 首 · {sizeLabel(manifest.all.bytes)}
-                  </Button>
-                )}
-              </Group>
-              <Text size="xs" c="dimmed">
-                包内只有「曲名 [DX|ST] [难度].maidata.txt」文本，不含音频与曲绘；全部包按曲目合并、保留全部难度，可直接喂给谱面工具或做批量解析。
-              </Text>
-            </Stack>
           )}
 
           {charts.length > 0 && (
