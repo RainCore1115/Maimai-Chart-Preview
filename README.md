@@ -41,7 +41,7 @@ GitHub Release（tag `packs-mirror`，备用），由 Pages Functions 转发：
 
 页面上的单曲下载也走歌曲目录归档（`packs/<版本>/<曲目>.zip`，含音频/曲绘/maidata），
 曲名与封面对照；`/api/chart/<chartFileId>?diff=<2..6>` 仍保留，返回单个谱面的 maidata 文本（页面已不再提供入口）。
-曲绘封面取自 Bot 插件资源（`MAIMAIDX_PATH/static/mai/cover`），按 songId 缩成 `public/data/covers/<songId>.webp`；
+曲绘封面取自 Bot 插件资源（`MAIMAIDX_PATH/static/mai/cover`），按 songId 缩成 webp 放在 mai-charts 仓库 `covers/<songId>.webp`，页面以 CNB raw 直连；
 `public/data/song-dirs.json` 是曲名 → 仓库目录的映射（当前 740 首 / 764 个曲目×类型条目）。
 
 ## 数据流

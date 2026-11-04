@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Alert, Badge, Button, Group, Loader, Select, Stack, Table, Text, TextInput, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { maiChartsDataUrl, songPackUrl } from '../maicharts/data';
+import { maiChartsDataUrl, songCoverUrl, songPackUrl } from '../maicharts/data';
 import classes from './DownloadPage.module.css';
 
 interface PackInfo {
@@ -199,7 +199,7 @@ export default function DownloadPage() {
                       <Table.Td>
                         <Group gap="sm" wrap="nowrap">
                           <img
-                            src={`${import.meta.env.BASE_URL}data/covers/${chart.songId}.webp`}
+                            src={songCoverUrl(chart.songId)}
                             alt=""
                             width={40}
                             height={40}

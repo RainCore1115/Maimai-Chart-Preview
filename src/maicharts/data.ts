@@ -19,6 +19,14 @@ export const MAI_CHARTS_DATA_BASE = (
 /** 歌曲完整包（音频/曲绘/maidata）目录归档根 */
 export const SONG_PACK_BASE = 'https://cnb.cool/project-baka86/mai-charts/-/git/archive/main';
 
+/** 歌曲封面（曲绘）原始文件根（mai-charts 仓库 covers/） */
+export const SONG_COVER_BASE = 'https://cnb.cool/project-baka86/mai-charts/-/git/raw/main/covers';
+
+/** songId → 封面地址；缺失时由调用方回退 */
+export function songCoverUrl(songId: number): string {
+  return `${SONG_COVER_BASE}/${songId}.webp`;
+}
+
 /** 把仓库内相对路径转成目录归档下载地址（逐段 encode，保留分隔符） */
 export function songPackUrl(repoPath: string): string {
   return `${SONG_PACK_BASE}/${repoPath.split('/').map(encodeURIComponent).join('/')}.zip`;
