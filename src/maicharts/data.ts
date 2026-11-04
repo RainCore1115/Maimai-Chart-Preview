@@ -16,6 +16,14 @@ export const MAI_CHARTS_DATA_BASE = (
   configuredBase ?? `${import.meta.env.BASE_URL}data`
 ).replace(/\/+$/, '');
 
+/** 歌曲完整包（音频/曲绘/maidata）目录归档根 */
+export const SONG_PACK_BASE = 'https://cnb.cool/project-baka86/mai-charts/-/git/archive/main';
+
+/** 把仓库内相对路径转成目录归档下载地址（逐段 encode，保留分隔符） */
+export function songPackUrl(repoPath: string): string {
+  return `${SONG_PACK_BASE}/${repoPath.split('/').map(encodeURIComponent).join('/')}.zip`;
+}
+
 export function maiChartsDataUrl(path: string): string {
   return `${MAI_CHARTS_DATA_BASE}/${path.replace(/^\/+/, '')}`;
 }

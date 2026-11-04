@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Alert, Badge, Button, Group, Loader, Select, Stack, Table, Text, TextInput, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { maiChartsDataUrl } from '../maicharts/data';
+import { maiChartsDataUrl, songPackUrl } from '../maicharts/data';
 import classes from './DownloadPage.module.css';
 
 interface PackInfo {
@@ -55,6 +55,7 @@ export default function DownloadPage() {
   const [error, setError] = useState<string | null>(null);
   const [proxyOk, setProxyOk] = useState<boolean | null>(null);
   const [charts, setCharts] = useState<ChartEntry[]>([]);
+  const [songDirs, setSongDirs] = useState<Record<string, Record<string, string>>>({});
   const [query, setQuery] = useState('');
   const [diffFilter, setDiffFilter] = useState<string>('all');
 
@@ -80,6 +81,12 @@ export default function DownloadPage() {
       .catch(() => {
         if (!cancelled) setProxyOk(false);
       });
+    fetch(maiChartsDataUrl('song-dirs.json'), { cache: 'force-cache' })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => {
+        if (!cancelled && json?.songs) setSongDirs(json.songs as Record<string, Record<string, string>>);
+      })
+      .catch(() => {});
     fetch(maiChartsDataUrl('chart-index.json'), { cache: 'no-cache' })
       .then((res) => (res.ok ? (res.json() as Promise<ChartIndexFile>) : null))
       .then((json) => {
@@ -195,15 +202,28 @@ export default function DownloadPage() {
                         </Text>
                       </Table.Td>
                       <Table.Td className={classes.actionCell}>
-                        <Button
-                          size="compact-xs"
-                          variant="light"
-                          color="cyan"
-                          component="a"
-                          href={`${import.meta.env.BASE_URL}api/chart/${chart.chartFileId}?diff=${chart.difficulty}`}
-                        >
-                          下载
-                        </Button>
+                        <Group gap="xs" justify="flex-end" wrap="nowrap">
+                          {songDirs[chart.title]?.[chart.kind === 'dx' ? 'dx' : 'standard'] && (
+                            <Button
+                              size="compact-xs"
+                              variant="light"
+                              color="teal"
+                              component="a"
+                              href={songPackUrl(songDirs[chart.title][chart.kind === 'dx' ? 'dx' : 'standard'])}
+                            >
+                              歌曲包
+                            </Button>
+                          )}
+                          <Button
+                            size="compact-xs"
+                            variant="subtle"
+                            color="gray"
+                            component="a"
+                            href={`${import.meta.env.BASE_URL}api/chart/${chart.chartFileId}?diff=${chart.difficulty}`}
+                          >
+                            谱面文本
+                          </Button>
+                        </Group>
                       </Table.Td>
                     </Table.Tr>
                   ))}

@@ -41,7 +41,7 @@ import { DIFFICULTY_COLORS, DIFFICULTY_NAMES, type ChartDifficulty } from './cha
 import { lxnsJacketWebpUrl } from './lxns/assets';
 import type { LxnsSong } from './lxns/types';
 import { chartFileIdForSong, musicMp3UrlForChartFileId, type ChartKind } from './lxns/chartResolve';
-import { fetchChartAnalysis, fetchSimaiText, loadCatalog, type ChartAnalysis } from './maicharts/data';
+import { fetchChartAnalysis, fetchSimaiText, loadCatalog, maiChartsDataUrl, songPackUrl, type ChartAnalysis } from './maicharts/data';
 import { ChartAnalysisPanel } from './maicharts/ChartAnalysisPanel';
 import { buildPreviewUrlParams, parsePreviewUrlParams } from './previewUrlParams';
 import classes from './preview-chart.module.css';
@@ -253,6 +253,20 @@ export default function PreviewPage() {
   const [catalogLoading, setCatalogLoading] = useState(true);
 
   const [selectedSong, setSelectedSong] = useState<LxnsSong | null>(null);
+  const [songDirs, setSongDirs] = useState<Record<string, Record<string, string>>>({});
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(maiChartsDataUrl('song-dirs.json'), { cache: 'force-cache' })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => {
+        if (!cancelled && json?.songs) setSongDirs(json.songs as Record<string, Record<string, string>>);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const [pick, setPick] = useState<ChartPick | null>(null);
   const [chartError, setChartError] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<ChartAnalysis | null>(null);
@@ -947,16 +961,26 @@ export default function PreviewPage() {
                 <Button variant="default" onClick={() => setWizardStep(1)}>
                   上一步
                 </Button>
-                {pick && (
-                  <Button
-                    variant="light"
-                    component="a"
-                    href={`${import.meta.env.BASE_URL}api/chart/${pick.chartFileId}?diff=${pick.chartDifficulty}`}
-                    download
-                  >
-                    下载谱面
-                  </Button>
-                )}
+                {pick && (() => {
+                  const packPath = songDirs[pick.song.title]?.[pick.kind];
+                  return (
+                    <>
+                      {packPath && (
+                        <Button variant="light" color="teal" component="a" href={songPackUrl(packPath)}>
+                          下载歌曲包（音频/曲绘）
+                        </Button>
+                      )}
+                      <Button
+                        variant="default"
+                        component="a"
+                        href={`${import.meta.env.BASE_URL}api/chart/${pick.chartFileId}?diff=${pick.chartDifficulty}`}
+                        download
+                      >
+                        下载谱面文本
+                      </Button>
+                    </>
+                  );
+                })()}
               </Group>
             </Stepper.Step>
           </Stepper>
