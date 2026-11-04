@@ -22,6 +22,13 @@ export const SONG_PACK_BASE = 'https://cnb.cool/project-baka86/mai-charts/-/git/
 /** 歌曲封面（曲绘）原始文件根（mai-charts 仓库 covers/） */
 export const SONG_COVER_BASE = 'https://cnb.cool/project-baka86/mai-charts/-/git/raw/main/covers';
 
+/** 歌曲包内文件（原始文件直链，用于音频等回退） */
+export const SONG_RAW_BASE = 'https://cnb.cool/project-baka86/mai-charts/-/git/raw/main';
+
+export function songPackFileUrl(repoPath: string, file: string): string {
+  return `${SONG_RAW_BASE}/${[...repoPath.split('/'), file].map(encodeURIComponent).join('/')}`;
+}
+
 /** songId → 封面地址；缺失时由调用方回退 */
 export function songCoverUrl(songId: number): string {
   return `${SONG_COVER_BASE}/${songId}.webp`;

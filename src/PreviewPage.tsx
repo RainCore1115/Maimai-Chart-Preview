@@ -41,7 +41,7 @@ import { DIFFICULTY_COLORS, DIFFICULTY_NAMES, type ChartDifficulty } from './cha
 import { lxnsJacketWebpUrl } from './lxns/assets';
 import type { LxnsSong } from './lxns/types';
 import { chartFileIdForSong, musicMp3UrlForChartFileId, type ChartKind } from './lxns/chartResolve';
-import { fetchChartAnalysis, fetchSimaiText, loadCatalog, maiChartsDataUrl, songCoverUrl, songPackUrl, type ChartAnalysis } from './maicharts/data';
+import { fetchChartAnalysis, fetchSimaiText, loadCatalog, maiChartsDataUrl, songCoverUrl, songPackFileUrl, songPackUrl, type ChartAnalysis } from './maicharts/data';
 import { ChartAnalysisPanel } from './maicharts/ChartAnalysisPanel';
 import { buildPreviewUrlParams, parsePreviewUrlParams } from './previewUrlParams';
 import classes from './preview-chart.module.css';
@@ -455,6 +455,18 @@ export default function PreviewPage() {
     },
     [setMusicUrl, setRawSimaiText, setChartData, setAvailableDifficulties, setSelectedDifficulty]
   );
+
+  // 音乐优先取 lxns 音频；失败时回退到迈斯谱面包里的 track.mp3（CNB 直链）
+  const musicError = useGameStore((s) => s.musicError);
+  const musicUrl = useGameStore((s) => s.musicUrl);
+  useEffect(() => {
+    if (!pick || !musicError) return;
+    const packPath = songDirs[pick.song.title]?.[pick.kind];
+    if (!packPath) return;
+    const fallback = songPackFileUrl(packPath, 'track.mp3');
+    if (musicUrl === fallback) return;
+    setMusicUrl(fallback);
+  }, [pick, musicError, musicUrl, songDirs, setMusicUrl]);
 
   useEffect(() => {
     if (!pick) {
