@@ -41,7 +41,7 @@ import { DIFFICULTY_COLORS, DIFFICULTY_NAMES, type ChartDifficulty } from './cha
 import { lxnsJacketWebpUrl } from './lxns/assets';
 import type { LxnsSong } from './lxns/types';
 import { chartFileIdForSong, musicMp3UrlForChartFileId, type ChartKind } from './lxns/chartResolve';
-import { fetchChartAnalysis, fetchSimaiText, loadCatalog, maiChartsDataUrl, songCoverUrl, songPackFileUrl, songPackUrl, type ChartAnalysis } from './maicharts/data';
+import { fetchChartAnalysis, fetchSimaiText, loadCatalog, maiChartsDataUrl, songPackFileUrl, songPackUrl, type ChartAnalysis } from './maicharts/data';
 import { ChartAnalysisPanel } from './maicharts/ChartAnalysisPanel';
 import { buildPreviewUrlParams, parsePreviewUrlParams } from './previewUrlParams';
 import classes from './preview-chart.module.css';
@@ -139,7 +139,7 @@ function SongJacket({ songId, size = 52 }: { songId: number; size?: number }) {
       h={dim}
       radius="sm"
       fit="cover"
-      src={remote ? lxnsJacketWebpUrl(songId) : songCoverUrl(songId)}
+      src={remote ? lxnsJacketWebpUrl(songId) : `${import.meta.env.BASE_URL}api/cover/${songId}`}
       alt=""
       onError={() => (remote ? setBroken(true) : setRemote(true))}
       style={{ flexShrink: 0 }}

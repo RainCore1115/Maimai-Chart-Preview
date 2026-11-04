@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Badge, Button, Card, Group, Image, Loader, Select, SimpleGrid, Stack, Text, TextInput, Title } from '@mantine/core';
-import { maiChartsDataUrl, songArtUrl, songCoverUrl, songPackUrl } from '../maicharts/data';
+import { maiChartsDataUrl, songArtUrl, songPackUrl } from '../maicharts/data';
 
 export interface LibraryPack {
   num: number;
@@ -332,7 +332,7 @@ export default function SongLibrarySection({ packs }: Props) {
                 <Card.Section>
                   <div style={{ position: 'relative' }}>
                     <Image
-                      src={song.sid ? songCoverUrl(song.sid) : undefined}
+                      src={song.sid ? `${import.meta.env.BASE_URL}api/cover/${song.sid}` : undefined}
                       alt=""
                       h={110}
                       fit="cover"
