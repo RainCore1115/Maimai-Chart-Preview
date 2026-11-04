@@ -29,9 +29,10 @@ GitHub Release（tag `packs-mirror`，备用），由 Pages Functions 转发：
 中转首选 CNB Release，其次 `ghfast.top`、`gh-proxy.com` 两个 GitHub 加速节点，均失效时回退官方
 有时效直链（需 Pages 环境变量 `GH_TOKEN`，已配置为 secret）。CNB 侧 `adx-packs` 里另有 ≤256MiB 的归档包。
 
-完整内容（含音频、曲绘、pv）另以解压目录形式托管在 `project-baka86/mai-charts` 仓库 `packs/<版本>/`
-（上游 `sulieripple/mai-charts` 只读，故落在 fork）；下载页每行「浏览 / 目录 zip」分别指向仓库目录与
-`/-/git/archive/main/packs/<版本>.zip` 目录归档。
+下载页的主下载项即完整内容（maidata.txt + 音频 + 曲绘 + pv），以解压目录形式托管在
+`project-baka86/mai-charts` 仓库 `packs/<版本>/`（上游 `sulieripple/mai-charts` 只读，故落在 fork）；
+「完整包下载」指向 `/-/git/archive/main/packs/<版本>.zip`（CNB 直链，按目录即时打包，不支持 Range），
+「浏览」指向仓库目录。上文的 `/api/pack/<num>` 保留为备用镜像与断点续传通道。
 
 镜像一致性：CNB Release 与本仓库 GitHub Release 的同名制品必须字节一致，可用 GitHub API 的
 `digest`（sha256）与 CNB Release 详情里的 `hash_value` 逐项对数。发现不一致时用 GitHub 制品
