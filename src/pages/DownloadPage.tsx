@@ -141,7 +141,7 @@ export default function DownloadPage() {
             <div>
               <Title order={1}>谱面下载站</Title>
               <Text c="dimmed" size="sm" mt={4}>
-                按版本打包的 maimai DX 谱面（.zip，内含 maidata.txt / 音频 / 曲绘），数据源为夸克网盘分享，本站提供镜像直链与中转；每行另有「完整目录」可在线浏览或按目录打包下载（含音频、曲绘、pv，托管在 mai-charts 仓库）。
+                按版本打包的 maimai DX 全量谱面（.zip，内含 maidata.txt / 音频 / 曲绘 / pv），数据源为夸克网盘分享，完整包直接取自 mai-charts 仓库的版本目录（CNB 直链）。
               </Text>
             </div>
             <Group gap="xs">
@@ -190,7 +190,7 @@ export default function DownloadPage() {
 
           {manifest && (
             <Stack gap="xs">
-              <Title order={3}>谱面文本包下载（仅谱面，不含音频/曲绘）</Title>
+              <Title order={3}>附：只有 maidata.txt 的文本包（体积小）</Title>
               <Text size="sm" c="dimmed">
                 下面的包只抽取 maidata 文本按难度打包：共 {manifest.total} 首（{manifest.entries} 个难度条目），所有包合计才 {sizeLabel(manifest.bytes)}，
                 所以体积很小。要连音频、曲绘一起下载，用上方的 29 个版本包（合计约 16.6 GB）。
@@ -285,9 +285,9 @@ export default function DownloadPage() {
           {data && (
             <Alert variant="light" color="blue" title="下载说明">
               <Text size="sm">
-                1. 版本包较大（几百 MB ~ 1 GB+），建议使用下载工具并支持断点续传；
+                1. 「完整包下载」为 CNB 直链的版本目录归档，内容与网盘原包一致（maidata + 音频 + 曲绘 + pv），单包几百 MB ~ 1 GB，暂不支持断点续传；
                 <br />
-                2. 「下载」走本站中转（支持断点续传）；「直链」直接跳转加速节点。
+                2. 「原包中转」走本站中转（支持 Range 断点续传），「镜像直链」跳转 CNB Release 备用镜像版本包。
                 <br />
                 3. 若「本站下载」不可用，可打开
                 <a href={data.shareUrl} target="_blank" rel="noreferrer">
@@ -310,7 +310,7 @@ export default function DownloadPage() {
                     <Table.Th>版本</Table.Th>
                     <Table.Th>文件</Table.Th>
                     <Table.Th className={classes.sizeCell}>大小</Table.Th>
-                    <Table.Th className={classes.actionCell}>完整目录</Table.Th>
+                    <Table.Th className={classes.actionCell}>浏览</Table.Th>
                     <Table.Th className={classes.actionCell}>下载</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
@@ -335,8 +335,8 @@ export default function DownloadPage() {
                           <Button size="xs" variant="subtle" color="gray" component="a" href={fullDirTree(pack.file)} target="_blank" rel="noreferrer">
                             浏览
                           </Button>
-                          <Button size="xs" variant="light" color="indigo" component="a" href={fullDirZip(pack.file)}>
-                            目录 zip
+                          <Button size="xs" variant="subtle" color="gray" component="a" href={`${import.meta.env.BASE_URL}api/pack/${pack.num}?direct=1`}>
+                            镜像直链
                           </Button>
                         </Group>
                       </Table.Td>
@@ -348,9 +348,9 @@ export default function DownloadPage() {
                             variant="gradient"
                             gradient={{ from: 'cyan', to: 'indigo', deg: 120 }}
                             component="a"
-                            href={`${import.meta.env.BASE_URL}api/pack/${pack.num}`}
+                            href={fullDirZip(pack.file)}
                           >
-                            下载
+                            完整包下载
                           </Button>
                           <Button
                             size="xs"
@@ -368,7 +368,7 @@ export default function DownloadPage() {
                             component="a"
                             href={`${import.meta.env.BASE_URL}api/dl?f=${encodeURIComponent(pack.fid)}`}
                           >
-                            中转下载
+                            原包中转
                           </Button>
                           <Button
                             size="xs"
