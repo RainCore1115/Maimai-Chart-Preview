@@ -34,7 +34,7 @@ GitHub Release（tag `packs-mirror`，备用），由 Pages Functions 转发：
 重新覆盖上传（先落盘校验本地 sha256 与 `digest` 一致，再 `asset-upload-url` → `PUT` → `verify`），
 随后重新对数并抽检 `unzip -t`。
 
-另有 `scripts/build-chart-zips.mjs` 生成按难度分类与全量合并的谱面文本包（`/data/downloads/`），
+另有 `scripts/build-chart-zips.mjs` 生成按难度分类与全量合并的谱面文本包（`/data/downloads/`，只有 maidata 文本，不含音频/曲绘，故仅数 MB），
 以及 `/api/chart/<chartFileId>?diff=<2..6>` 单谱下载。
 
 ## 数据流

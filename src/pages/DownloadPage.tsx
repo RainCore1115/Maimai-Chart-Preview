@@ -185,9 +185,10 @@ export default function DownloadPage() {
 
           {manifest && (
             <Stack gap="xs">
-              <Title order={3}>谱面打包下载</Title>
+              <Title order={3}>谱面文本包下载（仅谱面，不含音频/曲绘）</Title>
               <Text size="sm" c="dimmed">
-                按难度分类的聚合包，或全部谱面合并包；共 {manifest.total} 首（{manifest.entries} 个难度条目），压缩后 {sizeLabel(manifest.bytes)}。
+                下面的包只抽取 maidata 文本按难度打包：共 {manifest.total} 首（{manifest.entries} 个难度条目），所有包合计才 {sizeLabel(manifest.bytes)}，
+                所以体积很小。要连音频、曲绘一起下载，用上方的 29 个版本包（合计约 16.6 GB）。
               </Text>
               <Group gap="xs" wrap="wrap">
                 {(manifest.packs ?? []).map((pack) => (
@@ -212,12 +213,12 @@ export default function DownloadPage() {
                     variant="gradient"
                     gradient={{ from: 'cyan', to: 'indigo', deg: 120 }}
                   >
-                    全部谱面合并包 · {manifest.all.count} 首 · {sizeLabel(manifest.all.bytes)}
+                    全部谱面文本包 · {manifest.all.count} 首 · {sizeLabel(manifest.all.bytes)}
                   </Button>
                 )}
               </Group>
               <Text size="xs" c="dimmed">
-                包内为 maidata 文本，文件名形如「曲名 [DX|ST] [难度].maidata.txt」，可直接喂给谱面工具；全部包按曲目合并、保留全部难度。
+                包内只有「曲名 [DX|ST] [难度].maidata.txt」文本，不含音频与曲绘；全部包按曲目合并、保留全部难度，可直接喂给谱面工具或做批量解析。
               </Text>
             </Stack>
           )}
