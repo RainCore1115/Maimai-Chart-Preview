@@ -29,6 +29,11 @@ GitHub Release（tag `packs-mirror`，备用），由 Pages Functions 转发：
 中转首选 CNB Release，其次 `ghfast.top`、`gh-proxy.com` 两个 GitHub 加速节点，均失效时回退官方
 有时效直链（需 Pages 环境变量 `GH_TOKEN`，已配置为 secret）。CNB 侧 `adx-packs` 里另有 ≤256MiB 的归档包。
 
+镜像一致性：CNB Release 与本仓库 GitHub Release 的同名制品必须字节一致，可用 GitHub API 的
+`digest`（sha256）与 CNB Release 详情里的 `hash_value` 逐项对数。发现不一致时用 GitHub 制品
+重新覆盖上传（先落盘校验本地 sha256 与 `digest` 一致，再 `asset-upload-url` → `PUT` → `verify`），
+随后重新对数并抽检 `unzip -t`。
+
 另有 `scripts/build-chart-zips.mjs` 生成按难度分类与全量合并的谱面文本包（`/data/downloads/`），
 以及 `/api/chart/<chartFileId>?diff=<2..6>` 单谱下载。
 
