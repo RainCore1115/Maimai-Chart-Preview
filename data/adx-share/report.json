@@ -1,24 +1,247 @@
 {
- "generatedAt": "2026-11-16T00:08:58.350Z",
- "durationMs": 566084,
+ "generatedAt": "2026-11-17T03:08:55.649Z",
+ "durationMs": 610613,
  "shareUrl": "https://pan.quark.cn/s/485e4886edd4",
  "mode": "direct",
  "stats": {
   "packs": 29,
-  "entries": 0,
+  "entries": 37,
   "covered": 0,
   "updated": 0,
   "utageSkipped": 0,
   "added": 0,
   "unmatched": 0,
-  "errors": 29,
+  "errors": 65,
   "chartsWritten": 0,
   "extraSongs": 80,
   "newExtraSongs": 0,
   "newVersions": 0
  },
  "newVersions": [],
- "unmatched": [],
+ "unmatched": [
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "383_Link",
+   "reason": "读取失败：Range 121152-124496 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "B.B.K.K.B.K.K",
+   "reason": "读取失败：Range 9155749-9159650 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "BETTER CHOICE",
+   "reason": "读取失败：Range 14079721-14082873 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Caliburne ～Story of the Legendary sword～",
+   "reason": "读取失败：Range 16033384-16038133 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Cosmic Magic Shooter",
+   "reason": "读取失败：Range 38735521-38738908 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Dragoon",
+   "reason": "读取失败：Range 58112369-58117104 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Dreampainter",
+   "reason": "读取失败：Range 68416829-68419989 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "FLOWER",
+   "reason": "读取失败：Range 78426947-78431713 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "FUJIN Rumble",
+   "reason": "读取失败：Range 95772150-95776180 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Got more raves？",
+   "reason": "读取失败：Range 97860804-97864695 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Heart Beats",
+   "reason": "读取失败：Range 104298086-104301299 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Ignis Danse",
+   "reason": "读取失败：Range 108729874-108733863 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "MIRROR of MAGIC",
+   "reason": "读取失败：Range 110742744-110746114 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "naraku within",
+   "reason": "读取失败：Range 112705004-112708338 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "oboro",
+   "reason": "读取失败：Range 117161880-117165282 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "One Step Ahead",
+   "reason": "读取失败：Range 130847171-130850447 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "planet dancer",
+   "reason": "读取失败：Range 139221694-139225703 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Scars of FAUNA",
+   "reason": "读取失败：Range 145651759-145655588 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "shake it!",
+   "reason": "读取失败：Range 147651556-147654307 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "Stand Up!!!!",
+   "reason": "读取失败：Range 153650701-153654039 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "The Great Journey",
+   "reason": "读取失败：Range 159356965-159360064 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "VERTeX",
+   "reason": "读取失败：Range 161311261-161315086 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "おいでよ！妖精の森",
+   "reason": "读取失败：Range 163249938-163252905 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "おこちゃま戦争",
+   "reason": "读取失败：Range 168393115-168396572 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "おても☆Yan",
+   "reason": "读取失败：Range 175849903-175853494 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "きたさいたま2000",
+   "reason": "读取失败：Range 185157262-185162402 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "ほとんど違法行為",
+   "reason": "读取失败：Range 187166018-187168977 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "みかんのうた",
+   "reason": "读取失败：fetch failed"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "アンハッピーリフレイン",
+   "reason": "读取失败：Range 199564898-199568736 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "ダブルラリアット",
+   "reason": "读取失败：Range 204427293-204430027 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "ピーマンたべたら",
+   "reason": "读取失败：Range 210494257-210497507 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "ファミリーパーティー",
+   "reason": "读取失败：Range 219538468-219541190 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "不毛！",
+   "reason": "读取失败：fetch failed"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "明星ロケット",
+   "reason": "读取失败：fetch failed"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "毒占欲",
+   "reason": "读取失败：Range 234999426-235002520 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "究極焼肉レストラン！お燐の地獄亭！",
+   "reason": "读取失败：Range 244894928-244897881 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 5,
+   "packName": "ORANGE",
+   "folder": "緋色のDance",
+   "reason": "读取失败：Range 254188136-254191708 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  }
+ ],
  "extraSongIds": [
   447,
   1496,
