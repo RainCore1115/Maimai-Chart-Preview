@@ -1,24 +1,481 @@
 {
- "generatedAt": "2026-11-27T03:03:46.290Z",
- "durationMs": 502904,
+ "generatedAt": "2026-11-28T02:56:23.939Z",
+ "durationMs": 656360,
  "shareUrl": "https://pan.quark.cn/s/485e4886edd4",
  "mode": "direct",
  "stats": {
   "packs": 29,
-  "entries": 0,
+  "entries": 76,
   "covered": 0,
   "updated": 0,
   "utageSkipped": 0,
   "added": 0,
   "unmatched": 0,
-  "errors": 29,
+  "errors": 104,
   "chartsWritten": 0,
   "extraSongs": 80,
   "newExtraSongs": 0,
   "newVersions": 0
  },
  "newVersions": [],
- "unmatched": [],
+ "unmatched": [
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Alcyone",
+   "reason": "读取失败：Range 357076-361123 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "BLACK SWAN",
+   "reason": "读取失败：Range 4277222-4281709 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Destr0yer [ST]",
+   "reason": "读取失败：Range 7505179-7508905 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Falsum Atlantis",
+   "reason": "读取失败：Range 11810563-11814790 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "GIGANTØMAKHIA",
+   "reason": "读取失败：Range 15951781-15956081 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Lia=Fail",
+   "reason": "读取失败：Range 19535643-19540141 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "LiftOff",
+   "reason": "读取失败：Range 23039915-23043675 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Limits",
+   "reason": "读取失败：Range 26652095-26656019 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "MOBILYS",
+   "reason": "读取失败：Range 30835935-30839716 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "MOON NIGHTのせいにして",
+   "reason": "读取失败：Range 35272352-35275543 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "NAGAREBOSHI☆ROCKET",
+   "reason": "读取失败：Range 38406630-38410550 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "needLe",
+   "reason": "读取失败：Range 41591999-41595397 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "No Limit RED Force",
+   "reason": "读取失败：Range 44694824-44698618 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "on the rocks",
+   "reason": "读取失败：Range 48769735-48772910 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Raven Emperor",
+   "reason": "读取失败：Range 51872581-51876658 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Round Round Spinning Around",
+   "reason": "读取失败：Range 55297284-55300873 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Seize The Day",
+   "reason": "读取失败：Range 58799712-58802316 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Shooting Stars",
+   "reason": "读取失败：Range 61282496-61285999 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Southern Cross",
+   "reason": "读取失败：Range 65272160-65276918 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Sweets Time",
+   "reason": "读取失败：Range 68921788-68925140 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "taboo tears you up [DX]",
+   "reason": "读取失败：Range 72913229-72917024 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Technicians High [ST]",
+   "reason": "读取失败：Range 76476403-76479897 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Trick tear",
+   "reason": "读取失败：Range 79887774-79891932 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "U&iVERSE -銀河鸞翔-",
+   "reason": "读取失败：Range 83295782-83300335 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Upshift",
+   "reason": "读取失败：Range 87345821-87349695 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "veil",
+   "reason": "读取失败：Range 90781110-90784277 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "VOLTAGE",
+   "reason": "读取失败：Range 94517061-94520872 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "We Are Us",
+   "reason": "读取失败：Range 98057578-98060813 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "Yorugao",
+   "reason": "读取失败：Range 101336340-101340378 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "うっせぇわ",
+   "reason": "读取失败：Range 104592440-104597041 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "さんさーら！",
+   "reason": "读取失败：Range 108072951-108076591 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "とびだせ！TO THE COSMIC!!",
+   "reason": "读取失败：Range 112243688-112247935 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "どぅーまいべすと！",
+   "reason": "读取失败：Range 116116646-116119740 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "なだめスかし Negotiation（TVsize）",
+   "reason": "读取失败：Range 119228336-119231281 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ぱくぱく☆がーる",
+   "reason": "读取失败：Range 121611699-121615866 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "アイドル新鋭隊",
+   "reason": "读取失败：Range 126125773-126128632 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "アカツキアライヴァル",
+   "reason": "读取失败：Range 129015434-129018803 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "アンビバレンス",
+   "reason": "读取失败：Range 132943072-132947132 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "イヤホンロマンス",
+   "reason": "读取失败：Range 136994926-136998610 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "インドア系ならトラックメイカー",
+   "reason": "读取失败：Range 140661057-140664487 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "グッバイ宣言",
+   "reason": "读取失败：Range 144214544-144217898 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ゴーストルール [DX]",
+   "reason": "读取失败：Range 147698807-147702267 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "スピカの天秤",
+   "reason": "读取失败：Range 151300287-151304733 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "スーパーシンメトリー",
+   "reason": "读取失败：Range 155781079-155785242 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "セカイはまだ始まってすらいない",
+   "reason": "读取失败：Range 159982016-159985179 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "テレキャスタービーボーイ",
+   "reason": "读取失败：Range 163165668-163169608 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "デッドマンズバラッド",
+   "reason": "读取失败：Range 165982125-165986606 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "トリアージ",
+   "reason": "读取失败：Range 169940115-169943540 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ドラゴンエネルギー",
+   "reason": "读取失败：Range 173500060-173503614 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ノイローゼ",
+   "reason": "读取失败：Range 177201299-177205394 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ハードコア・シンドローム",
+   "reason": "读取失败：Range 181051802-181056129 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ヒステリックナイトガール",
+   "reason": "读取失败：Range 184841624-184845021 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ポッピンキャンディ☆フィーバー！",
+   "reason": "读取失败：Range 188258399-188262328 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "マツヨイナイトバグ",
+   "reason": "读取失败：Range 192049692-192055378 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ヨミビトシラズ",
+   "reason": "读取失败：Range 195436616-195440586 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "ラグトレイン",
+   "reason": "读取失败：Range 199067963-199071319 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "リモコン",
+   "reason": "读取失败：Range 202598625-202602376 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "僕は空気が嫁ない",
+   "reason": "读取失败：Range 205906611-205909947 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "前衛的Landscape",
+   "reason": "读取失败：Range 208955916-208959454 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "噛み係",
+   "reason": "读取失败：Range 212121596-212125289 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "夜に駆ける",
+   "reason": "读取失败：Range 215701463-215705714 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "失敗作少女",
+   "reason": "读取失败：Range 220011637-220015459 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "宿星審判",
+   "reason": "读取失败：Range 223589105-223593506 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "幻想に咲いた花",
+   "reason": "读取失败：Range 227192750-227196615 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "廻廻奇譚",
+   "reason": "读取失败：Range 230814523-230819219 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "悪魔の踊り方",
+   "reason": "读取失败：Range 234787767-234791108 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "星詠みとデスペラード",
+   "reason": "读取失败：Range 238469313-238473329 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "春嵐",
+   "reason": "读取失败：Range 242006520-242009596 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "泥の分際で私だけの大切を奪おうだなんて",
+   "reason": "读取失败：Range 245148459-245152067 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "神々が恋した幻想郷",
+   "reason": "读取失败：Range 248880081-248883737 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "竹",
+   "reason": "读取失败：Range 252918645-252923446 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "紅星ミゼラブル～廃憶編",
+   "reason": "读取失败：Range 256624373-256628150 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "脳天直撃",
+   "reason": "读取失败：Range 260357528-260362697 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "華の集落、秋のお届け",
+   "reason": "读取失败：Range 264823564-264827518 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "躯樹の墓守",
+   "reason": "读取失败：Range 268751946-268756843 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  },
+  {
+   "pack": 18,
+   "packName": "UNiVERSE",
+   "folder": "響け！CHIREI MY WAY!",
+   "reason": "读取失败：Range 272338629-272342057 失败：HTTP 412 <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r"
+  }
+ ],
  "extraSongIds": [
   447,
   1496,
